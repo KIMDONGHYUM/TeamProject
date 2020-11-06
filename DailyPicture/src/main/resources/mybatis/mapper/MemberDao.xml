@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.springboot.dao.IMemberDao"> 
+
+	 <insert id="insertMemberDao" parameterType="com.study.springboot.dto.MemberDto">
+      insert into dp_member (name, id, password, phone, mail, reg)
+           values (#{name}, #{id}, #{password}, #{phone}, #{mail}, #{reg})
+   </insert> 
+	
+	<select id="mlistDao" resultType="com.study.springboot.dto.MemberDto"> 
+		select * from dp_member where id = #{param1} order by reg desc
+		
+	</select> 	
+	 
+	<!-- 	 <select id="dp_member" resultType="_int">
+		select password from dp_member where id = #{param1}  
+	</select>  -->
+	
+		 <select id="loginCheckDao" resultType="_int">
+		select count(*) from dp_member where id = #{id} and password = #{pw}
+	</select> 
+	
+	 <select id="idCheckDao" resultType="_int">
+		select count(*) from dp_member where id = #{id} 
+	</select> 
+	
+	<insert id="insertPicture" parameterType="com.study.springboot.dto.MemberDto">
+	 insert into dp_member (picture) values (#{picture})
+	</insert>
+	
+	<update id="updatePicture" >
+		update dp_member set picture = #{picture} where id = #{id}
+	</update>
+	
+	<update id="deletePicture">
+		update dp_member set picture = null where id = #{id}
+	</update>
+	
+     <select id="getUserInfoDao" resultType="com.study.springboot.dto.MemberDto"> 
+		select * from dp_member where id= #{param1} 
+	</select>  
+
+<!--
+	<select id="userListDao" resultType="com.study.springboot.dto.MemberDto"> 
+		select * from dp_member
+		
+	</select> 	
+	
+	<update id="updateMemberDao">
+		update dp_member set password = #{password}, mail = #{mail}, 
+		     phone = #{phone} WHE RE id = #{id}
+	</update>
+	
+	<delete id="deleteMemberDao">
+		delete from dp_member where id = #{param1} 
+	</delete> -->
+	
+ 
+	
+</mapper>

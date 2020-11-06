@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.springboot.dao.IMyctDao"> 
+
+	 <insert id="insertCtDao" parameterType="com.study.springboot.dto.MyctDto">
+	 <selectKey keyProperty="board_no" resultType="int" order="BEFORE">
+	 		select dp_myct_seq.nextval FROM DUAL
+	 </selectKey>
+      insert into dp_myct (board_no, id, memo, picture, reg)
+           values (dp_myct_seq.nextval, #{id}, #{memo}, #{picture}, #{reg})
+   </insert> 
+	
+	 
+
+	<select id="cListDao" resultType="com.study.springboot.dto.MyctDto"> 
+		select * from dp_myct where id = #{param1} order by reg desc
+		
+	</select> 	
+	
+	
+	<delete id="deletePanDao">
+		delete from dp_myct where board_no = #{param1} and id = #{param2}
+	</delete>
+	
+	<!--  <select id="listDao" resultType="com.study.springboot.dto.SimpleBbsDto"> 
+      select * from simple_bbs order by id desc
+   </select>  -->
+	
+	
+ 
+	
+</mapper>
