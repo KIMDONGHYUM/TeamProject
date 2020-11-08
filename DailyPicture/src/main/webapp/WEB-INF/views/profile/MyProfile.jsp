@@ -535,7 +535,7 @@
 						
 						     <!-- 첫 번째 Modal의 내용 -->
 						     <div class="mmodal-content">
-						       <span class="cclose">&times;</span>                         
+						                            
 						       
 						       <div id="deleteviewbox" >
 							
@@ -558,7 +558,7 @@
 		                          
 		                          <div class="no">
 		                          <form>
-		                          <input type="button"class="btn btn-info" onClick="buttonno()" value="아니오" />
+		                          <input type="button"  class="cclose btn btn-info"  value="아니오" />
 								  </form>
 								 </div>
 								 </div>
@@ -739,15 +739,11 @@
 	window.onclick = function(event) {
 	  if (event.target.className == "modal") {
 	      event.target.style.display = "none";
-
 	  }
 	  if (event.target.className == "mmodal") {
 	      event.target.style.display = "none";
-		         
-	  	  }
-	};
-
-	
+			  }
+			};
 
     </script>
     
@@ -790,8 +786,8 @@
 						  ffuncs[j]();
 						}
 						 
-						// Modal 영역 밖을 클릭하면 Modal을 닫습니다.
-											
+						
+						
     </script>
     
     
