@@ -21,6 +21,8 @@ public interface IMyctDao
 	
 	public int deletePanDao(int board_no, String id);
 	
+	public int updatePan(MyctDto content);
+	
 	
 }
 

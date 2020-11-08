@@ -173,7 +173,7 @@
             		<hr class ="own">
 			    
             		<p><small>사진선택</small></p>
-            		<input type="file" class="btn btn-info"  name="filename" style="text-align:center;" >
+            		<input type="file" class="btn btn-info"  name="filename" >
             		
             		<input type="submit" class="btn btn-success"  value="사진 업로드">
         	</form>
@@ -216,6 +216,9 @@
         </tr>
         <tr>
             <td><a href="FollowSetting">친구 관리</a></td>
+        </tr>
+        <tr>
+            <td><a href="DeleteMember">회원 탈퇴</a></td>
         </tr>
     </table>
  

@@ -26,6 +26,10 @@
 		delete from dp_myct where board_no = #{param1} and id = #{param2}
 	</delete>
 	
+	 <update id="updatePan" >
+		update dp_myct set memo = #{memo}, picture= #{picture} where board_no = #{board_no} and id = #{id} 
+	</update>
+	
 	<!--  <select id="listDao" resultType="com.study.springboot.dto.SimpleBbsDto"> 
       select * from simple_bbs order by id desc
    </select>  -->

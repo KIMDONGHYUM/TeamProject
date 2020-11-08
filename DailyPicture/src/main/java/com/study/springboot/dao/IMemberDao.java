@@ -25,11 +25,9 @@ public interface IMemberDao
 	
 	public int updateMemberDao(MemberDto member);
 	
-	public int deleteMemberDao(String id);
+	public int deleteMemberDao(@Param("id") String id,@Param("pw") String pw);
 	
 	public int loginCheckDao(@Param("id") String id, @Param("pw") String pw);
-	
-	public int pwCheckDao(String id, String pw);
 	
 	public ArrayList<MemberDto> userListDao();
 	

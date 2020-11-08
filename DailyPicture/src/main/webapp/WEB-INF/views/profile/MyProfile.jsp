@@ -385,7 +385,11 @@
 		text-align: left;			
 
 		}
-		 	
+  		 #footer{
+        text-align: center;
+        margin-top: 300px;        
+        width:50%;    
+        }
 					
 		</style>		
 	</head>
@@ -655,9 +659,19 @@
 		
 		
 		
-			 <div id="footer">
-     <a href="">소개 </a>| <a href="">고객센터 </a>| <a href="">위치 </a>
-     </div>
+	<div id="footer">
+  		 
+   		<a href="Introduce">소개 </a>| <a href="Infomation">고객센터 </a>| <a href="Location">위치 </a>
+  		
+    </div>
+        
+        <table id="dp-nametable">
+          <tr><td><small>상호명:데일리픽쳐|사업자등록번호:000-00-0000 사업자 확인</small></td></tr>
+          <tr><td><small>통신판매업 신고번호 : 0000-서울노원-0000 | 개인정보관리책임자 : 홍길동</small></td></tr>  
+          <tr><td><small>주소 : 서울시 노원구 | 대표자 : 이사장</small></td></tr>  
+          <tr><td><small>TEL: 000-000-0000 | FAX: 000-0000-0000 | 이메일 : dp@dailypicture.com</small></td></tr>  
+          <tr><td><small>Copyright 2020 데일리 픽쳐 Corp. All Rights Reserved.</small></td></tr> 
+        </table>    
 		 
 		 
 		
@@ -725,8 +739,15 @@
 	window.onclick = function(event) {
 	  if (event.target.className == "modal") {
 	      event.target.style.display = "none";
+
 	  }
+	  if (event.target.className == "mmodal") {
+	      event.target.style.display = "none";
+		         
+	  	  }
 	};
+
+	
 
     </script>
     
@@ -770,11 +791,7 @@
 						}
 						 
 						// Modal 영역 밖을 클릭하면 Modal을 닫습니다.
-						window.onclick = function(event) {
-						  if (event.target.className == "mmodal") {
-						      event.target.style.display = "none";
-						  }
-						};
+											
     </script>
     
     

@@ -14,7 +14,7 @@ public interface IMyctService {
 	
 	public ArrayList<MyctDto> cList(String id);
 	
-//	public int deletePan(@Param("_board_no") String board_no, @Param("_id")  String id );
-
 	public int deletePan(int board_no, String id);
+	
+	public int updatePan(MyctDto content);
 }

@@ -32,6 +32,12 @@ public class MyctService  implements IMyctService{
 		int nResult = mdao.deletePanDao(board_no, id);
 		return nResult;
 	}
+	
+	@Override
+	public int updatePan(MyctDto content) {
+			int nResult = mdao.updatePan(content);
+			return nResult;
+		}
 
 	
 }

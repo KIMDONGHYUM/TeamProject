@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main</title>
-
+	
     <style>
        
        
@@ -203,7 +203,9 @@
 
     <div id="footer">
    
-        <a href="Introduce">소개 </a>| <a href="Infomation">고객센터 </a>| <a href="Location">위치 </a> 
+        
+   		<a href="Introduce">소개 </a>| <a href="Infomation">고객센터 </a>| <a href="Location">위치 </a>
+  		    
     </div>
         
         <table id="dp-nametable">

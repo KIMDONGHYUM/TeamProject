@@ -1,7 +1,8 @@
 package com.study.springboot.dao;
 
-import org.apache.ibatis.annotations.Mapper;
+import java.util.ArrayList;
 
+import org.apache.ibatis.annotations.Mapper;
 import com.study.springboot.dto.ReplyDto;
 
 
@@ -13,6 +14,9 @@ public interface IReplyDao
 	
 	
 	public int insertReplyDao(ReplyDto reply);
+	
+	public ArrayList<ReplyDto> replyListDao(int myct_no, int board_no, String writer_id);
+
 		
 }
 

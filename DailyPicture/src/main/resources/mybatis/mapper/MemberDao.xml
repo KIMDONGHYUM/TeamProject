@@ -53,11 +53,12 @@
 	<update id="updateMemberDao">
 		update dp_member set password = #{password}, mail = #{mail}, 
 		     phone = #{phone} WHE RE id = #{id}
-	</update>
+	</update>	-->
 	
 	<delete id="deleteMemberDao">
-		delete from dp_member where id = #{param1} 
-	</delete> -->
+		delete from dp_member where id = #{id} and password= #{pw} 
+	</delete> 
+	
 	
  
 	

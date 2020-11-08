@@ -17,11 +17,9 @@ public interface IMemberService {
 	
 	public int updateMember(MemberDto member);
 	
-	public int deleteMember(@Param("_id") String id);
+	public int deleteMember(@Param("id") String id,@Param("pw") String pw);
 	
 	public int loginCheck(String id, String pw);
-	
-	public int pwCheck(String id, String pw);
 	
 	public ArrayList<MemberDto> userList();
 	

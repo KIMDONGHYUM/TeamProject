@@ -151,6 +151,9 @@
         <tr>
             <td><h3><a href="FollowSetting"><strong>친구 관리</strong></a></h3></td>
         </tr>
+        <tr>
+            <td><a href="DeleteMember">회원 탈퇴</a></td>
+        </tr>
     </table>
  
 

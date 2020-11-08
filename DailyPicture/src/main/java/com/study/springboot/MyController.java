@@ -121,7 +121,7 @@ public class MyController {
 			
 			dto = mservice.getUserInfo(id);
 			req.getSession().setAttribute("memberInfo", dto);
-			String path="C:\\Users\\user\\Documents\\springboot\\DailyPicture\\src\\main\\resources\\static\\user\\"+id+"\\"+picture;
+			String path="C:\\Users\\user\\git\\TeamProject\\DailyPicture\\src\\main\\resources\\static\\user\\"+id+"\\"+picture;
 			File file = new File(path);
 					if(file.exists()) 
 						file.delete();
@@ -137,21 +137,79 @@ public class MyController {
 	
 	@RequestMapping("/Introduce")
 	public String Introduce() {
-		return "Introduce";
+		return "Infomation/Introduce";
+	}
+	@RequestMapping("/1on1")
+	public String one() {
+		return "Infomation/1on1";
+	}
+	@RequestMapping("/write_1on1")
+	public String writeone() {
+		return "Infomation/write_1on1";
+	}
+	@RequestMapping("/write_notice")
+	public String write_notice() {
+		return "Infomation/write_notice";
+	}
+	@RequestMapping("/write_question")
+	public String write_question() {
+		return "Infomation/write_question";
+	}
+	@RequestMapping("/Question")
+	public String Question(HttpSession session) {
+		String admin = (String)session.getAttribute("sessionID");
+		if(admin.equals("hong")) {
+			return "Infomation/Question-admin";
+		}else {
+			return "Infomation/Question";
+		}
 	}
 	@RequestMapping("/Location")
 	public String Location() {
-		return "Location";
+		return "Infomation/Location";
+	}
+	@RequestMapping("/view_notice")
+	public String view_notice() {
+		return "Infomation/view_notice";
+	}
+	@RequestMapping("/view_question")
+	public String view_question() {
+		return "Infomation/view_question";
+	}
+	@RequestMapping("/view_1on1")
+	public String view_1on1() {
+		return "Infomation/view_1on1";
 	}
 	@RequestMapping("/Infomation")
 	public String Infomation(HttpSession session,Model model) {
 		String Admin = (String)session.getAttribute("sessionID");
 		if(Admin.equals("hong")) {
-			return "Infomation";
+			return "Infomation/Infomation-admin";
 		}else {
-			model.addAttribute("msg","접근권한이 없습니다.");
-			return "redirect";
+			
+			return "Infomation/Infomation";
 		}
+	}
+	@RequestMapping("/DeleteMember")
+	public String goDeleteMember() {
+		return "profile/DeleteMember";
+	}
+	
+	@RequestMapping("/DeleteMemberAction")
+	public String DeleteMember(HttpServletRequest req,Model model,HttpSession session) {
+		String id = (String)session.getAttribute("sessionID");
+		String pw = (String)req.getParameter("password");
+		
+		int nResult = mservice.deleteMember(id, pw);
+		if(nResult <= 0) {
+			model.addAttribute("msg","실패");
+			
+		}else {
+			session.invalidate();
+			model.addAttribute("msg", "탈퇴 성공");
+			
+		}
+		return "redirect";
 	}
 	//-------------------------------------------------------------------------------------------
 	@RequestMapping("/WritePage")
@@ -253,25 +311,25 @@ public class MyController {
 		return "redirect:MainForm";
 	}
 
-	@RequestMapping("/MemberDeleteAction")
-	public String MemberDeleteActionPage(HttpServletRequest req, RedirectAttributes redirect, Model model) {
-		HttpSession session = req.getSession();
-		String pw = req.getParameter("password");
-		String id = (String) session.getAttribute("sessionID");
-		int password = mservice.pwCheck(id, pw);
-		int spw = Integer.parseInt(pw);
-		if (password == spw) {
-			int o = mservice.deleteMember(id);
-			model.addAttribute("msg", "회원탈퇴.");
-			model.addAttribute("url", "/MemberLogoutAction");
-		} else {
-			System.out.println(password);
-			model.addAttribute("msg", "비밀번호가 다릅니다.");
-			model.addAttribute("url", "/");
-		}
-		return "redirect";
-
-	}
+//	@RequestMapping("/MemberDeleteAction")
+//	public String MemberDeleteActionPage(HttpServletRequest req, RedirectAttributes redirect, Model model) {
+//		HttpSession session = req.getSession();
+//		String pw = req.getParameter("password");
+//		String id = (String) session.getAttribute("sessionID");
+//		int password = mservice.pwCheck(id);
+//		int spw = Integer.parseInt(pw);
+//		if (password == spw) {
+//			int o = mservice.deleteMember(id);
+//			model.addAttribute("msg", "회원탈퇴.");
+//			model.addAttribute("url", "/MemberLogoutAction");
+//		} else {
+//			System.out.println(password);
+//			model.addAttribute("msg", "비밀번호가 다릅니다.");
+//			model.addAttribute("url", "/");
+//		}
+//		return "redirect";
+//
+//	}
 
 	@RequestMapping("/ModifyForm")
 	public String MemberModifyFormPage(HttpServletRequest req, RedirectAttributes redirect) {
@@ -345,7 +403,7 @@ public class MyController {
 		} else {
 			System.out.println("회원가입 성공");
 
-			String path = "C:\\Users\\user\\Documents\\springboot\\DailyPicture\\src\\main\\resources\\static\\user\\"+ req.getParameter("id"); // 폴더 경로 경로
+			String path = "C:\\Users\\user\\git\\TeamProject\\DailyPicture\\src\\main\\resources\\static\\user\\"+ req.getParameter("id"); // 폴더 경로 경로
 			File Folder = new File(path);
 
 			// 해당 디렉토리가 없을경우 디렉토리를 생성합니다.
@@ -460,7 +518,7 @@ public class MyController {
 			
 			//내정보에 있는 사진을 사진변경후 프로필 사진이 있는곳에  뿌려준다.
 			//사진파일에 있는 사진도 같이 삭제해준다.
-			String path = "C:\\Users\\user\\Documents\\springboot\\DailyPicture\\src\\main\\resources\\static\\user\\"+id+"\\"+picture;
+			String path = "C:\\Users\\user\\git\\TeamProject\\DailyPicture\\src\\main\\resources\\static\\user\\"+id+"\\"+picture;
 						File file = new File(path);
 							 if( file.exists()) 
 								 file.delete();
@@ -530,5 +588,56 @@ public class MyController {
 		return "redirect";
 
 	}
+	
+	// 게시판 수정
+		@RequestMapping(value = "/UpdatePan", method = RequestMethod.POST)
+		public /* ResponsBody */ String ChangePam(Model model, HttpServletRequest req,
+				@RequestParam("filename") MultipartFile file) {
+			// ResponsBody : retrun; 할때 주소로 넘어가지않고 화면에 return을 써줌 그러므로 빼준다.
+			System.out.println("ChangePan");
+			// 섹션아이디를 보내서 회원가입할때 만들어준 폴더로 경로를 설정할 수 있다.
+			HttpSession session = req.getSession();
+			String id = (String) session.getAttribute("sessionID");
+
+			String filename = fileUploadService.restore(file, id);
+			System.out.println("url:" + filename);
+			
+			String oldpicture = req.getParameter("picture");
+			model.addAttribute("url", filename);
+			String path = "C:\\Users\\ehowlrusdn\\OneDrive\\문서\\springboot\\DailyPicture\\src\\main\\resources\\static\\user\\"+ id +"\\" + oldpicture;
+			File oldfile = new File(path);
+				 if( oldfile.exists()) 
+					 oldfile.delete();
+				 
+			MyctDto dto = new MyctDto();
+			
+			int board_no = Integer.parseInt(req.getParameter("board_no"));
+			String memo = req.getParameter("memo");
+			
+			dto.setBoard_no(board_no);
+			dto.setId(id);
+			dto.setMemo(memo);
+			dto.setPicture(filename);
+			
+			
+			
+			
+			int nResult = ctservice.updatePan(dto);
+			if (nResult <= 0) {
+				System.out.println("게시판 수정실패");
+				model.addAttribute("msg", "수정실패");
+				model.addAttribute("url", "/MyProfile");
+				
+			} else {	
+				System.out.println("게시판 수정수공");
+				model.addAttribute("msg", "수정성공");
+				model.addAttribute("url", "/MyProfile");
+			}
+		return "redirect";
+		}
+	
+
+	
+	
 	
 }
