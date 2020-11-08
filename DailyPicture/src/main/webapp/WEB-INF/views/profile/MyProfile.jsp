@@ -21,7 +21,7 @@
      
      	%>
 
-     	
+     	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	   
 	    	
      	<%
@@ -33,6 +33,7 @@
 	<link rel="stylesheet" type="text/css" href="css/stylepp.css">
 		<link rel="stylesheet" type="text/css" href="css/styleppp.css">
 	<link rel="stylesheet" type="text/css" href="css/modelpopup.css">
+	<link rel="stylesheet" type="text/css" href="css/modelpopupp.css">
 	<script type="text/javascript">
 		
 		function changeView1(value){
@@ -451,7 +452,7 @@
 		
  		     <c:forEach var="dto" items="${ clist }" >
 				
-		  	 <button class="btnpop" ><img src="user/<%= session.getAttribute("sessionID")%>/${ dto.picture }" width="250" height="250"></button>
+		  	 <button class="btnpop" ><img src="user/${dto.id}/${ dto.picture }" width="250" height="250"></button>
 			 
 			   <!-- 다중 팝업 사용 -->			
 			   <!-- 첫 번째 Modal -->
@@ -463,7 +464,7 @@
 			      
 			      
 			      <div id="poppimg">
-			      <img class="poppimg" src="user/<%= session.getAttribute("sessionID")%>/${ dto.picture }">
+			      <img class="poppimg" src="user/${dto.id}/${ dto.picture }">
 			   	  </div>
 			   	  
 			      <div id="popchat"> 
@@ -475,32 +476,36 @@
 					   	<div id="popprofilebox">
 					   	
 					   	 <div class="sprofileimg" style="background: #BDBDBD;"> 
-					       <a href="profile.go"><img class="profile" src="user/<%=session.getAttribute("sessionID") %>/<%=member.getPicture() %>"  onerror="this.src='img/profile.jpg'" ></a>
+					       <a href="profile.go"><img class="profile" src="user/${dto.id}/<%=member.getPicture() %>"  onerror="this.src='img/profile.jpg'" ></a>
 					       </div>
                           <div id="user_popid">
-                          <a href="profile.go"><small><%=session.getAttribute("sessionID")%></small></a> 
+                          <a href="profile.go"><small>${dto.id}</small></a> 
                         </div>
                        
                         </div>
 					   	</td>
 					   
-					  
-					       <td><input type="text" id="textmemo" value="${dto.reg}" disabled/><td>
+					  <fmt:formatDate value="${dto.reg}" var="reg" pattern="yyyy.MM.dd"/>
+					       <td><input type="text" id="textmemo" value="${reg}" disabled/><td>
 					       
 					       <!--                  사진 수정 삭제 부분        드롭다운 부분                         -->
 					  
 					    
+					  
 					    
+					   
+					 
 					   	<table id="systembox"> 
-							<tr>
-			                    <input type="checkbox" id="pppp">
-									<label for="pppp">수정</label>
-									<div>
-										<div>
-										<label for="pppp"></label>
-							
-							<div id="popupview2" >
-								<form action="UpdatePan" method="post" enctype="multipart/form-data">
+						<tr>
+						<p class="bbtnpop">수정</p> 
+					    <!-- 첫 번째 Modal -->
+					   <div class="mmodal">
+					
+					     <!-- 첫 번째 Modal의 내용 -->
+					     <div class="mmodal-content">
+					       <span class="cclose">&times;</span>                         
+					      <div id="popupview2" >
+					       <form action="UpdatePan" method="post" enctype="multipart/form-data">
 									<h2>게시글 수정</h2>
 									<hr class ="own">
 								    <input type="hidden" name="board_no" value="${dto.board_no}" />
@@ -510,21 +515,25 @@
 									<input type="submit" class="btn btn-success" value="파일수정">
 									</form>
 									</div>
-								
-							</div>
-							<label for="pppp"></label>
-						</div>
+					    
+					     </div>
+					   </div>
+					   
+					    </tr>
 						
-						</tr>					
-					
-			               <tr>
-			                  <input type="checkbox" id="pandelet">
-									<label for="pandelet">삭제</label>
-									<div>
-										<div>
-										<label for="pandelet"></label>
 							
-							<div id="deleteviewbox" >
+							
+						   <tr>
+						   <p class="bbtnpop">삭제</p> 
+						 
+						   <!-- 첫 번째 Modal -->
+						   <div class="mmodal">
+						
+						     <!-- 첫 번째 Modal의 내용 -->
+						     <div class="mmodal-content">
+						       <span class="cclose">&times;</span>                         
+						       
+						       <div id="deleteviewbox" >
 							
 									<h4>이 게시물을 영구적으로 삭제하시겠습니까?</h4>
 									<hr class ="own">
@@ -549,13 +558,11 @@
 								  </form>
 								 </div>
 								 </div>
-								 
-							
-								 </div>
-							</div>
-							<label for="pandelet"></label>
-						   </div>
-						               
+						       
+						       
+						     </div>
+						   </div>			
+			       			               
                           </tr>
                           
                           
@@ -581,10 +588,10 @@
 					   	<div id="popprofilebox">
 					   	
 					   	 <div class="sprofileimg" style="background: #BDBDBD;"> 
-					       <a href="profile.go"><img class="profile" src="user/<%=session.getAttribute("sessionID") %>/<%=member.getPicture() %>"  onerror="this.src='img/profile.jpg'" ></a>
+					       <a href="profile.go"><img class="profile" src="user/${dto.id}/<%=member.getPicture() %>"  onerror="this.src='img/profile.jpg'" ></a>
 					       </div>
                           <div id="user_popid">
-                          <a href="profile.go"><label for="sprofileimg"><small><%=session.getAttribute("sessionID")%></small></label></a> 
+                          <a href="profile.go"><label for="sprofileimg"><small>${dto.id}</small></label></a> 
                         </div>
                        
                         </div>
@@ -627,8 +634,13 @@
 					
 					<div id="chatWrite">
 					 <form action="ReplysendAcion"></form>
-			  		  <input type="text" class="chatWrite" placeholder="글을써주세요" />	
-			  		  <input type="hidden" name="user_id" value="" />
+			  		  <input type="text" class="chatWrite" placeholder="글을써주세요" />
+			  		  	
+			  		   <input type="hidden" name="board_no" value="${dto.board_no}" />
+			  		
+			  		  <input type="hidden" name="writer" value="${dto.id}" />
+			  		 
+			  		  
 			  		  <input type="submit" class="btn btn-primary" style="float:right" value="보내기"/>	
 			  		</div>
 			  	
@@ -717,6 +729,58 @@
 	};
 
     </script>
+    
+    
+       <script>
+       
+						// Modal을 가져옵니다.
+						var mmodals = document.getElementsByClassName("mmodal");
+						// Modal을 띄우는 클래스 이름을 가져옵니다.
+						var bbtns = document.getElementsByClassName("bbtnpop");
+						// Modal을 닫는 close 클래스를 가져옵니다.
+						var sspanes = document.getElementsByClassName("cclose");
+						var ffuncs = [];
+						 
+						// Modal을 띄우고 닫는 클릭 이벤트를 정의한 함수
+						function MModal(num) {
+						  return function() {
+						    // 해당 클래스의 내용을 클릭하면 Modal을 띄웁니다.
+						    bbtns[num].onclick =  function() {
+						        mmodals[num].style.display = "block";
+						        console.log(num);
+						    };
+						 
+						    // <span> 태그(X 버튼)를 클릭하면 Modal이 닫습니다.
+						    sspanes[num].onclick = function() {
+							    
+						        mmodals[num].style.display = "none";
+						    };
+						  };
+						}
+
+
+						// 원하는 Modal 수만큼 Modal 함수를 호출해서 funcs 함수에 정의합니다.
+						for(var i = 0; i < bbtns.length; i++) {
+						  ffuncs[i] = MModal(i);
+						}
+						 
+						// 원하는 Modal 수만큼 funcs 함수를 호출합니다.
+						for(var j = 0; j < bbtns.length; j++) {
+						  ffuncs[j]();
+						}
+						 
+						// Modal 영역 밖을 클릭하면 Modal을 닫습니다.
+						window.onclick = function(event) {
+						  if (event.target.className == "mmodal") {
+						      event.target.style.display = "none";
+						  }
+						};
+    </script>
+    
+    
+    
+    
+    
     
     <script>
             function buttonno(){
