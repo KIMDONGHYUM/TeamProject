@@ -154,6 +154,14 @@
           margin-right: 200px;
       
          }   
+           .profile {
+		    width: 100%;
+		    height: 100%;
+		    object-fit: cover;
+		   }
+		  .profilep{
+			  text-align: center;
+		  }
             
             
         }
@@ -169,14 +177,7 @@
         
 
 
-		  .profile {
-		    width: 100%;
-		    height: 100%;
-		    object-fit: cover;
-		   }
-		  .profilep{
-			  text-align: center;
-		  }
+		
 
         #footer{
             text-align: center;
