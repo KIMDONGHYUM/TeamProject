@@ -63,7 +63,7 @@ public class MyController {
 		  System.out.println("clist:" + clist.toString());
 		  req.getSession().setAttribute("clist", clist);
 		  
-    // 프로필 뷰 
+
 		return "profile/MyProfile";
 	}
 
@@ -200,11 +200,12 @@ public class MyController {
 			return "Infomation/Infomation";
 		}
 	}
+	// 11/9 박현식 수정한 부분
 	@RequestMapping("/DeleteMember")
 	public String goDeleteMember() {
-		return "profile/DeleteMember";
+		return "member/DeleteMember";
 	}
-	
+	// 11/9 박현식 수정한 부분
 	@RequestMapping("/DeleteMemberAction")
 	public String DeleteMember(HttpServletRequest req,Model model,HttpSession session) {
 		String id = (String)session.getAttribute("sessionID");
@@ -213,11 +214,13 @@ public class MyController {
 		int nResult = mservice.deleteMember(id, pw);
 		if(nResult <= 0) {
 			model.addAttribute("msg","실패");
-			
+			System.out.println("탈퇴 실패");
+			model.addAttribute("url","/DeleteMember");
 		}else {
 			session.invalidate();
 			model.addAttribute("msg", "탈퇴 성공");
-			
+			model.addAttribute("url","/");
+			System.out.println("탈퇴 성공");
 		}
 		return "redirect";
 	}
