@@ -13,19 +13,17 @@
     <% MemberDto member = (MemberDto)session.getAttribute("memberInfo"); %>  
     <script type="text/javascript">
 		
-		function changeView2(value){
+		function CheckValue(){
 			
-			if(value == "0") // 사진 수정 페이지 이동
-			{
-				location.href="ModifyPicture";
-			}
-			else if(value == "1") // 이메일 확인 
-			{
-				location.href="EmailCheck";
-			}
-			else if(value == "2") // 저장
-			{
-				location.href="Save";
+			if(!document.ModifyProfile.name.value){ 
+				alert("이름을 입력하세요.");
+				return false;	
+			}else if(!document.ModifyProfile.email.value){
+				alert("이메일을 입력하세요.");
+				return false;	
+			}else if(!document.ModifyProfile.phone.value){
+				alert("전화번호를 입력하세요.");
+				return false;	
 			}
 			
 		}
@@ -141,7 +139,10 @@
         	width:100%;
         	height: 50px;
         }
-        
+        #savebtn{
+        	width: 20%;
+        	height: 40px;
+        }
     </style>
 </head>
 <body>
@@ -223,18 +224,16 @@
     </table>
  
 
-
-    <table id="info">
-    <tr><td> 이름 <input type="text" name="name"> </td> </tr>
-    <tr><td>아이디 <input type="text" name="id"></td> </tr>
-    <tr><td>소개 <input type="text" name="introduce"></td></tr>
-    <tr><td>이메일 <input type="text" name="email"></td></tr>
-    <tr><td><button type="button" class="btn btn-primary" onclick="changeView2(1)">이메일 확인</button></td></tr>
-    <tr><td>전화번호 <input type="text" name="phone"></td></tr>
-    <tr><td>성별 <input type="radio" name="gender" value="남">남 <input type="radio" name="gender" value="여">여</td></tr>
-    <tr><td><button type="button" class="btn btn-primary" onclick="changeView2(2)">저장</button></td></tr>
-    </table>
-
+	<form name="ModifyProfile" action="ModifyProfileAction" method="post" onsubmit="return CheckValue()">
+	    <table id="info">
+	    <tr><td><b>이름</b><input type="text" name="name"> </td> </tr>
+	    
+	    <tr><td><b>이메일</b> <input type="text" name="email"></td></tr>
+	    <!-- <tr><td><button type="button" class="btn btn-primary" onclick="changeView2(1)">이메일 확인</button></td></tr> -->
+	    <tr><td><b>전화번호</b> <input type="text" name="phone"></td></tr>
+	    <tr><td><input id="savebtn" type="submit" class="btn btn-primary" value="저장"></td></tr>
+	    </table>
+	</form>
 </div>
 
 </body>

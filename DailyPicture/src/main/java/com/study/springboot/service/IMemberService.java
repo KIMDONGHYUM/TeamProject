@@ -32,4 +32,8 @@ public interface IMemberService {
 	public ArrayList<MemberDto> mlist(String id);
 	
 	public int deletePicture(MemberDto member);
+	
+	public int updatePassword(@Param("id") String id,  @Param("password") String password);
+	
+	public int getPassword(@Param("id") String id);
 }

@@ -8,21 +8,25 @@
     <title>비밀번호 변경</title>
    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    
     <script type="text/javascript">
       
-		function changeView3(value){
-			if(value == "0") // 사진 수정 페이지 이동
-			{
-				location.href="ModifyPicture";
+		function CheckValue2(){
+			
+			if(!document.ModifyPassword.ex-password.value){
+				alert("기존 비밀번호를 입력해주세요.");
+				return false;
+			}else if(!document.ModifyPassword.password.value){
+				alert("새 비밀번호를 입력해주세요.");
+				return false;
+			}else if(!document.ModifyPassword.password-check.value){
+				alert("새 비밀번호 확인을 입력해주세요.");
+				return false;
 			}
-			if(value == "1") // 비밀번호 변경
-			{
-				location.href="ModifyPasswordSave"; //컨트롤러에서 리다이렉트로 보내 알럿창 띄우기
-			}
+			
 			
 		}
 	</script>
-    
     <style>
          * {
 				margin:0 auto;
@@ -111,11 +115,12 @@
         
        
     </style>
+    
 </head>
 <body>
      <div id="header">
        		<jsp:include page="Header.jsp" /> 
-    	</div> 
+    	</div>  
        
           
 
@@ -149,15 +154,21 @@
     </table>
  
 
-
+	<form name="ModifyPassword" action="ModifyPasswordAction" method="post" 
+	onsubmit="return CheckValue2()">
     <table id="info">
-    <tr><td> 새 비밀번호 입력 <input type="text" name="password"> </td> </tr>
-    <tr><td> 새 비밀번호 확인 <input type="text" name="password-check"></td> </tr>
+    <tr><td> <b>기존 비밀번호 입력</b> <input type="password" name="ex-password"></td></tr>
+    <tr><td> <b>새 비밀번호 입력</b> <input type="password" name="password"> </td> </tr>
+    <tr><td> <b>새 비밀번호 확인</b> <input type="password" name="password-check"></td> </tr>
+   
     
-    
-    <tr><td><button type="button" class="btn btn-primary" onclick="ChangeView3(1)">비밀번호 변경</button></td></tr>
+    <tr><td><input type="submit" class="btn btn-primary" value="비밀번호 변경"></td></tr>
     </table>
-
+	</form>
+	
+	<script type="text/javascript">
+	CheckValue();
+	</script>
 </div>
 
 </body>

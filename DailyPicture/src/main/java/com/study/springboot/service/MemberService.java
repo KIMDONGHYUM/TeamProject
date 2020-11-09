@@ -115,4 +115,16 @@ public class MemberService implements IMemberService{
 		int nResult = dao.deletePicture(member);
 		return nResult;
 	}
+
+	@Override
+	public int updatePassword(String id, String password) {
+		int nResult = dao.updatePassword(id, password);
+		return nResult;
+	}
+
+	@Override
+	public int getPassword(String id) {
+		int nResult = dao.getPassword(id);
+		return nResult;
+	}
 }
