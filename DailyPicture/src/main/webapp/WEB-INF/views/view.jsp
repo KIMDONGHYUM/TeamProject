@@ -12,9 +12,9 @@
 내용보기 <br>
 <hr>
 
-작성자 : ${ dto.writer } <br>
-제목 : ${ dto.title } <br>
-내용 : ${ dto.content } <br>
+작성자 : ${ dto.board_no } <br>
+제목 : ${ dto.memo } <br>
+내용 : ${ dto.id } <br>
 <hr>
 
 <br>
