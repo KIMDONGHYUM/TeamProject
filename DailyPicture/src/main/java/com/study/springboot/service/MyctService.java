@@ -2,11 +2,13 @@ package com.study.springboot.service;
 
 import java.util.ArrayList;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.study.springboot.dao.IMyctDao;
 import com.study.springboot.dto.MyctDto;
+
 
 @Service
 public class MyctService  implements IMyctService{
@@ -38,6 +40,14 @@ public class MyctService  implements IMyctService{
 			int nResult = mdao.updatePan(content);
 			return nResult;
 		}
+
+	@Override
+	public MyctDto viewPan(String board_no) {
+		 
+		return mdao.viewPanDao(board_no);
+	}
+	
+	
 
 	
 }

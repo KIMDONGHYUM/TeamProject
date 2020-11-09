@@ -30,9 +30,18 @@
 		update dp_myct set memo = #{memo}, picture= #{picture} where board_no = #{board_no} and id = #{id} 
 	</update>
 	
+	
+	<select id="viewPanDao" resultType="com.study.springboot.dto.MyctDto"> 
+		select * from dp_myct where board_no = #{param1}
+	</select>
+	
+	
+	
 	<!--  <select id="listDao" resultType="com.study.springboot.dto.SimpleBbsDto"> 
       select * from simple_bbs order by id desc
    </select>  -->
+   
+   
 	
 	
  

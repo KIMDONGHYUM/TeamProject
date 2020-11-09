@@ -24,5 +24,7 @@ public interface IMyctDao
 	public int updatePan(MyctDto content);
 	
 	
+	public  MyctDto viewPanDao(String board_no);
+
 }
 

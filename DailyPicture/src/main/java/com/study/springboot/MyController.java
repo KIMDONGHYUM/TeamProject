@@ -63,9 +63,19 @@ public class MyController {
 		  System.out.println("clist:" + clist.toString());
 		  req.getSession().setAttribute("clist", clist);
 		  
-
+    // 프로필 뷰 
 		return "profile/MyProfile";
 	}
+
+	@RequestMapping("/MyProfileView")
+	public String view(HttpServletRequest request, Model model) {
+		String board_no = request.getParameter("board_no");
+		model.addAttribute("dto", ctservice.viewPan(board_no));
+		return "profile/MyProfileView"; //view.jsp 호출함.
+	}
+
+	
+	
 	
 	@Autowired
 	FileUploadService fileUploadService;
