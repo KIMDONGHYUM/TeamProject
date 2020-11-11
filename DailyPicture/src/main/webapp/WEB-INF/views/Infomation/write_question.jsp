@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>고객센터</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-	
+	<script src = "${path}/ckeditor/ckeditor.js"></script>
 <style>
 
  		 * {
@@ -102,7 +102,7 @@
     		
     		<form action="write_1on1Action" method="POST" enctype="multipart/form-data">
     		<div id="notice">
-    			<h4><b>1대1 문의</b></h4>
+    			<h4><b>자주하는 질문</b></h4>
     			
     			<table id="noticetable" width="500" cellpadding="0" cellspacing="0" border="5">
     				<tr>
@@ -120,12 +120,19 @@
    						 </td>
     				</tr>
     				<tr>
-    					<th>내용</th><td><textarea cols="80" rows="20"></textarea></td>
+    					<th>내용</th><td><textarea id = "editor4" name = "editor4" cols="80" rows="20"></textarea></td>
     				</tr>
-    				
+    				<tr>
+    					<th>첨부파일</th>
+	    					<td style="text-align:center">
+	    						<input type="file" ><br>
+	    						<input type="file" >
+	    					</td>
+	    					
+    				</tr> 
 	        			
     			</table>
-    			
+    			<script>CKEDITOR.replace('editor4');</script>
     			<div id="btns">
     				<input type="submit" class="btn btn-primary" value="게시">
     				<input type="button" class="btn btn-primary" value="목록" onclick="javascript:window.location='Question'">

@@ -48,18 +48,23 @@
 	<select id="userListDao" resultType="com.study.springboot.dto.MemberDto"> 
 		select * from dp_member
 		
-	</select> 	
+	</select> 	-->
 	
-	<update id="updateMemberDao">
-		update dp_member set password = #{password}, mail = #{mail}, 
-		     phone = #{phone} WHE RE id = #{id}
-	</update>	-->
+	<update id="updateMemberDao" parameterType="com.study.springboot.dto.MemberDto" >
+		update dp_member set name = #{name}, mail = #{mail}, 
+		     phone = #{phone} WHERE id = #{id}
+	</update>	
 	
 	<delete id="deleteMemberDao">
 		delete from dp_member where id = #{id} and password= #{pw} 
 	</delete> 
 	
-	
+	<update id="updatePassword" parameterType="com.study.springboot.dto.MemberDto">
+		update dp_member set password = #{password} WHERE id = #{id}
+	</update>
  
+ 	<select id="getPassword" resultType="_int">
+ 		select password from dp_member where id = #{id}
+ 	</select>
 	
 </mapper>

@@ -154,21 +154,18 @@
     </table>
  
 
-	<form name="ModifyPassword" action="ModifyPasswordAction" method="post" 
-	onsubmit="return CheckValue2()">
-    <table id="info">
-    <tr><td> <b>기존 비밀번호 입력</b> <input type="password" name="ex-password"></td></tr>
-    <tr><td> <b>새 비밀번호 입력</b> <input type="password" name="password"> </td> </tr>
-    <tr><td> <b>새 비밀번호 확인</b> <input type="password" name="password-check"></td> </tr>
-   
-    
-    <tr><td><input type="submit" class="btn btn-primary" value="비밀번호 변경"></td></tr>
-    </table>
+	<form name="ModifyPassword" action="ModifyPasswordAction" method="post" onsubmit="return CheckValue2()">
+	    <table id="info">
+	    <tr><td> <b>기존 비밀번호 입력</b> <input type="password" name="ex-password"></td></tr>
+	    <tr><td> <b>새 비밀번호 입력</b> <input type="password" name="password"> </td> </tr>
+	    <tr><td> <b>새 비밀번호 확인</b> <input type="password" name="password-check"></td> </tr>
+	   
+	    
+	    <tr><td><input type="submit" class="btn btn-primary" value="비밀번호 변경"></td></tr>
+	    </table>
 	</form>
 	
-	<script type="text/javascript">
-	CheckValue();
-	</script>
+	
 </div>
 
 </body>

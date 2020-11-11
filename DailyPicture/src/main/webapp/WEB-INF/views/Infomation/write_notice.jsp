@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>고객센터</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-	
+	<script src = "${path}/ckeditor/ckeditor.js"></script>
 <style>
 
  		 * {
@@ -110,12 +110,19 @@
 	    			</tr>
 	    			
     				<tr>
-    					<th>내용</th><td><textarea cols="80" rows="20" name="content"></textarea></td>
+    					<th>내용</th><td><textarea id = "editor4" name = "editor4" cols="80" rows="20" ></textarea></td>
     				</tr>
-    				
+    				 <!-- <tr>
+    					<th>첨부파일</th>
+	    					<td style="text-align:center">
+	    						<input type="file" name="file1"><br>
+	    						<input type="file" name="file2">
+	    					</td>
+	    					
+    				</tr>  -->
 	        			
     			</table>
-    			
+    			<script>CKEDITOR.replace('editor4');</script>
     			<div id="btns">
     				<input type="submit" class="btn btn-primary" value="게시">
     				<input type="button" class="btn btn-primary" value="목록" onclick="javascript:window.location='Infomation'">

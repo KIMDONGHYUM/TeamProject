@@ -98,18 +98,7 @@
         
        
     </style>
-    <script type="text/javascript">
-      
-    function checkValue(){
-		if(!document.deleteform.password.value){
-			alert("비밀번호를 입력하지 않았습니다.");
-			return false;
-		}
-	}
-			
-			
-		}
-	</script>
+   
 </head>
 <body>
      <div id="header">
@@ -147,8 +136,7 @@
         </tr>
     </table>
  
- <form name="deleteform" method="post" action="DeleteMemberAction" 
-   		onsubmit="return checkValue()">
+ <form name="deleteform" method="post" action="DeleteMemberAction" >
 
     <table id="info">
   
