@@ -6,10 +6,6 @@ import org.springframework.stereotype.Component;
 
 import lombok.Data;
 
-import org.springframework.stereotype.Component;
-
-import lombok.Data;
-
 @Component
 @Data
 public class MyctDto {

@@ -2,11 +2,11 @@ package com.study.springboot.service;
 
 import java.util.ArrayList;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.study.springboot.dao.IMyctDao;
+import com.study.springboot.dto.Criteria;
 import com.study.springboot.dto.MyctDto;
 
 
@@ -22,10 +22,22 @@ public class MyctService  implements IMyctService{
 		return nResult;
 	}
 
+//	@Override
+//	public ArrayList<MyctDto> cList(String id) {
+//		ArrayList<MyctDto> clist = mdao.cListDao(id);
+//		return clist;
+//	}
+	
 	@Override
-	public ArrayList<MyctDto> cList(String id) {
-		ArrayList<MyctDto> clist = mdao.cListDao(id);
+	public ArrayList<MyctDto> cList(Criteria cri) throws Exception {
+		ArrayList<MyctDto> clist = mdao.cListDao(cri);
 		return clist;
+	}
+
+	@Override
+	public int listCount(String id) throws Exception {
+		
+		return mdao.listCount(id);
 	}
 	
 	
@@ -46,6 +58,8 @@ public class MyctService  implements IMyctService{
 		 
 		return mdao.viewPanDao(board_no);
 	}
+
+	
 	
 	
 

@@ -4,6 +4,8 @@
 
 <%@ page import="com.study.springboot.dto.MyctDto" %>
 <%@ page import="com.study.springboot.dto.MemberDto" %>
+<%-- <%@ page import="com.study.springboot.dto.PageMaker" %> --%>
+
 
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.Date" %>
@@ -14,6 +16,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport;" content="width=device-wdidth; init-scale=1.0; user-scaclable=no">
+		
      	<title>vGrid 플러그인</title>
      	
      	<%
@@ -22,9 +25,9 @@
      
      	%>
      	
-     <%-- 	<% 
-     	ArrayList<ReplyDto> rlist = (ArrayList<ReplyDto>)session.getAttribute("rlist");
-     	%> --%>
+  <%--    <% 
+              PageMaker pageMaker = (PageMaker)session.getAttribute("pageMaker");
+     	%>   --%>
      	
 
      	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -38,6 +41,7 @@
 	<link rel="stylesheet" type="text/css" href="css/stylepop.css">
 	<link rel="stylesheet" type="text/css" href="css/modelpopup.css">
 	<link rel="stylesheet" type="text/css" href="css/modelpopupp.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	<script type="text/javascript">
@@ -71,9 +75,9 @@
 		}
 	</script>
 	
-	<script> 
+	<!-- <script> 
 	 document.getElementById('update').submit(); 
-	</script> 
+	</script>  -->
 	
 	
 		<style>
@@ -85,9 +89,25 @@
 			
 				
     		  }
-    
-    
-    	
+         
+         
+         
+			li {list-style: none; text-align:center;  padding: 6px; margin-top: 100px;}
+		
+         
+         
+	
+		
+		#searchview{
+		text-align: center;
+		
+	    right: 5px;
+	    top: 2px;
+	    font-size: 15px;
+	    
+	    border: 0;
+	    background: none;
+		}
     	
     	
     	
@@ -205,7 +225,8 @@
 				
 			}			
 			#imgbox{
-				width:800px;
+				
+				width:1000px;
 				text-align: center;
 			
 				
@@ -240,7 +261,7 @@
 				display:none;
 			}
 			.btnpop{
-			margin-top: 10px;
+			margin-top: 15px;
 			margin-left: 10px;
 			border: 0;
 			}
@@ -377,6 +398,11 @@
             justify-content: center;
         }
 		 
+		.titlememo{
+		position:absolute;
+		float: top;
+		}
+		 
 		 
 		#textmemo{
 	
@@ -392,15 +418,25 @@
 		text-align: left;			
 
 		}
+		
+		#pagin{
+		text-align: center;
+		margin-top: 100px;
+		}
+		
+		
   		 #footer{
         text-align: center;
-        margin-top: 300px;        
+        margin-top: 100px;        
         width:50%;    
         }
 					
 		</style>		
 	</head>
 	<body>
+	
+	
+	
 		 <div id="header">
        		<jsp:include page="Header.jsp" /> 
     	</div> 
@@ -415,7 +451,7 @@
 			<img class="profile" src="user/<%=session.getAttribute("sessionID") %>/<%=member.getPicture() %>"  onerror="this.src='img/profile.jpg'" />
 			  
 		  </div>
-				<h4><strong><%=session.getAttribute("sessionID") %></h4>
+				<h4><strong><%=session.getAttribute("sessionID") %></strong></h4>
 			</div>
 		
 			
@@ -427,6 +463,7 @@
 				<div>
 					<div>
 					<label for="popup"></label>
+					
 					
 					<div id="popupview" >
 						<form action="uploadOk" method="post" enctype="multipart/form-data">
@@ -447,11 +484,21 @@
 			    	    
 
 	    <button id="lockBtn" class="pimgbar" onclick="changeView1(1)"><img src="img2/lock.jpg" alt="잠금"></button>
-		<button id="searchBtn" class="pimgbar" onclick="changeView1(2)"><img src="img2/search.jpg" alt="찾기"></button>	
-		<button id="settingBtn" class="pimgbar" onclick="changeView1(3)"><img src="img2/setting.jpg" alt="설정"></button>
-				
+		<button id="searchBtn" class="pimgbar" onclick="showhide();"><img src="img2/search.jpg" alt="찾기"></button>	
+		
+		<button id="settingBtn" class="pimgbar" onclick="changeView1(3)"><img src="img2/setting.jpg" alt="설정"></button>		
 		  		
 		  </div>
+		  
+		  <div id="searchview"  style="display:none;"> 
+			
+				<div>
+					<input type="text" name="search" value="" onkeypress="if (event.keyCode == 13) { try{window.location.href='/search/'+looseURIEncode(document.getElementsByName('search')[0].value);document.getElementsByName('search')[0].value='';return false;}catch(e){} }" class="search_input">
+					<input value=">" type="button" onclick="try{window.location.href='/search/'+looseURIEncode(document.getElementsByName('search')[0].value);document.getElementsByName('search')[0].value='';return false;}catch(e){}" class="submit">
+				</div>
+			
+			</div>
+		  
 		  <hr class ="own"></hr>
 		  
 		 
@@ -461,14 +508,13 @@
     		
     		 <div id="imgbox">
 		
+ 		  
+ 		  
  		     <c:forEach var="dto" items="${ clist }" >
-			
-			
-			 <div class="gallerylist">
 			  
 			  
-			  <a href="MyProfileView?board_no=${dto.board_no}"> ${dto.memo} </a>
-		  	 <button class="btnpop" ><img src="user/${dto.id}/${ dto.picture }" width="250" height="250"></button>
+			  
+		  	 <button class="btnpop" > <a href="MyProfileView?board_no=${dto.board_no}" class="titlememo"> ${dto.memo}</a><img src="user/${dto.id}/${ dto.picture }" width="260" height="280"></button>
 			 
 			   <!-- 다중 팝업 사용 -->			
 			   <!-- 첫 번째 Modal -->
@@ -603,6 +649,8 @@
 					   	<td>
 					   	<div id="popprofilebox">
 					   	
+					   	<div class="replyList"></div>
+					  
 					   	 <div class="sprofileimg" style="background: #BDBDBD;"> 
 					       <a href="profile.go"><img class="profile" src="user/${dto.id}/<%=member.getPicture() %>"  onerror="this.src='img/profile.jpg'" ></a>
 					       </div>
@@ -621,36 +669,13 @@
 					
 					</table>
 					
-					<table id="reply">
-			      	        
-					    <tr>
-					   	<td>
-					   	<div id="popprofilebox">
-					   	
-					   	 <div class="sprofileimg" style="background: #BDBDBD;"> 
-					       <a href="profile.go"><img class="profile" src="user/<%=session.getAttribute("sessionID") %>/<%=member.getPicture() %>"  onerror="this.src='img/profile.jpg'" ></a>
-					       </div>
-                          <div id="user_popid">
-                          <a href="profile.go"><label for="sprofileimg"><small><%=session.getAttribute("sessionID")%></small></label></a> 
-                        </div>
-                       
-                        </div>
-					   	</td>
-					   
-					  
-					       <td><input type="text" id="textmemo" value="${dto.memo}" disabled/><td>
-					       
-					                       
-					</tr>
-					
-					</table>
-					
+				
 					
 					 
 					
 					<div id="chatWrite">
-					 <form action="ReplysendAcion"></form>
-			  		  <input type="text" class="chatWrite" placeholder="글을써주세요" />
+					 <form action="replyInsertForm"></form>
+			  		  <input type="text" id="content" name="content" class="chatWrite" placeholder="글을써주세요" />
 			  		  	
 			  		   <input type="hidden" name="board_no" value="${dto.board_no}" />
 			  		
@@ -665,13 +690,50 @@
 				 </div>
 				  	  
 			</div>
+		     
 		      
-		      
-		      
-		      </div>	
+		       
+		      	
 			</c:forEach> 		
 		</div>	
 		
+		
+		
+		
+	<%-- 	<div id = "paggg">
+	  <ul>
+	    <c:if test="${pageMaker.prev}">
+	    	<li><a href="MyProfile${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
+	    </c:if> 
+	
+	    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idex">
+	    	<li><a href="MyProfile${pageMaker.makeQuery(idex)}">${idex}</a></li>
+	    </c:forEach>
+	
+	    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+	    	<li><a href="MyProfile${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
+	    </c:if> 
+	  </ul>
+	</div>	 --%>
+	
+
+		
+		<div id="pagin">
+		
+		<div class="w3-bar w3-small">
+		  <c:if test="${pageMaker.prev}">
+	    	<a href="MyProfile${pageMaker.makeQuery(pageMaker.startPage - 1)}" class="w3-button">&laquo;</a>
+	    </c:if>
+		 
+		 <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idex">
+	    	<a href="MyProfile${pageMaker.makeQuery(idex)}" class="w3-button">${idex}</a>
+	    </c:forEach>
+		 
+		  <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+	    	<a href="MyProfile${pageMaker.makeQuery(pageMaker.endPage + 1)}" class="w3-button">&raquo;</a>
+	    </c:if> 
+		</div>
+		</div>
 		
 		
 	<div id="footer">
@@ -680,13 +742,13 @@
   		
     </div>
         
-        <table id="dp-nametable">
+       <!--  <table id="dp-nametable">
           <tr><td><small>상호명:데일리픽쳐|사업자등록번호:000-00-0000 사업자 확인</small></td></tr>
           <tr><td><small>통신판매업 신고번호 : 0000-서울노원-0000 | 개인정보관리책임자 : 홍길동</small></td></tr>  
           <tr><td><small>주소 : 서울시 노원구 | 대표자 : 이사장</small></td></tr>  
           <tr><td><small>TEL: 000-000-0000 | FAX: 000-0000-0000 | 이메일 : dp@dailypicture.com</small></td></tr>  
           <tr><td><small>Copyright 2020 데일리 픽쳐 Corp. All Rights Reserved.</small></td></tr> 
-        </table>    
+        </table>     -->
 		 
 		 
 		
@@ -699,7 +761,7 @@
 		<!-- body태그 뒤에서 script를 넣는 이유 -->
 		<!-- 문서객체를 로딩후에 호출한다. -->
 		<script src="js/jquery-2.2.4.min.js"></script>
-		<script src="js/jquery.vgrid.min.js"></script>
+		<!-- <script src="js/jquery.vgrid.min.js"></script>
 		<script>
 			$("#container").vgrid(
 				{ 
@@ -710,7 +772,20 @@
 					
 				}
 			);
-		</script>
+		</script> -->
+		
+		
+		
+	<script>
+	$(function(){
+		$("#searchBtn").click(function (){
+			$("#searchview").toggle();
+		});
+		});
+       	 
+
+        
+	</script>	
 		
 	 <script>
 	// Modal을 가져옵니다.
@@ -804,24 +879,15 @@
 						
 						
     </script>
-    
-    
-    
-    
-    
-    
-    <script>
-            function buttonno(){
-            	 alert('취소 되었습니다.');
-            	 window.location.reload();
+   
+ 
+        
+     
 
-                 }
-           
-        </script>
      
     
 	
 	
-   
+ 
 	</body>
 </html>

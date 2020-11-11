@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.study.springboot.dto.Criteria;
 import com.study.springboot.dto.MyctDto;
 
 //MyBatis와 객체를 연결하는 어노테이션.
@@ -16,8 +17,12 @@ public interface IMyctDao
 	
 	
 	
-	public ArrayList<MyctDto> cListDao(String id);
+	/* public ArrayList<MyctDto> cListDao(String id); */
+	//가서 물어보기 
+	public ArrayList<MyctDto> cListDao(Criteria cri) throws Exception;
 	
+	public int listCount(String id) throws Exception;
+
 	
 	public int deletePanDao(int board_no, String id);
 	

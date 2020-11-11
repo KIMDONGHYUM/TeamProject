@@ -16,10 +16,10 @@
 	
 	 
 
-	<select id="cListDao" resultType="com.study.springboot.dto.MyctDto"> 
+	<!-- <select id="cListDao" resultType="com.study.springboot.dto.MyctDto"> 
 		select * from dp_myct where id = #{param1} order by reg desc
 		
-	</select> 	
+	</select> 	 -->
 	
 	
 	<delete id="deletePanDao">
@@ -32,18 +32,28 @@
 	
 	
 	<select id="viewPanDao" resultType="com.study.springboot.dto.MyctDto"> 
-		select * from dp_myct where board_no = #{param1}
+		select * from dp_myct where board_no = #{param1} 
 	</select>
 	
 	
-	
-	<!--  <select id="listDao" resultType="com.study.springboot.dto.SimpleBbsDto"> 
-      select * from simple_bbs order by id desc
-   </select>  -->
-   
-   
-	
-	
- 
+	<select id="cListDao" resultType="com.study.springboot.dto.MyctDto" >
+		
+		select board_no, id, memo, picture, reg from(select board_no, id, memo, picture, reg, 
+		    row_number() over(order by board_no desc) as rnum from dp_myct) mp
+		    where rnum between #{rowStart} and #{rowEnd} and id = #{id} 
+		order by board_no desc    
+		
+	</select>
+	    
+	    
+	     <!-- CDATA는 mybatis가 <, > 같은 등호를 인식하기 쉽게 해줌  -->
+	     <!-- 그러면 < 와 같은 기호를 괄호인지 아니면 비교연산자 인
+	     지 확인이 되지않아요-->
+
+		<select id="listCount" resultType="_int" >
+		<![CDATA[ 
+			select count(board_no) from dp_myct where board_no > 0 and id = #{id}
+		]]>
+		</select>
 	
 </mapper>
