@@ -39,4 +39,16 @@ public class DpNoticeService implements IDpNoticeService {
 		int nResult = dao.upHit(board_no);
 		return nResult;
 	}
+
+	@Override
+	public int modify(String board_no, String title, String content, Date reg) {
+		int nResult = dao.modify(board_no, title, content, reg);
+		return nResult;
+	}
+
+	@Override
+	public int delete(String board_no) {
+		int nResult = dao.delete(board_no);
+		return nResult;
+	}
 }

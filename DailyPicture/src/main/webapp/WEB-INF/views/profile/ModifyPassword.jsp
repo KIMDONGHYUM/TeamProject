@@ -12,7 +12,7 @@
     <script type="text/javascript">
       
 		function CheckValue2(){
-			
+ 			
 			if(!document.ModifyPassword.ex-password.value){
 				alert("기존 비밀번호를 입력해주세요.");
 				return false;

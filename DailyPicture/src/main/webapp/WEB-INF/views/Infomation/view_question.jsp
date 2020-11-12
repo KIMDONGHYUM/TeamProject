@@ -1,11 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.study.springboot.dto.DpQuestionDto" %>
+<%@ page import="java.util.Date"%>
+<%@ page import="java.util.Calendar" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>고객센터</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<% DpQuestionDto view_question = (DpQuestionDto)session.getAttribute("view_question"); 
+	Date reg = view_question.getReg();
+	int year = 2000;
+	int month = 1;
+	int day = 1;
+	if(reg != null){
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(reg);
+		year = cal.get(Calendar.YEAR);
+		month = cal.get(Calendar.MONTH)+1;
+		day = cal.get(Calendar.DAY_OF_MONTH);
+	}
+	
+	%>
 	<script>
 		function ChangeView(value) {
 			if(value== "0") {
@@ -88,6 +107,10 @@
       		text-align: center;
       }
        
+      #con {
+      		padding-top:20px;
+      		
+      }
 </style>
 </head>
 <body>
@@ -109,21 +132,18 @@
     		<div id="notice">
     			<h4><b>자주하는질문</b></h4>
     			<table id="noticetable" width="500" cellpadding="0" cellspacing="0" border="5">
+    			<input type="hidden" name="board_no" value="${ view_question.board_no } ">
     				<tr>
-	    				<th>제목</th><td>df</td>
+	    				<th>제목</th><td>${view_question.title}</td>
 	    			</tr>
 	    			<tr>	
-	    				<th>작성자</th><td>sd</td>
+	    				<th>작성자</th><td>${view_question.writer}</td>
 	    			</tr>	
 	    			<tr>	
-	    				<th>작성일</th><td>as</td>
+	    				<th>작성일</th><td><%=year+"년 "+month+"월 "+day+"일" %></td>
 	    			</tr>
-	    			<tr>	
-	    				<th>조회</th><td>1</td>
-    				</tr>
     				<tr>
-    					<th>내용</th><td>ㅇㅇ</td>
-    			
+    					<th>내용</th><td id="con">${view_question.content}</td>
     				</tr>
     				
 	        			

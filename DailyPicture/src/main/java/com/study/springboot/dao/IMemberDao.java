@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Param;
 import com.study.springboot.dto.MemberDto;
 
 //MyBatis와 객체를 연결하는 어노테이션.
-@Mapper
+@Mapper 
 public interface IMemberDao 
 {
 	public Date stringToDateDao(MemberDto member);

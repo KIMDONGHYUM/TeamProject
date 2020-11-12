@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.study.springboot.dto.MemberDto;
 
-
+ 
 public interface IMemberService {
 	
 	/* public Date stringToDate(MemberDto member); */

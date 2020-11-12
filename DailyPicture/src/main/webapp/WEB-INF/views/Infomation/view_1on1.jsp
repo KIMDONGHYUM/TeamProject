@@ -1,19 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.study.springboot.dto.Dp1on1Dto" %>
+<%@ page import="java.util.Date"%>
+<%@ page import="java.util.Calendar" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>고객센터</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-	<script>
-		function ChangeView(value) {
-			if(value== "0") {
-				location.href="1on1";
-				}
-			
-			}
-	</script>
+	<% Dp1on1Dto view_1on1 = (Dp1on1Dto)session.getAttribute("view_1on1"); 
+	Date reg = view_1on1.getReg();
+	int year = 2000;
+	int month = 1;
+	int day = 1;
+	if(reg != null){
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(reg);
+		year = cal.get(Calendar.YEAR);
+		month = cal.get(Calendar.MONTH)+1;
+		day = cal.get(Calendar.DAY_OF_MONTH);
+	}
+	
+	%>
+	
 <style>
 
  		 * {
@@ -87,7 +99,10 @@
       #noticetable td {
       		text-align: center;
       }
-       
+      #con {
+      		padding-top:40px;
+      		padding-bottom:40px;
+      }
 </style>
 </head>
 <body>
@@ -106,33 +121,36 @@
     			</table>
     		</div>
     		
+    		<form action="Delete1on1Action" method="post">
     		<div id="notice">
     			<h4><b>1대1 문의</b></h4>
     			<table id="noticetable" width="500" cellpadding="0" cellspacing="0" border="5">
+    			<input type="hidden" name="board_no" value="${ view_1on1.board_no } ">
     				<tr>
-	    				<th>제목</th><td>df</td>
+	    				<th>제목</th><td>${view_1on1.title}</td>
 	    			</tr>
 	    			<tr>	
-	    				<th>작성자</th><td>sd</td>
+	    				<th>작성자</th><td>${view_1on1.writer}</td>
 	    			</tr>	
 	    			<tr>	
-	    				<th>작성일</th><td>as</td>
+	    				<th>작성일</th><td><%=year+"년 "+month+"월 "+day+"일" %></td>
 	    			</tr>
-	    			<tr>	
-	    				<th>조회</th><td>1</td>
-    				</tr>
+	    			
     				<tr>
-    					<th>내용</th><td>ㅇㅇ</td>
+    					<th>내용</th><td id="con">${view_1on1.content}</td>
     			
     				</tr>
     				
 	        			
     			</table>
     			<div id="btns">
-    				<button class="btn btn-primary" onclick="ChangeView(0)">목록</button>
+    				<input type="button" class="btn btn-primary" value="목록" onclick="javascript:window.location='1on1'">
+    				<input type="button" class="btn btn-success" onclick="javascript:window.location='modify_1on1'" value="수정">
+    				<input type="submit" class="btn btn-danger" value="삭제">
     				
 				</div>    		
     		</div>
+    		</form>
     	</div>
     	
 </body>

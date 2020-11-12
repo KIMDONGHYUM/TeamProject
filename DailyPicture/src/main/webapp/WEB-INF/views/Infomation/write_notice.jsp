@@ -126,7 +126,7 @@
     			<div id="btns">
     				<input type="submit" class="btn btn-primary" value="게시">
     				<input type="button" class="btn btn-primary" value="목록" onclick="javascript:window.location='Infomation'">
-				</div>    		
+	 			</div>    		
     		</div>
     		</form>
     				

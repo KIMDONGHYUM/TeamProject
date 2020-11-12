@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.study.springboot.dao.IMemberDao;
 import com.study.springboot.dto.MemberDto;
-
+ 
 
 //@Service, @Controller, @Repository가 동일한 기능을 한다.
 //해당 클래스의 객체들을 빈으로 등록하고 만들때 사용.

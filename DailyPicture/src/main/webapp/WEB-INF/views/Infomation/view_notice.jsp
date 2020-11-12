@@ -32,7 +32,12 @@
 			if(value== "0") {
 				location.href="Infomation";
 				}
-			
+			else if(value== "1"){
+				location.href="ModifyNotice";
+				} 
+			else if(value== "2"){
+				location.href="DeleteNotice";
+				} 
 			}
 	</script>
 <style>
@@ -127,6 +132,7 @@
     			</table>
     		</div>
     		
+    		
     		<div id="notice">
     			<h4><b>공지사항</b></h4>
     			<table id="noticetable" width="500" cellpadding="0" cellspacing="0" border="5">
@@ -142,7 +148,7 @@
 	    			<tr>	
 	    				<th>작성일</th><td><%=year+"년 "+month+"월 "+day+"일"%></td>
 	    			</tr>
-	    			<tr>	
+ 	    			<tr>	
 	    				<th>조회</th><td>${ view_notice.hit }</td>
     				</tr>
     				<tr>
@@ -152,10 +158,12 @@
 	        			
     			</table>
     			<div id="btns">
-    				<button class="btn btn-primary" onclick="ChangeView(0)">목록</button>
-    				
+    				<input type="button" class="btn btn-primary" onclick="javascript:window.location='Infomation'" value="목록">
+    				<!-- <input type="button" class="btn btn-success" onclick="javascript:window.location='modify_notice'" value="수정">
+    				<input type="submit" class="btn btn-danger" value="삭제"> -->
 				</div>    		
     		</div>
+    		
     	</div>
     	
 </body>

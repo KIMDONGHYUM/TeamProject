@@ -21,4 +21,12 @@
 	<update id="upHit" parameterType="com.study.springboot.dto.DpNoticeDto">
 		update dp_notice set hit = Hit + 1 where board_no = #{param1}
 	</update>
+	
+	<update id="modify" parameterType="com.study.springboot.dto.DpNoticeDto">
+		update dp_notice set title = #{param2}, content = #{param3}, reg = #{param4} where board_no = #{param1}
+	</update>
+	
+	<delete id="delete">
+		delete from dp_notice where board_no = #{param1}
+	</delete>
 </mapper>

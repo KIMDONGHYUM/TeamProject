@@ -12,8 +12,6 @@ public class DpNoticeDto {
 	private int board_no;
 	private String title;
 	private String content;
-	private String file1;
-	private String file2;
 	private String writer;
 	private Date reg;
 	private int hit;

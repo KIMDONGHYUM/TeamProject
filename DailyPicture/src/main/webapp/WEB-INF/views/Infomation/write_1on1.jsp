@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 	<script src = "${path}/ckeditor/ckeditor.js"></script>
 	
-<style>
+<style> 
 
  		 * {
 			margin:0 auto;
@@ -107,13 +107,13 @@
     			
     			<table id="noticetable" width="500" cellpadding="0" cellspacing="0" border="5">
     				<tr>
-	    				<th>제목</th><td><input type="text" size=70></td>
+	    				<th>제목</th><td><input type="text" size=70 name="title"></td>
 	    			</tr>
 	    			
 	    			<tr>	
 	    				<th>카테고리</th>
 	    				<td>
-		    				<select>
+		    				<select name="category">
 							        <option>업로드문의</option>
 							        <option selected="selected">회원문의</option>
 
@@ -121,20 +121,13 @@
    						 </td>
     				</tr>
     				<tr>
-    					<th>내용</th><td><textarea id = "editor4" name = "editor4" cols="80" rows="20"></textarea></td>
+    					<th>내용</th><td><textarea id = "editor4" name = "editor4" name="Upload" cols="80" rows="20"></textarea></td>
     					
     				</tr>
-    				 <tr>
-    					<th>첨부파일</th>
-	    					<td style="text-align:center">
-	    						<input type="file" ><br>
-	    						<input type="file" >
-	    					</td>
-	    					
-    				</tr> 
+    				 
 	        			
     			</table>
-    			<script>CKEDITOR.replace('editor4');</script>
+    			<script>CKEDITOR.replace('editor4',{filebrowserUploadUrl:'/mine/imageUpload.do'});</script>
     			<div id="btns">
     				<input type="submit" class="btn btn-primary" value="게시">
     				<input type="button" class="btn btn-primary" value="목록" onclick="javascript:window.location='1on1'">

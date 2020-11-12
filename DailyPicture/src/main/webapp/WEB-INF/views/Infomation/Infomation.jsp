@@ -5,7 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <!DOCTYPE html>
-<html>
+<html> 
 <head>
 <meta charset="UTF-8">
 <title>고객센터</title>
@@ -112,7 +112,7 @@
 	    				<th style="width:60px;">번호</th>
 	    				<th style="width:500px;">제목</th>
 	    				<th style="width:90px;">작성자</th>
-	    				<th style="width:140px;">작성일</th>
+	    				<th style="width:150px;">작성일</th>
 	    				<th style="width:60px;">조회</th>
     				</tr>
     				<c:forEach var="dto" items="${ list }" >

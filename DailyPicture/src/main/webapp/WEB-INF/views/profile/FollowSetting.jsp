@@ -11,7 +11,7 @@
 		function changeView6(value){
 			
 			if(value == "0") // 사진 수정 페이지 이동
-			{
+ 			{
 				location.href="ModifyPicture";
 			}
 			
