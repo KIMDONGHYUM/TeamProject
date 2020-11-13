@@ -36,24 +36,68 @@
 	</select>
 	
 	
-	<select id="cListDao" resultType="com.study.springboot.dto.MyctDto" >
+<!-- 	<select id="cListDao" resultType="com.study.springboot.dto.MyctDto" >
 		
 		select board_no, id, memo, picture, reg from(select board_no, id, memo, picture, reg, 
-		    row_number() over(order by board_no desc) as rnum from dp_myct) mp
+		    row_number() over(order by board_no desc) as rnum from dp_myct ) mp
 		    where rnum between #{rowStart} and #{rowEnd} and id = #{id} 
 		order by board_no desc    
 		
+	</select>  -->
+	
+	 <select id="cListDao" resultType="com.study.springboot.dto.MyctDto" >
+		
+		 select board_no, id, memo, picture, reg from(select board_no, id, memo, picture, reg, 
+		    row_number() over(order by board_no desc)  as rnum from dp_myct where id=#{id} and  1=1 
+		         	<include refid="search"></include> ) mp
+		    where id = #{id} and (rnum between #{rowStart} and #{rowEnd})  
+		    order by board_no desc  
+		    
+		<!-- select A.board_no, A.id, A.memo, A.picture, A.reg
+		   from  (
+			    select board_no, id, memo, picture, reg,
+			   row_number() over(order by count desc) as rnum 
+			    from dp_myct where id =#{id} and 1=1 
+		         	<include refid="search"></include>
+			    order by board_no desc  ) A
+			where rnum between #{rowStart} and #{rowEnd} and id = #{id}  order by board_no desc   --> 
+			
+	
+			
+			
+		
+	
+   
+
+		
 	</select>
-	    
+	     
+	     <select id="listCount" resultType="_int" parameterType="com.study.springboot.dto.SearchCriteria" >
+	 
+	     select count(*) from dp_myct where id = #{id} and 1=1
+	     <include refid="search"></include> and board_no > 0 
+	
+		</select>
+		
+		
+		
+		<sql id="search">
+			<if test="searchType != null">
+				<if test="searchType == 't'.toString()">and memo like '%' || #{keyword} ||  '%'</if> 
+			</if>
+		</sql>
+	     
+	     
+	     
 	    
 	     <!-- CDATA는 mybatis가 <, > 같은 등호를 인식하기 쉽게 해줌  -->
 	     <!-- 그러면 < 와 같은 기호를 괄호인지 아니면 비교연산자 인
 	     지 확인이 되지않아요-->
 
-		<select id="listCount" resultType="_int" >
+		<!-- <select id="listCount" resultType="_int" >
 		<![CDATA[ 
 			select count(board_no) from dp_myct where board_no > 0 and id = #{id}
 		]]>
-		</select>
+		</select> -->
 	
 </mapper>
