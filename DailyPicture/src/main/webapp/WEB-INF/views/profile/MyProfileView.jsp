@@ -18,14 +18,14 @@
 <title>게시물 내용 보기</title>
 <!-- view.jsp -->
         <%
-     	 MemberDto member = (MemberDto)session.getAttribute("memberInfo"); 
+     	 MemberDto member = (MemberDto)session.getAttribute("mdto"); 
      	%>
      	
      	<%
      	 List rlist = (List)session.getAttribute("rlist"); 
      	%>
      	<link rel="stylesheet" type="text/css" href="css/modelpopupp.css">
-     	
+     	<link rel="stylesheet" type="text/css" href="css/mpup.css">
    
 	
 	
@@ -441,7 +441,7 @@
 					   	<div id="popprofilebox">
 					   	
 					   	 <div class="sprofileimg" style="background: #BDBDBD;"> 
-					       <a href="profile.go"><img class="profile" src="user/${dto.id}/<%=member.getPicture() %>"  onerror="this.src='img/profile.jpg'" ></a>
+					       <a href="profile.go"><img class="profile" src="user/${dto.id}/<%=member.getPicture()%>"  onerror="this.src='img/profile.jpg'" ></a>
 					       </div>
                           <div id="user_popid">
                           <a href="profile.go"><label for="sprofileimg"><small>${dto.id}</small></label></a> 
@@ -475,7 +475,7 @@
 					   	<div id="popprofilebox">
 					   	
 					   	 <div class="sprofileimg" style="background: #BDBDBD;"> 
-					       <a href="profile.go"><img class="profile" src="user/${rdto.user_id}/<%=member.getPicture() %>"  onerror="this.src='img/profile.jpg'" ></a>
+					       <a href="profile.go"><img class="profile" src="user/${rdto.user_id}/${rdto.picture}"  onerror="this.src='img/profile.jpg'" ></a>
 					       </div>
                           <div id="user_popid">
                           <a href="profile.go"><label for="sprofileimg"><small>${rdto.user_id}</small></label></a> 
@@ -505,10 +505,11 @@
 					 
 					
 					<div id="chatWrite">
-					 <form action="rinsert">
+					 <form action="Replyinsert">
 			  		  <input type="text" class="chatWrite" name="content"  placeholder="글을써주세요" />
-			  		  	
+			  		  
 			  		   <input type="hidden" name="board_no" value="${dto.board_no}" />
+			  		   <input type="hidden" name="writer" value="<%=session.getAttribute("sessionID") %>" />
 			  	 	  
 			  		  <input type="submit" class="btn btn-primary" style="float:right" value="보내기"/>	
 			  		  </form>

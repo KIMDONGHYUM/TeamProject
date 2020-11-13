@@ -14,8 +14,9 @@ public class ReplyDto {
 	 private int board_no; //게시판의 번호 
 	 private String user_id; //사용자 아이디
 	 private String content; //내용
+	 private String picture; 
 	 private Date reg; //날짜
-	 private String writer;   //게시판게시자
+	 //게시판게시자
 	 
 	 
 		

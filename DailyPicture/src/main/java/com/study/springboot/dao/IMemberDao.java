@@ -1,9 +1,8 @@
 package com.study.springboot.dao;
 
 import java.sql.Date;
-
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -38,6 +37,8 @@ public interface IMemberDao
 	public int insertPicture(MemberDto member);
 	
 	public ArrayList<MemberDto> mlistDao(String id);
+	
+	public List<MemberDto> mmlist();
 	
 	public int deletePicture(MemberDto member);
 	

@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.study.springboot.dao.IMyctDao;
-import com.study.springboot.dto.Criteria;
 import com.study.springboot.dto.MyctDto;
+import com.study.springboot.dto.SearchCriteria;
 
 
 @Service
@@ -29,15 +29,15 @@ public class MyctService  implements IMyctService{
 //	}
 	
 	@Override
-	public ArrayList<MyctDto> cList(Criteria cri) throws Exception {
-		ArrayList<MyctDto> clist = mdao.cListDao(cri);
+	public ArrayList<MyctDto> cList(SearchCriteria scri) throws Exception {
+		ArrayList<MyctDto> clist = mdao.cListDao(scri);
 		return clist;
 	}
 
 	@Override
-	public int listCount(String id) throws Exception {
+	public int listCount(SearchCriteria scri) throws Exception {
 		
-		return mdao.listCount(id);
+		return mdao.listCount(scri);
 	}
 	
 	

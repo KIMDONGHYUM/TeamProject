@@ -1,6 +1,7 @@
 package com.study.springboot.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -30,6 +31,8 @@ public interface IMemberService {
 	public int insertPicture(MemberDto member);
 
 	public ArrayList<MemberDto> mlist(String id);
+	
+	public List<MemberDto> mmlist();
 	
 	public int deletePicture(MemberDto member);
 	

@@ -490,32 +490,64 @@
 		  		
 		  </div>
 		  
-		  <div id="searchview"  style="display:none;"> 
 			
-				<div>
-					<input type="text" name="search" value="" onkeypress="if (event.keyCode == 13) { try{window.location.href='/search/'+looseURIEncode(document.getElementsByName('search')[0].value);document.getElementsByName('search')[0].value='';return false;}catch(e){} }" class="search_input">
-					<input value=">" type="button" onclick="try{window.location.href='/search/'+looseURIEncode(document.getElementsByName('search')[0].value);document.getElementsByName('search')[0].value='';return false;}catch(e){}" class="submit">
-				</div>
 			
-			</div>
-		  
-		  <hr class ="own"></hr>
-		  
-		 
-		 
-	<!--            게시글팝업                          -->
+			
+			<div id ="searchview" class="search" style="display:none">
+		    <select style="display:none" name="searchType" >
+
+		      <option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
+		    </select>
+		
+		    <input type="text" class="search_input" name="keyword" id="keywordInput" value="${scri.keyword}"/>
+		
+		    <button id="listsearchBtn" type="button">></button>
+		    
+		    <script>
+		      $(function(){
+		        $('#listsearchBtn').click(function() {
+		          self.location = "MyProfile" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+		        });
+		      });   
+		    </script>
+		    
+		    <script>
+
+	   $(function(){
+		$("#searchBtn").click(function (){
+			$("#searchview").toggle();
+		});
+		});
+       	 
+
+        
+	</script>	
+		    
+		    
+		    
+		  </div>
+			
+		
+		
+		
+			
+			<hr class="own"></hr>
 	
-    		
+
+
+ 
+ 
+ 
     		 <div id="imgbox">
 		
- 		  
+ 		     
  		  
  		     <c:forEach var="dto" items="${ clist }" >
 			  
 			  
-			  
-		  	 <button class="btnpop" > <a href="MyProfileView?board_no=${dto.board_no}" class="titlememo"> ${dto.memo}</a><img src="user/${dto.id}/${ dto.picture }" width="260" height="280"></button>
-			 
+			   
+		  	 <button class="btnpop" ><a href="MyProfileView?board_no=${dto.board_no}&writer=${dto.id}" class="titlememo"> ${dto.memo}</a><img src="user/${dto.id}/${ dto.picture }" width="260" height="280"></button>
+			    
 			   <!-- 다중 팝업 사용 -->			
 			   <!-- 첫 번째 Modal -->
 			   <div class="modal">
@@ -700,21 +732,7 @@
 		
 		
 		
-	<%-- 	<div id = "paggg">
-	  <ul>
-	    <c:if test="${pageMaker.prev}">
-	    	<li><a href="MyProfile${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
-	    </c:if> 
-	
-	    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idex">
-	    	<li><a href="MyProfile${pageMaker.makeQuery(idex)}">${idex}</a></li>
-	    </c:forEach>
-	
-	    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-	    	<li><a href="MyProfile${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
-	    </c:if> 
-	  </ul>
-	</div>	 --%>
+
 	
 
 		
@@ -722,15 +740,15 @@
 		
 		<div class="w3-bar w3-small">
 		  <c:if test="${pageMaker.prev}">
-	    	<a href="MyProfile${pageMaker.makeQuery(pageMaker.startPage - 1)}" class="w3-button">&laquo;</a>
+	    	<a href="MyProfile${pageMaker.makeSearch(pageMaker.startPage - 1)}" class="w3-button">&laquo;</a>
 	    </c:if>
 		 
 		 <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idex">
-	    	<a href="MyProfile${pageMaker.makeQuery(idex)}" class="w3-button">${idex}</a>
+	    	<a href="MyProfile${pageMaker.makeSearch(idex)}" class="w3-button">${idex}</a>
 	    </c:forEach>
 		 
 		  <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-	    	<a href="MyProfile${pageMaker.makeQuery(pageMaker.endPage + 1)}" class="w3-button">&raquo;</a>
+	    	<a href="MyProfile${pageMaker.makeSearch(pageMaker.endPage + 1)}" class="w3-button">&raquo;</a>
 	    </c:if> 
 		</div>
 		</div>
@@ -776,16 +794,7 @@
 		
 		
 		
-	<script>
-	$(function(){
-		$("#searchBtn").click(function (){
-			$("#searchview").toggle();
-		});
-		});
-       	 
-
-        
-	</script>	
+	
 		
 	 <script>
 	// Modal을 가져옵니다.
@@ -828,6 +837,9 @@
 	// Modal 영역 밖을 클릭하면 Modal을 닫습니다.
 	window.onclick = function(event) {
 	  if (event.target.className == "modal") {
+	      event.target.style.display = "none";
+	  }
+	  if (event.target.className == "mdal") {
 	      event.target.style.display = "none";
 	  }
 	  if (event.target.className == "mmodal") {

@@ -33,6 +33,14 @@ public class ReplyService  implements IReplyService{
 
 
 
+	@Override
+	public int replyset(String id, String picture) {
+		
+		return rdao.replyset(id, picture);
+	}
+
+
+
 
 	
     
