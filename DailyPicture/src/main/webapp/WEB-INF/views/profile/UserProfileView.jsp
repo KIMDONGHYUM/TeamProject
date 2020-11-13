@@ -457,8 +457,14 @@
 			
 			 <div class="profilebar">
 				
-				<span class="col">
-				<input type="checkbox" id="popup">
+				
+			<span class="col">
+				
+					<%
+			// 사용자의 프로필일 경우
+			if(session.getAttribute("sessionID").equals(member.getId())){ 
+		%>
+					<input type="checkbox" id="popup">
 				<label for="popup" class="lb" name="1"><p class="p">1</p></label>
 				<div>
 					<div>
@@ -481,7 +487,8 @@
 				</div>
 				
 			    </span>
-			    	    
+			    
+     			    	    
 
 	    <button id="lockBtn" class="pimgbar" onclick="changeView1(1)"><img src="img2/lock.jpg" alt="잠금"></button>
 		<button id="searchBtn" class="pimgbar" onclick="showhide();"><img src="img2/search.jpg" alt="찾기"></button>	
@@ -489,8 +496,14 @@
 		<button id="settingBtn" class="pimgbar" onclick="changeView1(3)"><img src="img2/setting.jpg" alt="설정"></button>		
 		  		
 		  </div>
-		  
 			
+
+			<% }else{ //사용자가 아닌사람이 볼 경우 %> 
+			   </span>
+				<button id="searchBtn" class="pimgbar" onclick="showhide();"><img src="img2/search.jpg" alt="찾기"></button>
+	             </div>
+		<%	}	%>	
+				
 			
 			
 			<div id ="searchview" class="search" style="display:none">
