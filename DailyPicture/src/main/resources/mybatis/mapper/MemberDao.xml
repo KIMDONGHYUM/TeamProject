@@ -14,7 +14,12 @@
 	<select id="mlistDao" resultType="com.study.springboot.dto.MemberDto"> 
 		select * from dp_member where id = #{param1} order by reg desc
 		
-	</select> 	
+	</select>
+	
+	<select id="mmlist" resultType="com.study.springboot.dto.MemberDto"> 
+		select * from dp_member order by reg desc
+		
+	</select> 	 	
 	 
 	<!-- 	 <select id="dp_member" resultType="_int">
 		select password from dp_member where id = #{param1}  
