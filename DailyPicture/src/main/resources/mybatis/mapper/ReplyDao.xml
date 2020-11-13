@@ -19,8 +19,12 @@
 	<select id="replyList" resultType="com.study.springboot.dto.ReplyDto"> 
 		select * from dp_reply where myct_no = #{param1} and board_no = #{param2} order by reg asc
 		
-		
 	</select> 	
+	
+	
+	<update id="replyset" >
+		update dp_reply set picture =#{picture} where user_id = #{id}
+	</update>		
 	
 
 	
