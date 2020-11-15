@@ -42,7 +42,10 @@
 			else if(value == "5") // 내 프로필 보기
 			{
 				location.href="MyProfile";
-			}
+			}else if(value == "6") // 관리자 페이지
+			{
+				location.href="Admin";
+			}	
 		}
 	</script>
 	<style>
@@ -75,16 +78,20 @@
 	</style>
 	<script>
 	 $(function(){
-			$(".mbtn").click(function (){
-				$('.mdal-content').toggle();
-			
+		$(".mbtn").click(function (){
+			$('.mdal-content').toggle();
+		});
+	});
 
-
-
-			});
-			});
+	 function ChangeButton() {
+		var origin = document.getElementById("btn_unfollow");
+		console.log("origin");
+		if(origin.value == "언팔로우"){
+			location.href="UnFollowAction";
+		}
+		return true;
+	 }
 	
-					
 		
 	</script>
 </head>
@@ -102,8 +109,10 @@
       	<button id="logoutBtn" class="img0" onclick="changeView(2)"><img src="img/home.jpg" alt="홈"></button>
       	<button id="logoutBtn" class="img0" onclick="changeView(3)"><img src="img/compass.jpg" alt="나침반"></button>
       	<button id="logoutBtn" class="img0" onclick="changeView(4)"><img src="img/alret.jpg" alt="알림"></button>
-      	
-         
+        <% if(session.getAttribute("sessionID").toString().equals("hong")){%>
+        <button id="logoutBtn" class="img0" onclick="changeView(6)"><img src="img/admin.jpg" alt="관리자"></button>	
+        <% } %>
+        
       	
       	<button id="profilebtn" onclick="changeView(5)"><img src="user/<%=session.getAttribute("sessionID") %>/<%= member.getPicture()%>"  onerror="this.src='img/profile.jpg'"  class="img1" /></button>
       	</span>
@@ -142,7 +151,8 @@
 	
 		     <div class="mdal-content">
 		         
-		                            
+		       
+		       
 		        <table>
 		         
 				    <c:forEach var="mdto" items="${ mmlist }" >  
@@ -154,7 +164,7 @@
 							   <a href="UserProfileView?id=${mdto.id}" ><img class="profile" src="user/${mdto.id}/${mdto.picture}"  onerror="this.src='img/profile.jpg'" ></a>
 							</div>
 		                    <div id="user_popid">
-		                      <a href="UserProfileView?id=${mdto.id}" ><small>${mdto.id}</small></a> 
+		                      <a href="UserProfileView?id=${mdto.id}" ><small>${mdto.id}</small></a>
 		                    </div>
 		               </td>
 		               
@@ -164,7 +174,9 @@
 		                  </div>  
 		                 
 		               </td>          
+		              
 				     </tr> 
+				     
 				    </c:forEach> 
 				     
 				    </table>
@@ -202,10 +214,10 @@
 	    };
 	 
 	    // <span> 태그(X 버튼)를 클릭하면 Modal이 닫습니다.
-	    mspanes[num].onclick = function() {
+	   /*  mspanes[num].onclick = function() {
 		    
 	        mdals[num].style.display = "none";
-	    };
+	    }; */
 	  };
 	}
 

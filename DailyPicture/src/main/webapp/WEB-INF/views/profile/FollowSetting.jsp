@@ -1,7 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ page import="com.study.springboot.dto.DpFollowDto" %>
+<%@ page import="com.study.springboot.dto.MemberDto" %>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="java.util.List"%>
 <html lang="en">
 <head>
+	<% ArrayList<DpFollowDto> unfollowlist= (ArrayList<DpFollowDto>)session.getAttribute("unfollowlist"); %>
+   	<% ArrayList<MemberDto> memberlist = (ArrayList<MemberDto>)session.getAttribute("memberlist"); %>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>친구 관리</title>
@@ -78,8 +85,8 @@
             padding-top: 100px;
         }
         #info {
-        	
-        	width: 700px;
+        	/* border:1px solid red; */
+        	width: 500px;
             height: 500px;
             padding-right:200px;
             border-spacing: 30px;
@@ -119,8 +126,30 @@
         #info td {
         	text-align:start;
         }
+        #profile {
+        	border-radius: 100%;
+        	height:5%;
+        }
         
-        
+        #follow {
+        	 /* border:1px solid red;	  */
+        	 border-spacing: 30px;
+            border-collapse: separate;
+            display: inline-block;
+            height: 400px;
+            overflow: auto;
+        }
+        #unfollow {
+        	/* border:1px solid red; */
+        	border-spacing: 30px;
+            border-collapse: separate;
+            display: inline-block;
+            height: 400px;
+            overflow: auto;
+        }
+        ::-webkit-scrollbar {
+  			width: 6px;
+		}
     </style>
 </head>
 <body>
@@ -158,13 +187,46 @@
  
 
 
-    <table id="info">
-    <tr><td><h3><b>친구관리</b></h3></td></tr>
-    <tr><td><p>DailyPicture의 친구관리 페이지입니다. 회원님과 관련된 팔로우 정보를 보여드립니다. 
-    친구관리 기능을 통해 팔로우 정보를 업데이트 해보세요</p></td></tr>
-    <tr><td><h3><b>내가 팔로우한 사람</b></h3></td></tr>
-    <tr><td><h3><b>나를 팔로우한 사람</b></h3></td></tr>
-    </table>
+    <table id="follow">
+    	<tr><td><h3><b>팔로우 맺기</b></h3></td></tr>
+    	
+    				<c:forEach var="mdto" items="${ memberlist }" >  
+				     	<tr>
+					     	<td>
+					     	<form action="FollowAction" method="post">
+					     		${mdto.picture}
+					     		<input type="hidden" name="following" value=${mdto.name }>
+					     		${mdto.name} 
+					     		<input type="submit" value="팔로우" class="btn btn-primary">
+					     	</form>
+					     	</td>
+					     	
+				     	</tr>   
+		               		
+		              	  
+				    </c:forEach> 
+		</table>
+		<table id="unfollow">
+    	<tr><td><h3><b>팔로우 끊기</b></h3></td></tr>
+    	
+    			<c:forEach var="dto" items="${ unfollowlist }">  
+				     <tr>
+				  
+		               <td>
+		               <form action="UnFollowAction" method="post">
+		       				 <input type="hidden" name="following" value=${dto.following }>
+		                  		
+		                ${dto.following}  <input type="submit" value="언팔로우" class="btn">
+		             
+		               </td>          
+		             
+		              </form>
+		              
+				     </tr> 
+				     
+				    </c:forEach> 
+		</table>
+    
 
 </div>
 

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.study.springboot.dao.IDpFollowDao">
+
+	<insert id="follow" parameterType="com.study.springboot.dto.DpFollowDto">
+		
+		merge into dp_follow
+			using dual on (following = #{param1} and follower = #{param2})
+				<!-- when matched then
+		delete form dp_follow where following = #{param1} and follower = #{param2} -->
+				when not matched then	
+		insert (id, following, follower)
+		 	 values(dp_follow_seq.nextval, #{param1}, #{param2})
+		 
+	</insert>
+	
+	<select id="memberlist" resultType="com.study.springboot.dto.MemberDto">
+		select name from dp_member where not(id=#{id})
+	</select>
+	
+	<delete id="unfollow">
+		delete from dp_follow where following = #{param1} and follower = #{param2}
+	</delete>
+	
+	<select id="unfollowlist" resultType="com.study.springboot.dto.DpFollowDto">
+		select * from dp_follow where follower = #{follower} 
+	</select>
+</mapper>
