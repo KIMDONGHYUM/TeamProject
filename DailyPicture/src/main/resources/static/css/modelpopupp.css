@@ -24,10 +24,17 @@
             top:50%;
             left:50%;
             transform:translate(-50%,-50%);
+            vertical-align: center;
             width:500px;
             height:350px;
-            
+            border-radius: 30px 30px 30px 30px;
             z-index:2;
+        }
+        
+        #deleteviewbox{
+         margin-top: 20%;
+         
+        
         }
         
         .bbtnpop{

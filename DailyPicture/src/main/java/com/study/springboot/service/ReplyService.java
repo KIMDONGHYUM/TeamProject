@@ -41,6 +41,31 @@ public class ReplyService  implements IReplyService{
 
 
 
+	@Override
+	public int deleteRList(int board_no) throws Exception {
+		
+		return rdao.deleteRList(board_no);
+	}
+
+
+
+	@Override
+	public int deleteReply(int reply_no) throws Exception {
+	
+		int Result  =  rdao.deleteReply(reply_no);
+		
+		return Result;
+	}
+
+
+	@Override
+	public int replyUpdate(int reply_no, String content) throws Exception {
+		// TODO Auto-generated method stub
+		return rdao.replyUpdate(reply_no, content);
+	}
+
+
+
 
 	
     

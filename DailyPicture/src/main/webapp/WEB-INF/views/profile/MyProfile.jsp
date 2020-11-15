@@ -41,6 +41,8 @@
 	<link rel="stylesheet" type="text/css" href="css/stylepop.css">
 	<link rel="stylesheet" type="text/css" href="css/modelpopup.css">
 	<link rel="stylesheet" type="text/css" href="css/modelpopupp.css">
+	<link rel="stylesheet" type="text/css" href="css/settingpop.css">
+    <link rel="stylesheet" type="text/css" href="css/updatepop.css">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -404,20 +406,75 @@
 		}
 		 
 		 
+		
 		#textmemo{
 	
 		border: 0;
+		width: 1;
+		height: auto;
+		}
 		
-		} 
+	  
+	  .texta {
+      width: 320px;
+      margin-left: -10px;
+      
+      }
+      #PsettingBtn{
+      width: 100px;
+      padding-left:-20px;
+      margin-left: -20px;
+      
+      
+      }
+      
+      .PsettingBtn{
+       border: solid rgb(201, 202, 201) 1px;
+        	width: 30px;
+    		height: 30px; 
+    		border-radius: 70%;
+    		overflow: hidden;
+      text-align: top;
+      }
+      
+      
+    .texta textarea {
+      width: 100%;
+      resize: none;
+      overflow-y: hidden; /* prevents scroll bar flash */
+      padding: 1.1em; /* prevents text jump on Enter keypress */
+      padding-bottom: 0.2em;
+      line-height: 1.6;
+    }
 		
+		#replyview{
+		float:left;
+		margin-left: 10px;
+		margin-top: 10px;
+		}
 		#reply{
 		margin-top: 10px;
 		flot:left;
-		margin-left: 0px;
+		
 		width:99%;
 		text-align: left;			
 
 		}
+		
+		#repbox{
+		
+		float:left;
+		width:100%;
+		height: 400px;
+		margin-left: 10px;
+		overflow:auto;
+		}
+		
+		.rep{
+		float:left;
+		width:100%;
+		}
+		
 		
 		#pagin{
 		text-align: center;
@@ -632,18 +689,19 @@
 									<h4>이 게시물을 영구적으로 삭제하시겠습니까?</h4>
 									<hr class ="own">
 								 
-								  <form action="DeletePanAction"> 
-                          
-		                           <input type="hidden" name="board_no" value="${dto.board_no}" />
-		                            <input type="hidden" name="picture" value="${dto.picture}" />
+								 
 		                        
 		                         <div class="ynbox opt3">
 		                          
 		                           <div class="yes">
-		                           <input type="submit" id="yesbtn"  class="btn btn-info" value="예">
-								   </div>		                       
-		                          
+		                            <form action="DeletePanAction"> 
+                          
+		                           <input type="hidden" name="board_no" value="${dto.board_no}" />
+		                            <input type="hidden" name="picture" value="${dto.picture}" />
+		                           <input type="submit" id="yesbtn"  class="btn btn-info" value="예">                    
 		                          </form>
+		                          
+		                          </div>
 		                          
 		                          
 		                          <div class="no">
@@ -652,7 +710,9 @@
 								  </form>
 								 </div>
 								 </div>
-						       
+								 
+								 </div>
+						      
 						       
 						     </div>
 						   </div>			
@@ -674,47 +734,134 @@
 					    								
 					</table> 
 					
+					
 					<!-- 글 쓴이 내용 -->
-					<table id="reply">
-			      	        
+					<div id="repbox">
+			      	  <c:forEach var="rdto" items="${ rlist }" > 
+			      	   <table class="rep">     
 					    <tr>
 					   	<td>
 					   	<div id="popprofilebox">
 					   	
-					   	<div class="replyList"></div>
-					  
 					   	 <div class="sprofileimg" style="background: #BDBDBD;"> 
-					       <a href="profile.go"><img class="profile" src="user/${dto.id}/<%=member.getPicture() %>"  onerror="this.src='img/profile.jpg'" ></a>
+					       <a href="profile.go"><img class="profile" src="user/${rdto.user_id}/${rdto.picture}"  onerror="this.src='img/profile.jpg'" ></a>
 					       </div>
                           <div id="user_popid">
-                          <a href="profile.go"><label for="sprofileimg"><small>${dto.id}</small></label></a> 
+                          <a href="profile.go"><label for="sprofileimg"><small>${rdto.user_id}</small></label></a> 
                         </div>
                        
                         </div>
 					   	</td>
 					   
 					  
-					       <td><input type="text" id="textmemo" value="${dto.memo}" disabled/><td>
+					       <%-- <td><input type="text" id="textmemo" value="${rdto.content}" disabled/><td> --%>
 					       
+					       <td>
+					        <div class="texta">
+					       <textarea id="textmemo" disabled>${rdto.content}</textarea>
+					      </div>
+					       </td>
+					      
+					       <td id ="PsettingBtn">
+					         <button class="PsettingBtn" >‧‧‧</button>
+
+							   <div class="smodal">
+							
+							     
+							     <div class="smodal-content">
+							      
+							       <span class="close">&times;</span>                         
+							 
+					 
+					 
+					 
+							
+							
+						<!-- jstl에 있는 변수를 스크립틀릿에서 사용할 수 있게 바꾼다. -->
+						<c:set var="user_id" value="${rdto.user_id}" ></c:set>	
+
+						<%
+
+						String user_id = (String)pageContext.getAttribute("user_id");
+						
+						%>
+					 
+					   
+					    <%			  
+							if(session.getAttribute("sessionID").equals(user_id)){
+						%> 
+				        
+						<div class="ssettingbox">
+							       
+				       		 		 <button class="updatebtn btn btn-info"  >댓글수정</button>
+				       		 		
+				            		 <div class="upmodal">
+				            		 
+								     <!-- 첫 번째 Modal의 내용 -->
+								     <div class="upmodal-content">
+								       <span class="upclose"></span>    
+								       
+								       <form action="ReplyUpdateAction">                    
+								       <textarea name="content" id="memo" class="form-control" cols="30" rows="5" placeholder="수정할 내용을 입력하세요"></textarea><br />
+								       <input type="hidden" name="board_no" value="${rdto.board_no}"/>
+								       <input type="hidden" name="reply_no" value="${rdto.reply_no }" />
+								       <input type="submit" class="btn btn-success" value="댓글수정">
+								       </form> 
+								     </div>
+								   </div>
+								    
+								    				        		        
+							       <form action="DeleteReplyAction">
+				            		
+				            		 <input type="hidden" name="reply_no" value="${rdto.reply_no}" />
+				            		  <input type="hidden" name="board_no" value="${dto.board_no}" />
+				            		  
+				            		<input type="submit" class="sbtn btn btn-success"  value="댓글 삭제">
+				            
+				        	       </form>
+				        	       
+				       		 	<form action="DeletePicture" method="POST" enctype="multipart/form-data">
+				       		 		<input type="hidden" name="picture" value=<%=member.getPicture()%>>
+				            		<input type="submit" class="sbtn btn btn-danger" class="form-control" value="현재 댓글 신고">
+				        		</form>
+							      </div>  
+					
+					
+							<% }else{ //사용자가 아닌사람이 볼 경우 %> 
+									<form action="DeletePicture" method="POST" enctype="multipart/form-data">
+				       		 		<input type="hidden" name="picture" value=<%=member.getPicture()%>>
+				            		<input type="submit" class="sbtn btn btn-danger" class="form-control" style="margin-top:25%" value="현재 댓글 신고">
+				        		</form>
+							      </div>  
+	                 		<%	}	%>	     
+							      
+							        
+							    
+							     </div>
+							   
+					       </td>
+					        
 					                       
 					</tr>
-					
 					</table>
+					</c:forEach>
+					
+					</div>
 					
 				
 					
 					 
 					
 					<div id="chatWrite">
-					 <form action="replyInsertForm"></form>
-			  		  <input type="text" id="content" name="content" class="chatWrite" placeholder="글을써주세요" />
-			  		  	
-			  		   <input type="hidden" name="board_no" value="${dto.board_no}" />
-			  		
-			  		  <input type="hidden" name="writer" value="${dto.id}" />
-			  		 
+					 <form action="Replyinsert">
+			  		  <input type="text" class="chatWrite" name="content"  placeholder="글을써주세요" />
 			  		  
+			  		   <input type="hidden" name="board_no" value="${dto.board_no}" />
+			  		   <input type="hidden" name="writer" value="<%=session.getAttribute("sessionID") %>" />
+			  	 	  
 			  		  <input type="submit" class="btn btn-primary" style="float:right" value="보내기"/>	
+			  		  </form>
+			  		
 			  		</div>
 			  	
 			  		</div>

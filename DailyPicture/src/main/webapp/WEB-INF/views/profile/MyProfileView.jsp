@@ -25,7 +25,9 @@
      	 List rlist = (List)session.getAttribute("rlist"); 
      	%>
      	<link rel="stylesheet" type="text/css" href="css/modelpopupp.css">
-     	<link rel="stylesheet" type="text/css" href="css/mpup.css">
+     	<!-- <link rel="stylesheet" type="text/css" href="css/mpup.css"> -->
+     	<link rel="stylesheet" type="text/css" href="css/settingpop.css">
+     	<link rel="stylesheet" type="text/css" href="css/updatepop.css">
    
 	
 	
@@ -42,7 +44,7 @@
 				margin:0 auto;
 				padding:0;
 				max-width:100%;
-			   /* border: solid red 1px;  */
+		/* 	    border: solid red 1px;  */
 			
 				
     		  }
@@ -115,7 +117,7 @@
      
      
      #mainbox{
-     
+    
      margin-bottom: 300px;
      
      }
@@ -146,7 +148,7 @@
 			#popchat{
 			position:absolute;
 			right: 0;
-		    height:73.7%;
+		    height:630px;
 		    width: 35%;
 		    vertical-aling: top;
 		   
@@ -251,16 +253,39 @@
         }
 		 
 		 
+		 
+		 
 		#textmemo{
 	
 		border: 0;
 		width: 1;
 		height: auto;
-		} 
-	.texta {
-      width: 500px;
+		}
+		
+	  
+	  .texta {
+      width: 490px;
       margin-left: -10px;
-    }
+      
+      }
+      #PsettingBtn{
+      width: 100px;
+      padding-left:-20px;
+      margin-left: -20px;
+      
+      
+      }
+      
+      .PsettingBtn{
+       border: solid rgb(201, 202, 201) 1px;
+        	width: 30px;
+    		height: 30px; 
+    		border-radius: 70%;
+    		overflow: hidden;
+      text-align: top;
+      }
+      
+      
     .texta textarea {
       width: 100%;
       resize: none;
@@ -297,6 +322,8 @@
 		float:left;
 		width:100%;
 		}
+		
+		
 		
   		 #footer{
         text-align: center;
@@ -391,18 +418,17 @@
 									<h4>이 게시물을 영구적으로 삭제하시겠습니까?</h4>
 									<hr class ="own">
 								 
-								  <form action="DeletePanAction"> 
+								  <div class="ynbox opt3">
+		                          
+		                           <div class="yes">
+		                            <form action="DeletePanAction"> 
                           
 		                           <input type="hidden" name="board_no" value="${dto.board_no}" />
 		                            <input type="hidden" name="picture" value="${dto.picture}" />
-		                        
-		                         <div class="ynbox opt3">
-		                          
-		                           <div class="yes">
-		                           <input type="submit" id="yesbtn"  class="btn btn-info" value="예">
-								   </div>		                       
-		                          
+		                           <input type="submit" id="yesbtn"  class="btn btn-info" value="예">                    
 		                          </form>
+		                          
+		                           </div>		   
 		                          
 		                          
 		                          <div class="no">
@@ -410,6 +436,8 @@
 		                          <input type="button"  class="cclose btn btn-info"  value="아니오" />
 								  </form>
 								 </div>
+								 </div>
+								 
 								 </div>
 						       
 						       
@@ -492,7 +520,89 @@
 					       <textarea id="textmemo" disabled>${rdto.content}</textarea>
 					      </div>
 					       </td>
-					       
+					      
+					       <td id ="PsettingBtn">
+					         <button class="PsettingBtn" >‧‧‧</button>
+
+							   <div class="smodal">
+							
+							     
+							     <div class="smodal-content">
+							      
+							       <span class="close">&times;</span>                         
+							 
+					 
+					 
+					 
+							
+							
+						<!-- jstl에 있는 변수를 스크립틀릿에서 사용할 수 있게 바꾼다. -->
+						<c:set var="user_id" value="${rdto.user_id}" ></c:set>	
+
+						<%
+
+						String user_id = (String)pageContext.getAttribute("user_id");
+						
+						%>
+					 
+					   
+					    <%			  
+							if(session.getAttribute("sessionID").equals(user_id)){
+						%> 
+				        
+						<div class="ssettingbox">
+							       
+				       		 		 <button class="updatebtn btn btn-info"  >댓글수정</button>
+				       		 		
+				            		 <div class="upmodal">
+				            		 
+								     <!-- 첫 번째 Modal의 내용 -->
+								     <div class="upmodal-content">
+								       <span class="upclose"></span>    
+								       
+								       <form action="ReplyUpdateAction">                    
+								       <textarea name="content" id="memo" class="form-control" cols="30" rows="5" placeholder="수정할 내용을 입력하세요"></textarea><br />
+								       <input type="hidden" name="board_no" value="${rdto.board_no}"/>
+								       <input type="hidden" name="reply_no" value="${rdto.reply_no }" />
+								       <input type="submit" class="btn btn-success" value="댓글수정">
+								       </form> 
+								     </div>
+								   </div>
+								    
+								    				        		        
+							       <form action="DeleteReplyAction">
+				            		
+				            		 <input type="hidden" name="reply_no" value="${rdto.reply_no}" />
+				            		  <input type="hidden" name="board_no" value="${dto.board_no}" />
+				            		  
+				            		<input type="submit" class="sbtn btn btn-success"  value="댓글 삭제">
+				            
+				        	       </form>
+				        	       
+				       		 	<form action="DeletePicture" method="POST" enctype="multipart/form-data">
+				       		 		<input type="hidden" name="picture" value=<%=member.getPicture()%>>
+				            		<input type="submit" class="sbtn btn btn-danger" class="form-control" value="현재 댓글 신고">
+				        		</form>
+							      </div>  
+					
+					
+							<% }else{ //사용자가 아닌사람이 볼 경우 %> 
+									<form action="DeletePicture" method="POST" enctype="multipart/form-data">
+				       		 		<input type="hidden" name="picture" value=<%=member.getPicture()%>>
+				            		<input type="submit" class="sbtn btn btn-danger" class="form-control" style="margin-top:25%" value="현재 댓글 신고">
+				        		</form>
+							      </div>  
+	                 		<%	}	%>	     
+							      
+							        
+							    
+							     </div>
+							  
+					         
+					         
+					         
+					       </td>
+					        
 					                       
 					</tr>
 					</table>
@@ -621,6 +731,7 @@
 		        }
 		    });
 		}
+		*/
 		 
 		//댓글 삭제 
 		function commentDelete(cno){
@@ -631,7 +742,7 @@
 		            if(data == 1) commentList(bno); //댓글 삭제후 목록 출력 
 		        }
 		    });
-		} */
+		} 
 		 
 		 
 		 
@@ -643,15 +754,114 @@
 		 
 		 
 		</script>
-
-
+              
+              
+                 <script>
+				// Modal을 가져옵니다.
+				var modals = document.getElementsByClassName("smodal");
+				// Modal을 띄우는 클래스 이름을 가져옵니다.
+				var btns = document.getElementsByClassName("PsettingBtn");
+				// Modal을 닫는 close 클래스를 가져옵니다.
+				var spanes = document.getElementsByClassName("close");
+				var funcs = [];
+				 
+				// Modal을 띄우고 닫는 클릭 이벤트를 정의한 함수
+				function Modal(num) {
+				  return function() {
+				    // 해당 클래스의 내용을 클릭하면 Modal을 띄웁니다.
+				    btns[num].onclick =  function() {
+				        modals[num].style.display = "block";
+				        console.log(num);
+				    };
+				 
+				    // <span> 태그(X 버튼)를 클릭하면 Modal이 닫습니다.
+				    spanes[num].onclick = function() {
+				        modals[num].style.display = "none";
+				    };
+				  };
+				}
+				 
+				// 원하는 Modal 수만큼 Modal 함수를 호출해서 funcs 함수에 정의합니다.
+				for(var i = 0; i < btns.length; i++) {
+				  funcs[i] = Modal(i);
+				}
+				 
+				// 원하는 Modal 수만큼 funcs 함수를 호출합니다.
+				for(var j = 0; j < btns.length; j++) {
+				  funcs[j]();
+				}
+				 
+				// Modal 영역 밖을 클릭하면 Modal을 닫습니다.
+				window.onclick = function(event) {
+				  if (event.target.className == "smodal") {
+				      event.target.style.display = "none";
+				  }
+				  if (event.target.className == "mmodal") {
+					  event.target.style.display = "none";     
+				  }
+				  if (event.target.className == "upmodal") {
+					  event.target.style.display = "none";     
+				  }
+				 
+				};
+				
+				
+				    </script>
+              
+              
+              
+                	
+	        <script>
+			// Modal을 가져옵니다.
+			var upmodals = document.getElementsByClassName("upmodal");
+			// Modal을 띄우는 클래스 이름을 가져옵니다.
+			var upbtns = document.getElementsByClassName("updatebtn");
+			// Modal을 닫는 close 클래스를 가져옵니다.
+			var spanes = document.getElementsByClassName("upclose");
+			var upfuncs = [];
+			 
+			// Modal을 띄우고 닫는 클릭 이벤트를 정의한 함수
+			function upModal(num) {
+			  return function() {
+			    // 해당 클래스의 내용을 클릭하면 Modal을 띄웁니다.
+			    upbtns[num].onclick =  function() {
+			        upmodals[num].style.display = "block";
+			        console.log(num);
+			    };
+			 
+			    // <span> 태그(X 버튼)를 클릭하면 Modal이 닫습니다.
+			    upspanes[num].onclick = function() {
+				    
+			        upmodals[num].style.display = "none";
+			    };
+			  };
+			}
+		
+			
+			 
+			// 원하는 Modal 수만큼 Modal 함수를 호출해서 funcs 함수에 정의합니다.
+			for(var i = 0; i < upbtns.length; i++) {
+			  upfuncs[i] = upModal(i);
+			}
+			 
+			// 원하는 Modal 수만큼 funcs 함수를 호출합니다.
+			for(var j = 0; j < upbtns.length; j++) {
+			  upfuncs[j]();
+			}
+		
+			</script>
+              
+              
+              
+              
+  
 				
 		
 		
 
 
 		
-		<script>
+		         <script>
        
 						// Modal을 가져옵니다.
 						var mmodals = document.getElementsByClassName("mmodal");
@@ -688,26 +898,19 @@
 						for(var j = 0; j < bbtns.length; j++) {
 						  ffuncs[j]();
 						}
-						 
-
-						window.onclick = function(event) {
 						
-							  if (event.target.className == "mmodal") {
-							      event.target.style.display = "none";
-									  }
-									};
 						
-    </script> 
+   				 </script> 
     
-    <script>
-    $(document).ready(function() {
-      $('.texta').on( 'keyup', 'textarea', function (e){
-        $(this).css('height', 'auto' );
-        $(this).height( this.scrollHeight );
-      });
-      $('.texta').find( 'textarea' ).keyup();
-    });
-  </script>
+			    <script>
+			    $(document).ready(function() {
+			      $('.texta').on( 'keyup', 'textarea', function (e){
+			        $(this).css('height', 'auto' );
+			        $(this).height( this.scrollHeight );
+			      });
+			      $('.texta').find( 'textarea' ).keyup();
+			    });
+			  </script>
     
 
 </body>

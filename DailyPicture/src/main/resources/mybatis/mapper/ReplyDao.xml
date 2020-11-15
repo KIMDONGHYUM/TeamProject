@@ -10,8 +10,8 @@
 	 <selectKey keyProperty="reply_no" resultType="int" order="BEFORE">
 	 		select dp_reply_seq.nextval FROM DUAL
 	 </selectKey>
-      insert into dp_reply (reply_no, myct_no, board_no, user_id, content, reg)
-           values (dp_reply_seq.nextval, #{myct_no}, #{board_no}, #{user_id}, #{content}, #{reg})
+      insert into dp_reply (reply_no, myct_no, board_no, user_id, content, picture, reg)
+           values (dp_reply_seq.nextval, #{myct_no}, #{board_no}, #{user_id}, #{content}, #{picture}, #{reg})
    </insert> 
 	
 	 
@@ -21,12 +21,28 @@
 		
 	</select> 	
 	
-	
+	<!-- 프로필 사진 변경시 게시글에 있는 프로필 사진도 바꿔줌 -->
 	<update id="replyset" >
-		update dp_reply set picture =#{picture} where user_id = #{id}
+		update dp_reply set picture = #{picture} where user_id = #{id}
+	</update>	
+	
+	<update id="replyUpdate" >
+		update dp_reply set content = #{param2} where reply_no = #{param1}
 	</update>		
 	
-
+     
+     <!-- 게시판 삭제시 게시판에 있는 모든 댓글을 삭제시켜줌 -->
+     <delete id="deleteRList">
+		delete from dp_reply where board_no = #{board_no}
+	</delete>
+	
+	<!-- 댓글 삭제시 해당 댓글만 삭제 -->
+	<delete id="deleteReply">
+	     delete from dp_reply where reply_no = #{reply_no}
+	</delete>
+	
+	
+	
 	
 	<!-- where board_no = #{param1} and writer = #{param2}  -->
 	

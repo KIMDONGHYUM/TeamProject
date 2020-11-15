@@ -23,13 +23,14 @@ public interface IReplyDao {
 	
 	public List<ReplyDto> replyList(int myct_no, int board_no) throws Exception;
 	
+	public int deleteRList(int board_no) throws Exception; 
 	
 	
 	 // 댓글 수정
-    public int replyUpdate(ReplyDto rep) throws Exception;
+    public int replyUpdate(int reply_no, String content) throws Exception;
  
     // 댓글 삭제
-    public int replyDelete(int reply_no) throws Exception;
+    public int deleteReply(int reply_no) throws Exception;
 
 		
 }
