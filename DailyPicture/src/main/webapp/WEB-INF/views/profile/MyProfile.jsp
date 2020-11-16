@@ -10,6 +10,7 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.util.Calendar" %>
+<%@ page import="java.util.List" %>
 
 <!doctype html>
 <html>
@@ -602,8 +603,14 @@
  		     <c:forEach var="dto" items="${ clist }" >
 			  
 			  
-			   
-		  	 <button class="btnpop" ><a href="MyProfileView?board_no=${dto.board_no}&writer=${dto.id}" class="titlememo"> ${dto.memo}</a><img src="user/${dto.id}/${ dto.picture }" width="260" height="280"></button>
+			  
+			  <a href="MyProfileView?board_no=${dto.board_no}&writer=${dto.id}" class="titlememo"> ${dto.memo}</a>
+			  
+			  
+			  
+		  	 <button class="btnpop" ><img src="user/${dto.id}/${ dto.picture }" width="260" height="280"></button>
+		  
+  			 
 			    
 			   <!-- 다중 팝업 사용 -->			
 			   <!-- 첫 번째 Modal -->
@@ -735,7 +742,7 @@
 					</table> 
 					
 					
-					<!-- 글 쓴이 내용 -->
+					<!-- 댓글내용  -->
 					<div id="repbox">
 			      	  <c:forEach var="rdto" items="${ rlist }" > 
 			      	   <table class="rep">     
@@ -752,6 +759,7 @@
                        
                         </div>
 					   	</td>
+					   	
 					   
 					  
 					       <%-- <td><input type="text" id="textmemo" value="${rdto.content}" disabled/><td> --%>
@@ -839,9 +847,7 @@
 							    
 							     </div>
 							   
-					       </td>
-					        
-					                       
+					       </td>                   
 					</tr>
 					</table>
 					</c:forEach>

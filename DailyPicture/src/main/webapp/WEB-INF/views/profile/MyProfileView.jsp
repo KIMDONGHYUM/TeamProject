@@ -251,12 +251,29 @@
             /* 가운데 맞춰 정렬 */
             justify-content: center;
         }
+        
+        
+         #n{
+		 
+		 width: 70px;
+		 	
+		 }
+		 .yn{
+            /* 플렉서블 박스로 지정 */
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 10px;
+        }
+		 
+		.opt4 {
+            /* 가운데 맞춰 정렬 */
+            justify-content: center;
+        }
 		 
 		 
 		 
 		 
 		#textmemo{
-	
 		border: 0;
 		width: 1;
 		height: auto;
@@ -372,10 +389,19 @@
 					  
 					    
 					  
-					    
-					   
+					    <c:set var="id" value="${dto.id}" ></c:set>	
+
+						<%
+
+						String user_id = (String)pageContext.getAttribute("id");
+						
+						%>
 					 
-					   	<table id="systembox"> 
+					   
+					    <%			  
+							if(session.getAttribute("sessionID").equals(user_id)){
+						%>     
+					    		<table id="systembox"> 
 						<tr>
 						<p class="bbtnpop">수정</p> 
 					    <!-- 첫 번째 Modal -->
@@ -460,6 +486,16 @@
 					    </tr>
 					    								
 					</table> 
+					 <% }else{ //사용자가 아닌사람이 볼 경우 %> 
+					    </tr>
+					    								
+					</table> 
+					
+								
+	                 		<%	}	%>	 
+					   
+					 
+					   
 					
 					<!-- 글 쓴이 내용 -->
 					<table id="replyview">
@@ -541,7 +577,7 @@
 
 						<%
 
-						String user_id = (String)pageContext.getAttribute("user_id");
+						 user_id = (String)pageContext.getAttribute("user_id");
 						
 						%>
 					 
@@ -552,24 +588,39 @@
 				        
 						<div class="ssettingbox">
 							       
-				       		 		 <button class="updatebtn btn btn-info"  >댓글수정</button>
-				       		 		
-				            		 <div class="upmodal">
-				            		 
-								     <!-- 첫 번째 Modal의 내용 -->
-								     <div class="upmodal-content">
-								       <span class="upclose"></span>    
-								       
-								       <form action="ReplyUpdateAction">                    
-								       <textarea name="content" id="memo" class="form-control" cols="30" rows="5" placeholder="수정할 내용을 입력하세요"></textarea><br />
+					   <input type="button" class="upbtnpop btn btn-outline-dark"  value="수정" />
+					   
+					    <!-- 첫 번째 Modal -->
+					   <div class="upmodal">
+					
+					     <!-- 첫 번째 Modal의 내용 -->
+					     <div class="upmodal-content">
+					                          
+					      <div id="popupview3" >
+					                   <form action="ReplyUpdateAction">                    
+								       <textarea name="content" id="memo" class="form-control" cols="30" rows="5" style="margin-top:20%" placeholder="수정할 내용을 입력하세요"></textarea><br />
 								       <input type="hidden" name="board_no" value="${rdto.board_no}"/>
 								       <input type="hidden" name="reply_no" value="${rdto.reply_no }" />
-								       <input type="submit" class="btn btn-success" value="댓글수정">
+								       
+								       <div class ="yn otp4">
+								       <div class="y">
+								       <input type="submit" class="btn btn-success" value="수정">
+								       </div>
+								       <div class="n">
+		                                <input type="button"  class="upclose btn btn-danger"  value="취소" />
+								       </div>
+								       </div>
+								       
 								       </form> 
-								     </div>
-								   </div>
-								    
-								    				        		        
+								       
+								       
+									</div>
+					    
+					           </div>
+				           	   </div>
+							       
+							 
+								 	    				        		        
 							       <form action="DeleteReplyAction">
 				            		
 				            		 <input type="hidden" name="reply_no" value="${rdto.reply_no}" />
@@ -619,7 +670,7 @@
 			  		  <input type="text" class="chatWrite" name="content"  placeholder="글을써주세요" />
 			  		  
 			  		   <input type="hidden" name="board_no" value="${dto.board_no}" />
-			  		   <input type="hidden" name="writer" value="<%=session.getAttribute("sessionID") %>" />
+			  		   <input type="hidden" name="writer" value="<%=session.getAttribute("sessionID")%>" />
 			  	 	  
 			  		  <input type="submit" class="btn btn-primary" style="float:right" value="보내기"/>	
 			  		  </form>
@@ -684,7 +735,7 @@
 		                a += '<div class="commentContent'+value.reply_no+'"> <p> 내용 : '+value.content +'</p>';
 		                a += '</div></div>';
 		            });
-		            
+		                
 		            $(".replyList").html(a);
 		        }
 		    });
@@ -802,6 +853,7 @@
 				  if (event.target.className == "upmodal") {
 					  event.target.style.display = "none";     
 				  }
+				  
 				 
 				};
 				
@@ -811,46 +863,46 @@
               
               
                 	
-	        <script>
-			// Modal을 가져옵니다.
-			var upmodals = document.getElementsByClassName("upmodal");
-			// Modal을 띄우는 클래스 이름을 가져옵니다.
-			var upbtns = document.getElementsByClassName("updatebtn");
-			// Modal을 닫는 close 클래스를 가져옵니다.
-			var spanes = document.getElementsByClassName("upclose");
-			var upfuncs = [];
-			 
-			// Modal을 띄우고 닫는 클릭 이벤트를 정의한 함수
-			function upModal(num) {
-			  return function() {
-			    // 해당 클래스의 내용을 클릭하면 Modal을 띄웁니다.
-			    upbtns[num].onclick =  function() {
-			        upmodals[num].style.display = "block";
-			        console.log(num);
-			    };
-			 
-			    // <span> 태그(X 버튼)를 클릭하면 Modal이 닫습니다.
-			    upspanes[num].onclick = function() {
-				    
-			        upmodals[num].style.display = "none";
-			    };
-			  };
-			}
-		
-			
-			 
-			// 원하는 Modal 수만큼 Modal 함수를 호출해서 funcs 함수에 정의합니다.
-			for(var i = 0; i < upbtns.length; i++) {
-			  upfuncs[i] = upModal(i);
-			}
-			 
-			// 원하는 Modal 수만큼 funcs 함수를 호출합니다.
-			for(var j = 0; j < upbtns.length; j++) {
-			  upfuncs[j]();
-			}
-		
-			</script>
-              
+	         <script>
+       
+						// Modal을 가져옵니다.
+						var umodals = document.getElementsByClassName("upmodal");
+						// Modal을 띄우는 클래스 이름을 가져옵니다.
+						var ubtns = document.getElementsByClassName("upbtnpop");
+						// Modal을 닫는 close 클래스를 가져옵니다.
+						var uspanes = document.getElementsByClassName("upclose");
+						var ufuncs = [];
+						 
+						// Modal을 띄우고 닫는 클릭 이벤트를 정의한 함수
+						function UModal(num) {
+						  return function() {
+						    // 해당 클래스의 내용을 클릭하면 Modal을 띄웁니다.
+						    ubtns[num].onclick =  function() {
+						        umodals[num].style.display = "block";
+						        console.log(num);
+						    };
+						 
+						    // <span> 태그(X 버튼)를 클릭하면 Modal이 닫습니다.
+						    uspanes[num].onclick = function() {
+							    
+						        umodals[num].style.display = "none";
+						    };
+						  };
+						}
+
+
+						// 원하는 Modal 수만큼 Modal 함수를 호출해서 funcs 함수에 정의합니다.
+						for(var i = 0; i < ubtns.length; i++) {
+						  ufuncs[i] = UModal(i);
+						}
+						 
+						// 원하는 Modal 수만큼 funcs 함수를 호출합니다.
+						for(var j = 0; j < ubtns.length; j++) {
+						  ufuncs[j]();
+						}
+						
+						
+   				 </script> 
               
               
               

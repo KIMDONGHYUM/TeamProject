@@ -4,14 +4,14 @@
             .upmodal {
             display: none; /* Hidden by default */
             position:absolute;  
-            z-index: 2; /* Sit on top */
+            z-index: 10; /* Sit on top */
             left: 0;
             top: 0;
             width: 100%; /* Full width */
             height: 100%; /* Full height */
           
-           
-            z-index:2;
+        
+            z-index:10;
         }
         /* Modal Content/Box */
         .upmodal-content {
@@ -24,9 +24,6 @@
             transform:translate(-50%,-50%);
             text-align: center;
            
-            
-            
-            
             width:250px;
             height:250px;
             
