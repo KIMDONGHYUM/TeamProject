@@ -18,7 +18,7 @@
 	</insert>
 	
 	<select id="memberlist" resultType="com.study.springboot.dto.MemberDto">
-		select name from dp_member where not(id=#{id})
+		select name from dp_member where not(id=#{id}) order by name asc
 	</select>
 	
 	<delete id="unfollow">
@@ -26,6 +26,31 @@
 	</delete>
 	
 	<select id="unfollowlist" resultType="com.study.springboot.dto.DpFollowDto">
-		select * from dp_follow where follower = #{follower} 
+		select * from dp_follow where follower = #{follower} order by following asc
 	</select>
+	
+	<select id="followerlist" resultType="com.study.springboot.dto.DpFollowDto">
+		select * from dp_follow where following = #{following} 
+	</select>
+	
+	<select id="fmlist" resultType="com.study.springboot.dto.FollowMemberDto">
+		select dp_member.id, dp_member.name, dp_member.password, dp_member.phone,
+			   dp_member.mail, dp_member.reg, dp_member.picture, dp_follow.following,
+			   dp_follow.follower 
+	    from dp_member, dp_follow 
+	    where dp_member.id = dp_follow.follower and following = #{following}
+	    		
+	</select>
+	
+	<select id="ufmlist" resultType="com.study.springboot.dto.FollowMemberDto">
+		select dp_member.id, dp_member.name, dp_member.password, dp_member.phone,
+			   dp_member.mail, dp_member.reg, dp_member.picture, dp_follow.following,
+			   dp_follow.follower 
+	    from dp_member, dp_follow 
+	    where dp_member.id = dp_follow.following and follower = #{follower}
+	</select>
+	
+	<delete id="delete">
+		delete from dp_follow where following=#{following} or follower = #{follower}
+	</delete>
 </mapper>

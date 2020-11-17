@@ -82,15 +82,6 @@
 			$('.mdal-content').toggle();
 		});
 	});
-
-	 function ChangeButton() {
-		var origin = document.getElementById("btn_unfollow");
-		console.log("origin");
-		if(origin.value == "언팔로우"){
-			location.href="UnFollowAction";
-		}
-		return true;
-	 }
 	
 		
 	</script>

@@ -3,12 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ page import="com.study.springboot.dto.DpFollowDto" %>
 <%@ page import="com.study.springboot.dto.MemberDto" %>
+<%@ page import="com.study.springboot.dto.FollowMemberDto" %>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.List"%>
 <html lang="en">
 <head>
 	<% ArrayList<DpFollowDto> unfollowlist= (ArrayList<DpFollowDto>)session.getAttribute("unfollowlist"); %>
-   	<% ArrayList<MemberDto> memberlist = (ArrayList<MemberDto>)session.getAttribute("memberlist"); %>
+   	<% ArrayList<DpFollowDto> followerlist = (ArrayList<DpFollowDto>)session.getAttribute("followerlist"); %>
+   	<% ArrayList<FollowMemberDto> fmlist = (ArrayList<FollowMemberDto>)session.getAttribute("fmlist"); %>
+   	<% ArrayList<FollowMemberDto> ufmlist = (ArrayList<FollowMemberDto>)session.getAttribute("ufmlist"); %>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>친구 관리</title>
@@ -79,6 +82,7 @@
         }
         
         #list {
+        	/* border:1px solid red; */
             width: 500px;
             height: 300px;
             text-align: end;
@@ -98,6 +102,7 @@
             padding-top: 100px;
             padding-left: 70px;
             display: flex;
+            
         }
         td {
         	text-align:end;
@@ -132,23 +137,40 @@
         }
         
         #follow {
-        	 /* border:1px solid red;	  */
-        	 border-spacing: 30px;
-            border-collapse: separate;
-            display: inline-block;
-            height: 400px;
-            overflow: auto;
-        }
-        #unfollow {
-        	/* border:1px solid red; */
+        	border:5px solid rgb(240, 231, 231); 
+        	border-radius: 20%;
+        	/* background-color:rgb(240, 231, 231); */
         	border-spacing: 30px;
             border-collapse: separate;
             display: inline-block;
+            width: 20%;
             height: 400px;
             overflow: auto;
+            padding-left:20px;
+        }
+        
+        #unfollow {
+        	border:5px solid rgb(240, 231, 231); 
+        	border-radius: 20%;
+        	/* background-color:rgb(240, 231, 231); */
+        	border-spacing: 30px;
+            border-collapse: separate;
+            display: inline-block;
+            width: 20%;
+            height: 400px;
+            overflow: auto;
+            padding-left:20px;
         }
         ::-webkit-scrollbar {
   			width: 6px;
+		}
+		
+		.profile {
+			width: 33px;
+    		height: 32px; 
+    		border-radius: 70%;
+			border:solid rgb(153, 243, 18) 2px;
+			float:left;
 		}
     </style>
 </head>
@@ -188,17 +210,18 @@
 
 
     <table id="follow">
-    	<tr><td><h3><b>팔로우 맺기</b></h3></td></tr>
+    	<tr><td><h3><b>나를 팔로우한 친구</b></h3></td></tr>
     	
-    				<c:forEach var="mdto" items="${ memberlist }" >  
+    				<c:forEach var="fdto" items="${ followerlist }" varStatus="status">  
 				     	<tr>
 					     	<td>
-					     	<form action="FollowAction" method="post">
-					     		${mdto.picture}
-					     		<input type="hidden" name="following" value=${mdto.name }>
-					     		${mdto.name} 
-					     		<input type="submit" value="팔로우" class="btn btn-primary">
-					     	</form>
+						     	<form action="FollowAction" method="post">
+						     		<input type="hidden" name="following" value="${fdto.follower}">
+						     		<img class="profile" src="user/${fdto.follower}/${fmlist[status.index].picture }"  onerror="this.src='img/profile.jpg'" ></a>
+						     		
+						     		<b>${fdto.follower}</b> 
+						     		<input type="submit" value="팔로우" class="btn btn-primary">
+						     	</form>
 					     	</td>
 					     	
 				     	</tr>   
@@ -207,20 +230,20 @@
 				    </c:forEach> 
 		</table>
 		<table id="unfollow">
-    	<tr><td><h3><b>팔로우 끊기</b></h3></td></tr>
+    	<tr><td><h3><b>내가 팔로우한 친구</b></h3></td></tr>
     	
-    			<c:forEach var="dto" items="${ unfollowlist }">  
+    			<c:forEach var="udto" items="${ unfollowlist }" varStatus="status">  
 				     <tr>
 				  
 		               <td>
-		               <form action="UnFollowAction" method="post">
-		       				 <input type="hidden" name="following" value=${dto.following }>
-		                  		
-		                ${dto.following}  <input type="submit" value="언팔로우" class="btn">
-		             
+			               <form action="UnFollowAction" method="post">	
+			               <input type="hidden" name="following" value="${udto.following}">		 
+			                  	<img class="profile" src="user/${udto.following}/${ufmlist[status.index].picture }"  onerror="this.src='img/profile.jpg'" ></a>	
+			                	${udto.following}  <input type="submit" value="언팔로우" class="btn">			             	
+			             	</form>
 		               </td>          
 		             
-		              </form>
+		              
 		              
 				     </tr> 
 				     
