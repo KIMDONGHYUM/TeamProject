@@ -1,28 +1,66 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.study.springboot.dto.MyctDto" %>
+<%@ page import="com.study.springboot.dto.MemberDto" %>
+<%@ page import= "com.study.springboot.dto.ReplyDto" %>
+<%@ page import="java.util.ArrayList"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="java.util.List" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>      
+    
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/settingpop.css">
+	    <%
+			ArrayList<MyctDto> clist = (ArrayList<MyctDto>)session.getAttribute("clist");
+		%>
+    	
+    	<%
+     	 MemberDto member = (MemberDto)session.getAttribute("memberInfo"); 
+	   
+     	%>
+     	
+     	<%
+     	 List<ReplyDto> rlist = (List<ReplyDto>)session.getAttribute("rlist"); 
+     	%>
+    
+    
     <title>Main</title>
 	
     <style>
        
        
 
-			* {
+	     * {
 			    max-width:100%;
 				margin:0 auto;
 				padding:0;
+			 /*   border: solid red 1px;   */
      		   }
 
-         body{
-            
-            background-color:rgb(246, 250, 250);
+         #subbody{
+            margin-top:-19px;
+            padding-top:30px;
+            background-color: rgb(239, 237, 237);
         
-        }
+          }
+          
+          /* 밑줄  */
+        .three{			
+            
+            border-bottom:solid rgb(224, 223, 223) 0.1px;
+           
+          }
+          
+        .own {
+          width:2000px;
+          color:gray; 
+          border: thin solid rgb(240, 231, 231);
+         }
       
 
      
@@ -37,11 +75,8 @@
             padding-top: 40px;
         }
   
-  	  .own {
-            width:2000px;
-            color:gray; 
-            border: thin solid rgb(240, 231, 231);
-        }
+  	    
+  	     
 
 
         .headerpicture{
@@ -58,24 +93,62 @@
         }
          */
         #main{
-            width: 800px;
-    
-           margin:0 auto;
+            width: 600px;
+            
+            margin:0 auto;
             text-align: center;
             margin-top: 100px;
             background-color: white;
             border-radius: aa bb cc dd;
-            border: thin solid rgb(240, 231, 231);
+            /* border: thin solid rgb(240, 231, 231); */
+          
+            border: thin solid rgb(215, 214, 214);
             border-radius: 2em;
     
         }
-
-
-        .profile{
-            float: left;
-            margin-left: 30px;
-            margin-top : 10px;
+        
+        
+        /*    메인 부분    */ 
+        
+        #profiletable{
+        width: 100%;
         }
+        
+
+        #profilebox{
+         margin-top: 7%;
+         margin-bottom: 3%;
+         float: left;
+         margin-left: 30px;
+        }
+        
+        .profilereg{
+         float:left;
+         margin-right: 200px;
+         margin-bottom: 15px;
+         outline:0;
+         border:0;
+        }
+        
+     
+        .sprofileimg{
+        
+        	border: solid rgb(153, 243, 18) 2px;
+        	width: 35px;
+    		height: 35px; 
+    		border-radius: 70%;
+    		overflow: hidden;
+    		
+    		
+        }	
+        
+       .profile {
+		    width: 100%;
+		    height: 100%;
+		    object-fit: cover;
+		 }
+		   
+		   
         #user_id {
             margin-top: 20px;
             float: left;
@@ -84,50 +157,89 @@
        
        .image {
            background-color: rgb(248, 245, 245);
-           height: 400px;
+           height: 490px;
            text-align: left;
        }
-
+       
+      
 
       a{
             text-decoration: none;
             color: black;
        }
-       .comment {
-           float: left;
-           padding: 20px;
+       
+       
+       
+       #titlebox{
+	       vertical-align: center;
+	       float: left;
+	       margin-left: -20px;
+	       width:100px;
+	     
        }
+       
+       #textmemo{
+		border: 0;
+		margin-left: -30px;
+		margin-top: 15px;
+		height: auto;
+		}
+		
+	   .texta textarea {
+	      width: 100%;
+	      resize: none;
+	      overflow-y: hidden; /* prevents scroll bar flash */
+	      padding: 1.1em; /* prevents text jump on Enter keypress */
+	      padding-bottom: 0.2em;
+	      line-height: 1.6;
+       }	
+		
+	  
+	  .texta {
+         width: 490px;
+         margin-left: -10px;
+      
+      }
+      
+      
       .content {
           background-color: rgb(236, 245, 245);
           height: 80px;
           text-align: left;
       }
-       
-
-        #text {
-          margin-top: 20px;
-          width: 700px;
-          height: 40px;
+      
+      #chatWrite{
+       margin-bottom: 50px;
       }
-
-        #send {
-          padding-top: 20px;
-          padding-left: 20px;
+      
+      .chatWrite{
+      border: 0;
+      height: 30px;
+      outline: 0;
+      float:left;
+      width: 450px;
+      
       }
+      
+
         
-       /*  span{
-         
-          margin-left: 200px;  
-        }
-        */
+        #pagin{
+		
+		text-align: center;
+		margin-top: 200px;
+		
+		}
+       
 
         #footer{
             text-align: center;
-            margin-top: 300px;
+            margin-top: 150px;
             
             width:50%;
             
         }
+        
+         
         
         
         
@@ -141,67 +253,210 @@
        <jsp:include page="Header.jsp" /> 
     </div>
     
-    
-        
+   
+  <div id="subbody">
+    <c:forEach var="mdto" items="${ clist }">
+
     <div id="main" >
 
-        <table>
-            <tr>
-                
-                    <a href="profile"><img class="profile" src="img/profile.jpg" ></a>
-                    <div id="user_id" >
-                        <a href="profile.go"><small>user_id</small></a> 
+        
+                  	
+	      <table id="profiletable" >
+					        
+              <tr class="three">
+			    <td>
+			    	<div id="profilebox">
+					   	
+					   	<div class="sprofileimg" style="background: #BDBDBD;"> 
+					      <a href="profile.go"><img class="profile" src="user/${mdto.id}/<%=member.getPicture() %>"  onerror="this.src='img/profile.jpg'" ></a>
+					    </div>
+                        
+                        <div id="user_popid">
+                          <a href="profile.go"><small>${mdto.id}</small></a> 
+                        </div>
+                       
                     </div>
-                <br>
-                <br>
-
-                
-                
-            </tr>
+			    </td>
+					   
+					
+			    <td>
+			         <fmt:formatDate value="${mdto.reg}" var="reg" pattern="yyyy.MM.dd"/>
+			         <input type="text" class="profilereg" value="${reg}" disabled/>
+			    </td>
+			    
+			    </tr>
+					   
+		   </table>
+                     
+					
+              
+           <table>
             
-            <tr>
-                 <div class="image">
-                    <h2>게시물 ex) 사진 or 동영상</h2>
+	            <tr>
+	                <td>
+	                 <div class="image">
+	                 
+	                    <img src="user/${mdto.id}/${ mdto.picture }" width="100%" height="100%">
+	                 
+	                 </div>   
+	                </td>
+	            </tr>
 
-                 </div>   
+
+          
+	           <tr class="three">
+	             <td>
+	              <div class="likecoment">
+	                <a href="/like"><img src="img/alret.jpg" ></a>
+	                <!-- <a href="gocomment.go"><img src="img/comment.jpg"></a> -->
+	                <a href="goshare.go"><img src="img/bird.jpg"></a>
+	                <a href="goshare.go">♡</a>
+	                
+	              </div>
+	             </td>
+	           </tr>
+           </table>
+            
+            <table>
+               <tr>
+	             
+	                    <td>
+					   	 
+						
+						  
+						   	<div id="titlebox">
+						   	
+						   	 <div class="sprofileimg" style="background: #BDBDBD;"> 
+						       <a href="profile.go"><img class="profile" src="user/${mdto.id}/<%=member.getPicture()%>"  onerror="this.src='img/profile.jpg'" ></a>
+						     </div>
+	                       
+	                         <div id="user_popid">
+	                          <a href="profile.go"><label for="sprofileimg"><small>${mdto.id}</small></label></a> 
+	                         </div>
+	                       
+	                        </div>
+	              
+					    
+					    </td>
+					      
+					 
+					    <td>
+					      
+					      <div class="texta">
+					       <textarea id="textmemo" style="width:100%" disabled>${mdto.memo}</textarea>
+					      </div>
+						 
+						  <script>
+						    $(document).ready(function() {
+						      $('.texta').on( 'keyup', 'textarea', function (e){
+						        $(this).css('height', 'auto' );
+						        $(this).height( this.scrollHeight );
+						      });
+						      $('.texta').find( 'textarea' ).keyup();
+						    });
+						  </script>
+						</td>	
+						                       
+			   </tr>
+			   								
+			     		
+			   
+			    <c:forEach var="rdto" items="${ rlist }">
+			     <tr>
+	             
+	                    <td>
+					   	 
+                              
+						   
+						   	<div id="titlebox">
+						   	
+						   	 <div class="sprofileimg" style="background: #BDBDBD;"> 
+						       <a href="profile.go"><img class="profile" src="user/${rdto.user_id}/<%=member.getPicture()%>"  onerror="this.src='img/profile.jpg'" ></a>
+						     </div>
+	                       
+	                         <div id="user_popid">
+	                          <a href="profile.go"><label for="sprofileimg"><small>${rdto.user_id}</small></label></a> 
+	                         </div>
+	                       
+	                        </div>
+	              
+					    
+					    </td>
+					      
+					 
+					    <td>
+					      
+					      <div class="texta">
+					       <textarea id="textmemo" style="width:100%" disabled>${rdto.content}</textarea>
+					      </div>
+					
+	 
+						                       
+				   </tr>
+				   </c:forEach>
+				</table>		
+	               
+	
+               
+           <p class="three"></p>
+ 
+           <table>
+	            <tr>
+	            <td>
+	                <div id="chatWrite">
+					 <form action="Replyinsert">
+			  		  <input type="text" class="chatWrite" name="content"  placeholder="글을써주세요" />
+			  		  
+			  		   <input type="hidden" name="board_no" value="${dto.board_no}" />
+			  		   <input type="hidden" name="writer" value="<%=session.getAttribute("sessionID") %>" />
+			  	 	  
+			  		  <input type="submit" class="btn btn-primary" style="float:right" value="보내기"/>	
+			  		  </form>
+			  		
+			  		</div>
+	               </td>
+	            </tr>
              
-            </tr>
+         </table>
+        
+        <%--  <div>
+         <form action ="MainReplyView">
+         <input type="submit" class="submitbtn btn btn-primary" style="float: right" value="전송"/>
+         <input type="hidden" name="board_no" value="${dto.board_no}" />
+         <input type="hidden" name="writer" value="<%=session.getAttribute("sessionID") %>" />
+         </form>
+         </div>
+         <script>
+         $(".submitbtn").trigger("click");
+         
+         </script> --%>
+         
+         
+     
+       </div>
+    
+    
+     </c:forEach>
+     
+     <div id="pagin">
+	   <div class="w3-bar w3-small">
+		 
+		  <c:if test="${pageMaker.prev}">
+	    	<a href="MyProfile${pageMaker.makeSearch(pageMaker.startPage - 1)}" class="w3-button">&laquo;</a>
+	      </c:if>
+		 
+		 <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idex">
+	    	<a href="MyProfile${pageMaker.makeSearch(idex)}" class="w3-button">${idex}</a>
+	     </c:forEach>
+		 
+		 <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+	    	<a href="MyProfile${pageMaker.makeSearch(pageMaker.endPage + 1)}" class="w3-button">&raquo;</a>
+	     </c:if>
+	      
+	  </div>
+     </div>
 
-            <tr>
-            <div class="comment">
-                <a href="/like"><img src="img/alret.jpg" ></a>
-                <a href="gocomment.go"><img src="img/comment.jpg"></a>
-                <a href="goshare.go"><img src="img/bird.jpg"></a>
-                
-            </div>
-            <br>
-            <br>
-            <br>
-            <div class="content">
-                <h2>내용</h2>
-            </div>
-            </tr>
-
-            <tr>
-                <div class="comments">
-                    <input type="text" id="text" type="text" placeholder="댓글달기.." style="background-color:transparent;border:0 solid black;text-align:left;"> 
-                    <a href="/send"><img id="send" src="img/send.jpg"></a>
-                </div>
-                
-            </tr>
-            <tr>
-             
-                <div class="blank">
-
-                </div>
-
-            </tr>
-
-        </table>
-
-    </div>
-
-    <div id="footer">
+     <div id="footer">
    
         
    		<a href="Introduce">소개 </a>| <a href="Infomation">고객센터 </a>| <a href="Location">위치 </a>
@@ -217,7 +472,7 @@
         </table>    
     
 
-
+ </div>  
 
 </body>
 </html>

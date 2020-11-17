@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ page import="com.study.springboot.dto.MemberDto" %>
+<%@ page import="java.util.ArrayList"%>
 
 <html>
 <head>
@@ -11,6 +12,7 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	
 	<% MemberDto member = (MemberDto)session.getAttribute("memberInfo"); %>
+	
 	<script src="/js/jquery-3.1.1.js"></script>
 	<script type="text/javascript">
 		
@@ -38,7 +40,7 @@
 			}
 			else if(value == "5") // 내 프로필 보기
 			{
-				location.href="MyProfile";
+				location.href="MyProfile","Header";
 			}
 		}
 	</script>
@@ -95,21 +97,20 @@
       	<button id="profilebtn" onclick="changeView(5)"><img src="user/<%=session.getAttribute("sessionID") %>/<%= member.getPicture()%>"  onerror="this.src='img/profile.jpg'"  class="img1" /></button>
       	</span>
 		
-      
        
-        <h1></h1>
+       
+        
+        <p><%= session.getAttribute("sessionID") %>님으로 로그인되었습니다.</p>
         <hr class ="own">
         </div>
     </div>
         
     
-			<h3><%= session.getAttribute("sessionID") %>님으로 로그인되었습니다.</h3>
+			
 			
 	
 
-			
-		</p>
-	</div>
+	
 	
 	
 </body>

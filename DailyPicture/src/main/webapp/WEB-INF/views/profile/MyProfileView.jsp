@@ -77,10 +77,11 @@
         }
         
         .three{
-
-        	
+          
+            text-align: center;
+        	border-bottom:solid rgb(200, 197, 197) 1px;
 					
-            border-bottom: thin solid  rgb(200, 197, 197);
+           /*  border-bottom: thin solid  rgb(200, 197, 197); */
         }
         
         .four{
@@ -275,7 +276,6 @@
 		 
 		#textmemo{
 		border: 0;
-		width: 1;
 		height: auto;
 		}
 		
@@ -342,6 +342,7 @@
 		
 		
 		
+		
   		 #footer{
         text-align: center;
         margin-top: 300px;        
@@ -370,6 +371,7 @@
 					        
 					    <tr class="three">
 					   	<td>
+					   	
 					   	<div id="popprofilebox">
 					   	
 					   	 <div class="sprofileimg" style="background: #BDBDBD;"> 
@@ -383,7 +385,7 @@
 					   	</td>
 					   
 					  <fmt:formatDate value="${dto.reg}" var="reg" pattern="yyyy.MM.dd"/>
-					       <td><input type="text" id="textmemo" value="${reg}" disabled/><td>
+					       <td><input type="text" id="textmemo" style="float:left" value="${reg}" disabled/><td>
 					       
 					       <!--                  사진 수정 삭제 부분        드롭다운 부분                         -->
 					  
@@ -403,6 +405,7 @@
 						%>     
 					    		<table id="systembox"> 
 						<tr>
+						<td>
 						<p class="bbtnpop">수정</p> 
 					    <!-- 첫 번째 Modal -->
 					   <div class="mmodal">
@@ -424,7 +427,7 @@
 					    
 					     </div>
 					   </div>
-					   
+					    </td>
 					    </tr>
 						
 							
@@ -487,9 +490,7 @@
 					    								
 					</table> 
 					 <% }else{ //사용자가 아닌사람이 볼 경우 %> 
-					    </tr>
-					    								
-					</table> 
+					 
 					
 								
 	                 		<%	}	%>	 

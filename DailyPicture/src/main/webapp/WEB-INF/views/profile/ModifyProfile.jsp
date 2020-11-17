@@ -46,6 +46,24 @@
             
             
         }
+        
+        .sprofileimg{
+        
+        	border: solid rgb(153, 243, 18) 2px;
+        	width: 35px;
+    		height: 35px; 
+    		border-radius: 70%;
+    		overflow: hidden;
+    		
+    		
+        }	
+        
+          .profile {
+		    width: 100%;
+		    height: 100%;
+		    object-fit: cover;
+		   }
+        
         .own{
             width:2000px;
             color:gray; 

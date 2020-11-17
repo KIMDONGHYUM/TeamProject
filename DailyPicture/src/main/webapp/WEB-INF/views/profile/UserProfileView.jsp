@@ -464,8 +464,9 @@
 			// 사용자의 프로필일 경우
 			if(session.getAttribute("sessionID").equals(member.getId())){ 
 		%>
+		
 					<input type="checkbox" id="popup">
-				<label for="popup" class="lb" name="1"><p class="p">1</p></label>
+				<label for="popup" class="lb"><p class="p">1</p></label>
 				<div>
 					<div>
 					<label for="popup"></label>
@@ -485,6 +486,7 @@
 					</div>
 					<label for="popup"></label>
 				</div>
+				
 				
 			    </span>
 			    
@@ -593,7 +595,7 @@
 					   	</td>
 					   
 					  <fmt:formatDate value="${dto.reg}" var="reg" pattern="yyyy.MM.dd"/>
-					       <td><input type="text" id="textmemo" value="${reg}" disabled/><td>
+					       <td><input type="text" id="textmemo" value="${reg}" style="float:left" disabled/><td>
 					       
 					       <!--                  사진 수정 삭제 부분        드롭다운 부분                         -->
 					  

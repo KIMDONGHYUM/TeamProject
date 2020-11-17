@@ -4,9 +4,7 @@
 
 <%@ page import="com.study.springboot.dto.MyctDto" %>
 <%@ page import="com.study.springboot.dto.MemberDto" %>
-<%-- <%@ page import="com.study.springboot.dto.PageMaker" %> --%>
-
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.util.Calendar" %>
@@ -31,7 +29,7 @@
      	%>   --%>
      	
 
-     	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+     	
 	   
 	    	
      	<%
@@ -129,20 +127,20 @@
         }
         .own{
             width:90%;
-            border: thin solid rgb(240, 231, 231);
+            border:thin rgb(240, 231, 231);
+            
            
         }
         
         .two{
         	width:70%;
-            border: thin solid  rgb(200, 197, 197);
+            border: thin rgb(200, 197, 197);
         }
         
         .three{
-
-        	
-					
-            border-bottom: thin solid  rgb(200, 197, 197);
+	
+            border-bottom:solid rgb(215, 214, 214) 1px;
+             /* border: thin solid rgb(215, 214, 214); */
         }
         
 
@@ -571,15 +569,13 @@
 		    
 		    <script>
 
-	   $(function(){
-		$("#searchBtn").click(function (){
-			$("#searchview").toggle();
-		});
-		});
-       	 
+			   $(function(){
+				$("#searchBtn").click(function (){
+					$("#searchview").toggle();
+				});
+				});
 
-        
-	</script>	
+     	    </script>	
 		    
 		    
 		    
