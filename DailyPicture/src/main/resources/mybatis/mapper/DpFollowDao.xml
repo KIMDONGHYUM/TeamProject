@@ -26,7 +26,7 @@
 	</delete>
 	
 	<select id="unfollowlist" resultType="com.study.springboot.dto.DpFollowDto">
-		select * from dp_follow where follower = #{follower} order by following asc
+		select * from dp_follow where follower = #{follower} 
 	</select>
 	
 	<select id="followerlist" resultType="com.study.springboot.dto.DpFollowDto">
