@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.study.springboot.dao.IDpFollowDao;
 import com.study.springboot.dto.DpFollowDto;
+import com.study.springboot.dto.FollowMemberDto;
 import com.study.springboot.dto.MemberDto;
 
 @Service
@@ -42,6 +43,27 @@ public class DpFollowService implements IDpFollowService{
 	@Override
 	public ArrayList<MemberDto> memberlist(String id) {
 		return dao.memberlist(id);
+	}
+
+	@Override
+	public ArrayList<DpFollowDto> followerlist(String following) {
+		return dao.followerlist(following);
+	}
+
+	@Override
+	public ArrayList<FollowMemberDto> fmlist(String following) {
+		return dao.fmlist(following);
+	}
+
+	@Override
+	public ArrayList<FollowMemberDto> ufmlist(String follower) {
+		return dao.ufmlist(follower);
+	}
+
+	@Override
+	public int delete(String following, String follower) {
+		int nResult = dao.delete(following, follower);
+		return nResult;
 	}
 
 	

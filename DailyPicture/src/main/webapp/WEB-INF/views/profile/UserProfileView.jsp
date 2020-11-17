@@ -430,7 +430,15 @@
         margin-top: 100px;        
         width:50%;    
         }
-					
+		
+		#follow_btn {
+		position:absolute;
+		/* margin-left:10%;
+		top:39%; */
+		margin-left:180px;
+		top:315px;
+		}
+		
 		</style>		
 	</head>
 	<body>
@@ -451,7 +459,9 @@
 			<img class="profile" src="user/<%=member.getId()%>/<%=member.getPicture() %>"  onerror="this.src='img/profile.jpg" />
 			  
 		  </div>
-				<h4><strong><%=member.getId() %></strong></h4>
+		  		
+				<h4><strong><%=member.getId() %></strong></h4> 
+				</form>
 			</div>
 		
 			
@@ -501,6 +511,9 @@
 			<% }else{ //사용자가 아닌사람이 볼 경우 %> 
 			   </span>
 				<button id="searchBtn" class="pimgbar" onclick="showhide();"><img src="img2/search.jpg" alt="찾기"></button>
+	            <form action="FollowAction" method="post">
+		  		<% String id=member.getId(); %>
+		  		<input type="hidden" name="following" value=<%=id%>> <input type="submit" id="follow_btn" value="팔로우" class="btn btn-primary">
 	             </div>
 		<%	}	%>	
 				
