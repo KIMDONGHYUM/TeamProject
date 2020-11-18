@@ -21,6 +21,11 @@
 		
 	</select> 	
 	
+	<select id="commentList()" resultType="com.study.springboot.dto.ReplyDto"> 
+		select * from dp_reply 
+		
+	</select> 	
+	
 	<!-- 프로필 사진 변경시 게시글에 있는 프로필 사진도 바꿔줌 -->
 	<update id="replyset" >
 		update dp_reply set picture = #{picture} where user_id = #{id}
