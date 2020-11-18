@@ -16,7 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/settingpop.css">
 	    <%
-			ArrayList<MyctDto> clist = (ArrayList<MyctDto>)session.getAttribute("clist");
+			ArrayList<MyctDto> clist = (ArrayList<MyctDto>)session.getAttribute("mmlist");
 		%>
     	
     	<%
@@ -52,7 +52,7 @@
           /* 밑줄  */
         .three{			
             
-            border-bottom:solid rgb(224, 223, 223) 0.1px;
+           border-bottom:solid rgb(224, 223, 223) 0.1px;
            
           }
           
@@ -83,15 +83,7 @@
             text-align: center;
          
         }
-       /*  .img0{
-         outline: 0;
-            border: 0;
-        }
-        .img1{
-         outline: 0;
-            border: 0;
-        }
-         */
+     
         #main{
             width: 600px;
             
@@ -99,11 +91,12 @@
             text-align: center;
             margin-top: 100px;
             background-color: white;
+            
             border-radius: aa bb cc dd;
             /* border: thin solid rgb(240, 231, 231); */
           
             border: thin solid rgb(215, 214, 214);
-            border-radius: 2em;
+            border-radius: 1em;
     
         }
         
@@ -255,12 +248,10 @@
     
    
   <div id="subbody">
-    <c:forEach var="mdto" items="${ clist }">
-
-    <div id="main" >
-
-        
-                  	
+    <c:forEach var="mdto" items="${ clist }" varStatus="status">
+    
+    	<div id="main" >
+    	
 	      <table id="profiletable" >
 					        
               <tr class="three">
@@ -277,7 +268,6 @@
                        
                     </div>
 			    </td>
-					   
 					
 			    <td>
 			         <fmt:formatDate value="${mdto.reg}" var="reg" pattern="yyyy.MM.dd"/>
@@ -357,44 +347,20 @@
 						  </script>
 						</td>	
 						                       
-			   </tr>
+			       </tr>
 			   								
-			     		
-			   
-			    <c:forEach var="rdto" items="${ rlist }">
-			     <tr>
-	             
-	                    <td>
-					   	 
-                              
-						   
-						   	<div id="titlebox">
-						   	
-						   	 <div class="sprofileimg" style="background: #BDBDBD;"> 
-						       <a href="profile.go"><img class="profile" src="user/${rdto.user_id}/<%=member.getPicture()%>"  onerror="this.src='img/profile.jpg'" ></a>
-						     </div>
-	                       
-	                         <div id="user_popid">
-	                          <a href="profile.go"><label for="sprofileimg"><small>${rdto.user_id}</small></label></a> 
-	                         </div>
-	                       
-	                        </div>
-	              
-					    
-					    </td>
-					      
-					 
-					    <td>
-					      
-					      <div class="texta">
-					       <textarea id="textmemo" style="width:100%" disabled>${rdto.content}</textarea>
-					      </div>
-					
-	 
-						                       
-				   </tr>
-				   </c:forEach>
-				</table>		
+			    
+	           </table>
+		 
+		   <table>
+			    <tr>
+				    <td>
+					    <div class="container">
+					    	<div class="commentList"></div>
+					    </div>
+				    </td>
+			    </tr>
+			</table>		
 	               
 	
                
@@ -407,7 +373,7 @@
 					 <form action="Replyinsert">
 			  		  <input type="text" class="chatWrite" name="content"  placeholder="글을써주세요" />
 			  		  
-			  		   <input type="hidden" name="board_no" value="${dto.board_no}" />
+			  		   <input type="hidden" name="board_no" value="${mdto.board_no}" />
 			  		   <input type="hidden" name="writer" value="<%=session.getAttribute("sessionID") %>" />
 			  	 	  
 			  		  <input type="submit" class="btn btn-primary" style="float:right" value="보내기"/>	
@@ -416,52 +382,38 @@
 			  		</div>
 	               </td>
 	            </tr>
+	            
+	            
              
          </table>
-        
-        <%--  <div>
-         <form action ="MainReplyView">
-         <input type="submit" class="submitbtn btn btn-primary" style="float: right" value="전송"/>
-         <input type="hidden" name="board_no" value="${dto.board_no}" />
-         <input type="hidden" name="writer" value="<%=session.getAttribute("sessionID") %>" />
-         </form>
-         </div>
-         <script>
-         $(".submitbtn").trigger("click");
-         
-         </script> --%>
-         
-         
-     
-       </div>
+       
+          <%--  <div class="container">
+	        <label for="content">comment</label>
+	        
+	        <form name="commentInsertForm" id="commentInsertForm${status.count}">
+	            <div class="input-group">
+	                 <input type="hidden" name="writer" value="<%=session.getAttribute("sessionID") %>" />
+	                 <input type="text" class="form-control" id="content${status.count}" name="content" placeholder="내용을 입력하세요.">
+	                 <input type="hidden" name="board_no" value="${mdto.board_no}" />
+	               <span class="input-group-btn">
+	                    <button class="btn btn-default" type="button" name="commentInsertBtn" onclick="insertData(${status.count})">등록</button>
+	               </span>
+	              </div> 
+	        </form> 
+	       </div> --%>
+	    
+       </div> 
+ 
+  </c:forEach> 
     
     
-     </c:forEach>
-     
-     <div id="pagin">
-	   <div class="w3-bar w3-small">
-		 
-		  <c:if test="${pageMaker.prev}">
-	    	<a href="MyProfile${pageMaker.makeSearch(pageMaker.startPage - 1)}" class="w3-button">&laquo;</a>
-	      </c:if>
-		 
-		 <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idex">
-	    	<a href="MyProfile${pageMaker.makeSearch(idex)}" class="w3-button">${idex}</a>
-	     </c:forEach>
-		 
-		 <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-	    	<a href="MyProfile${pageMaker.makeSearch(pageMaker.endPage + 1)}" class="w3-button">&raquo;</a>
-	     </c:if>
-	      
-	  </div>
-     </div>
 
      <div id="footer">
    
         
-   		<a href="Introduce">소개 </a>| <a href="Infomation">고객센터 </a>| <a href="Location">위치 </a>
+   		  <a href="Introduce">소개 </a>| <a href="Infomation">고객센터 </a>| <a href="Location">위치 </a>
   		    
-    </div>
+     </div>
         
         <table id="dp-nametable">
           <tr><td><small>상호명:데일리픽쳐|사업자등록번호:000-00-0000 사업자 확인</small></td></tr>
@@ -471,8 +423,71 @@
           <tr><td><small>Copyright 2020 데일리 픽쳐 Corp. All Rights Reserved.</small></td></tr> 
         </table>    
     
-
  </div>  
+
+         <script>
+
+			/* $('[name=commentInsertBtn]').one('click focus', function(){ 
+			    var insertData = $(self).serialize(); //serialize는 form태그 name에 있는 값들을 가져와 준다.
+                console.log(insertData);
+			    commentInsert(insertData);
+			}); */
+			
+			function insertData( btn_no ) {
+				var insertData = $( '#commentInsertForm'+btn_no ).serialize(); //serialize는 form태그 name에 있는 값들을 가져와 준다.
+		        console.log(insertData);
+			    commentInsert(insertData);
+			}
+			 
+			 
+			//댓글 목록 
+			function commentList(board_no){
+			    $.ajax({
+			        url : '/MainReplyView',
+			        type : 'post',
+			        data : board_no,
+			        success : function(data){
+			            var a =''; 
+			            $.each(data, function(key, value){ 
+			                a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
+			                a += '<div class="commentInfo'+value.cno+'">'+'댓글번호 : '+value.cno+' / 작성자 : '+value.writer;
+			                a += '<a onclick="commentUpdate('+value.cno+',\''+value.content+'\');"> 수정 </a>';
+			                a += '<a onclick="commentDelete('+value.cno+');"> 삭제 </a> </div>';
+			                a += '<div class="commentContent'+value.cno+'"> <p> 내용 : '+value.content +'</p>';
+			                a += '</div></div>';
+			            });
+			            
+			            $(".commentList").html(a);
+			        }
+			    });
+			}
+			 
+			//댓글 등록
+			function commentInsert(insertData){
+			    $.ajax({
+			        url : '/insert',
+			        type : 'post',
+			        data : insertData,// { 'writer': 'hong', 'content' : 'ment...' }
+			        success : function(data){
+			            if(data == 1) {
+			            	var board_no = '${mdto.board_no}'; //게시글 번호
+			                commentList(board_no); //댓글 작성 후 댓글 목록 reload
+			                $('[name=content]').val('');
+			            }
+			        }
+			    });
+			}
+			 
+			
+			 
+			$(document).ready(function(){
+			    commentList(); //페이지 로딩시 댓글 목록 출력 
+			});
+			 
+			 
+			 
+			</script>
+
 
 </body>
 </html>

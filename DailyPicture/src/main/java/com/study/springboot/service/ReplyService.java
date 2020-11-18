@@ -66,9 +66,10 @@ public class ReplyService  implements IReplyService{
 
 
 
-
-	
-    
-	
-	
+	@Override
+	public List<ReplyDto> commentList() throws Exception {
+		// TODO Auto-generated method stub
+	         
+		return rdao.commentList();
+	}
 }

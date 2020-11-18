@@ -57,6 +57,11 @@
 				border:0;
 			}
 			
+			.mbtn{
+			   outline:0;
+				border:0;
+			}
+			
 			
 			#profilebtn{
 			width: 33px;
@@ -81,10 +86,9 @@
 		$(".mbtn").click(function (){
 			$('.mdal-content').toggle();
 		});
-	});
-	
-		
+	});	
 	</script>
+	
 </head>
 <body>	
 
@@ -110,26 +114,7 @@
       	
       	
         	  <div id ="membersearch" class="membersearch" style="display:none">
-		   
-		  <%--     <select id ="msearch" style="display:none" name="msearchType" >
-              
-		      <option value="u"<c:out value="${mscri.searchType eq 't' ? 'selected' : ''}"/>>이름</option>
-		      <option value="m"<c:out value="${mscri.searchType eq 't' ? 'selected' : ''}"/>>아이디</option>
-		    </select> --%>
-		    
-		  <%--   <input type="text" class="msearch_input5" name="mkeyword" id="mkeywordInput" value="${mscri.keyword}"/>
-		
-		   <button id="membersearchBtn" type="button">></button> --%>
-		    
-		 <!--  <script>
-		      $(function(){
-		        $('#membersearchBtn').click(function() {
-		          self.location = "MyProfile" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val()); 
-		        });
-		      });   
-		    </script>   
-		     -->
-		  </div>
+		      </div>
 		  	  
 		     
 		   
@@ -160,9 +145,9 @@
 		               </td>
 		               
 		               <td>
-		                  <div>
+		                   <div>
 		                  		<p>(${mdto.name})</p>
-		                  </div>  
+		                  </div>   
 		                 
 		               </td>          
 		              
@@ -176,12 +161,8 @@
 		   </div>
 		   
 		    
-		    
-		
-      
-       
-        <h1></h1>
-        <hr class ="own">
+	
+         <hr class ="own">
         </div>
     </div>
         

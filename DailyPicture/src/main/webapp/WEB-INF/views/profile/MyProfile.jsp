@@ -24,14 +24,7 @@
      
      	%>
      	
-  <%--    <% 
-              PageMaker pageMaker = (PageMaker)session.getAttribute("pageMaker");
-     	%>   --%>
      	
-
-     	
-	   
-	    	
      	<%
      	 MemberDto member = (MemberDto)session.getAttribute("memberInfo"); 
 	   
@@ -86,10 +79,18 @@
 				margin:0 auto;
 				padding:0;
 				max-width:100%;
-			   /*  border: solid red 1px;  */
+			   /*  border: solid red 1px;    */
 			
 				
     		  }
+    		  
+          #subbody{
+            margin-top:-19px;
+            padding-top:30px;
+            background-color: rgb(239, 237, 237);
+        
+          }
+    		  
          
          
          
@@ -125,12 +126,11 @@
             
             
         }
-        .own{
-            width:90%;
-            border:thin rgb(240, 231, 231);
-            
-           
-        }
+       .own {
+          width:2000px;
+          color:gray; 
+          border: thin solid rgb(240, 231, 231);
+         }
         
         .two{
         	width:70%;
@@ -202,32 +202,23 @@
 
         #footer{
             text-align: center;
-            margin-top: 300px;
+            margin-top: 200px;
+         
             
         }
-			#container div {
-				width:200px;
-				background:#fff;
-				box-shadow: 0px 1px 1px #aaa;
-				padding:5px;
-				padding-bottom:5px;
-				margin:20px;				
-			}		
-			#container div img {
-				width:100%;
-				padding-bottom:1px;
-				margin-bottom:1px;
-				
-			}
 		
+	
 			#container {
-				margin: auto;
+			    margin-left: 3%;
+			    margin-top: -60px;
+			   
 				text-align: center;
 				
 			}			
 			#imgbox{
 				
-				width:1000px;
+				padding-top: -200px;
+				width:800px;
 				text-align: center;
 			
 				
@@ -477,13 +468,19 @@
 		
 		#pagin{
 		text-align: center;
-		margin-top: 100px;
+		margin-top: 140px;
 		}
+		
+		 }
+        .opt1 {
+
+            flex-flow: row wrap;
+        }
 		
 		
   		 #footer{
         text-align: center;
-        margin-top: 100px;        
+        margin-top: 80px;        
         width:50%;    
         }
 					
@@ -497,14 +494,16 @@
        		<jsp:include page="Header.jsp" /> 
     	</div> 
     
-		  
+	
+		
+	<div id="subbody">	
 		
 		<div id="profile">
 		  
 		  <div class="box" style="background: #BDBDBD;"> 
 		  <!-- 프로필 사진  -->
 			
-			<img class="profile" src="user/<%=session.getAttribute("sessionID") %>/<%=member.getPicture() %>"  onerror="this.src='img/profile.jpg'" />
+		 <img class="profile" src="user/<%=session.getAttribute("sessionID") %>/<%=member.getPicture() %>"  onerror="this.src='img/profile.jpg'" /> 
 			  
 		  </div>
 				<h4><strong><%=session.getAttribute("sessionID") %></strong></h4>
@@ -559,323 +558,44 @@
 		
 		    <button id="listsearchBtn" type="button">></button>
 		    
-		    <script>
-		      $(function(){
-		        $('#listsearchBtn').click(function() {
-		          self.location = "MyProfile" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
-		        });
-		      });   
-		    </script>
-		    
-		    <script>
-
-			   $(function(){
-				$("#searchBtn").click(function (){
-					$("#searchview").toggle();
-				});
-				});
-
-     	    </script>	
-		    
-		    
-		    
+	    
 		  </div>
 			
-		
-		
-		
+				
 			
-			<hr class="own"></hr>
+	 
+ 
+    		 <div id="imgbox" style="margin-top:50px">
+    		  
+    		  <div id="container">
 	
-
-
- 
- 
- 
-    		 <div id="imgbox">
-		
- 		     
- 		  
+    			  
  		     <c:forEach var="dto" items="${ clist }" >
 			  
 			  
-			  
-			  <a href="MyProfileView?board_no=${dto.board_no}&writer=${dto.id}" class="titlememo"> ${dto.memo}</a>
-			  
-			  
-			  
-		  	 <button class="btnpop" ><img src="user/${dto.id}/${ dto.picture }" width="260" height="280"></button>
-		  
-  			 
-			    
-			   <!-- 다중 팝업 사용 -->			
-			   <!-- 첫 번째 Modal -->
-			   <div class="modal">
-			    <span class="close">&times;</span>
-			   
-			     <!-- 팝업 Modal의 내용 -->
-			     <div class="modal-content">
-			      
-			      
-			      <div id="poppimg">
-			      <img class="poppimg" src="user/${dto.id}/${ dto.picture }">
-			   	  </div>
-			   	  
-			      <div id="popchat"> 
-			      
-                     <table id="ptable" >
-					        
-					    <tr class="three">
-					   	<td>
-					   	<div id="popprofilebox">
-					   	
-					   	 <div class="sprofileimg" style="background: #BDBDBD;"> 
-					       <a href="profile.go"><img class="profile" src="user/${dto.id}/<%=member.getPicture() %>"  onerror="this.src='img/profile.jpg'" ></a>
-					       </div>
-                          <div id="user_popid">
-                          <a href="profile.go"><small>${dto.id}</small></a> 
-                        </div>
-                       
-                        </div>
-					   	</td>
-					   
-					  <fmt:formatDate value="${dto.reg}" var="reg" pattern="yyyy.MM.dd"/>
-					       <td><input type="text" id="textmemo" value="${reg}" disabled/><td>
-					       
-					       <!--                  사진 수정 삭제 부분        드롭다운 부분                         -->
-					  
-					    
-					  
-					    
-					   
-					 
-					   	<table id="systembox"> 
-						<tr>
-						<p class="bbtnpop">수정</p> 
-					    <!-- 첫 번째 Modal -->
-					   <div class="mmodal">
-					
-					     <!-- 첫 번째 Modal의 내용 -->
-					     <div class="mmodal-content">
-					       <span class="cclose">&times;</span>                         
-					      <div id="popupview2" >
-					       <form action="UpdatePan" method="post" enctype="multipart/form-data">
-									<h2>게시글 수정</h2>
-									<hr class ="own">
-								    <input type="hidden" name="board_no" value="${dto.board_no}" />
-		                            <input type="hidden" name="picture" value="${dto.picture}" />
-								    <textarea name="memo" id="memo" class="form-control" cols="30" rows="5" placeholder="수정할 내용을 입력하세요"></textarea><br />
-									<input type="file" class="btn btn-info" class="form-control"  name="filename" placeholder="사진을 선택해주세요"><br />
-									<input type="submit" class="btn btn-success" value="파일수정">
-									</form>
-									</div>
-					    
-					     </div>
-					   </div>
-					   
-					    </tr>
-						
+			  <div class="gallerylist">
+				<ul>
+					<li>
+						<a href="MyProfileView?board_no=${dto.board_no}&writer=${dto.id}">
+							<div class="screen">
+								<div class="top">${dto.memo}</div>
+								<div class="bottom">DAILYPICTURE</div>
+								<img src="user/${dto.id}/${ dto.picture }" >
+							</div>
 							
-							
-						   <tr>
-						   <p class="bbtnpop">삭제</p> 
-						 
-						   <!-- 첫 번째 Modal -->
-						   <div class="mmodal">
-						
-						     <!-- 첫 번째 Modal의 내용 -->
-						     <div class="mmodal-content">
-						                            
-						       
-						       <div id="deleteviewbox" >
-							
-									<h4>이 게시물을 영구적으로 삭제하시겠습니까?</h4>
-									<hr class ="own">
-								 
-								 
-		                        
-		                         <div class="ynbox opt3">
-		                          
-		                           <div class="yes">
-		                            <form action="DeletePanAction"> 
-                          
-		                           <input type="hidden" name="board_no" value="${dto.board_no}" />
-		                            <input type="hidden" name="picture" value="${dto.picture}" />
-		                           <input type="submit" id="yesbtn"  class="btn btn-info" value="예">                    
-		                          </form>
-		                          
-		                          </div>
-		                          
-		                          
-		                          <div class="no">
-		                          <form>
-		                          <input type="button"  class="cclose btn btn-info"  value="아니오" />
-								  </form>
-								 </div>
-								 </div>
-								 
-								 </div>
-						      
-						       
-						     </div>
-						   </div>			
-			       			               
-                          </tr>
-                          
-                          
-                          <tr>
-                          <a  href="#">나만보기</a>
-                          </tr>
-                          
-					 
-					    </table>
-					 	
-				  
-					    <tr>
-					    
-					    </tr>
-					    								
-					</table> 
-					
-					
-					<!-- 댓글내용  -->
-					<div id="repbox">
-			      	  <c:forEach var="rdto" items="${ rlist }" > 
-			      	   <table class="rep">     
-					    <tr>
-					   	<td>
-					   	<div id="popprofilebox">
-					   	
-					   	 <div class="sprofileimg" style="background: #BDBDBD;"> 
-					       <a href="profile.go"><img class="profile" src="user/${rdto.user_id}/${rdto.picture}"  onerror="this.src='img/profile.jpg'" ></a>
-					       </div>
-                          <div id="user_popid">
-                          <a href="profile.go"><label for="sprofileimg"><small>${rdto.user_id}</small></label></a> 
-                        </div>
-                       
-                        </div>
-					   	</td>
-					   	
-					   
-					  
-					       <%-- <td><input type="text" id="textmemo" value="${rdto.content}" disabled/><td> --%>
-					       
-					       <td>
-					        <div class="texta">
-					       <textarea id="textmemo" disabled>${rdto.content}</textarea>
-					      </div>
-					       </td>
-					      
-					       <td id ="PsettingBtn">
-					         <button class="PsettingBtn" >‧‧‧</button>
-
-							   <div class="smodal">
-							
-							     
-							     <div class="smodal-content">
-							      
-							       <span class="close">&times;</span>                         
-							 
-					 
-					 
-					 
-							
-							
-						<!-- jstl에 있는 변수를 스크립틀릿에서 사용할 수 있게 바꾼다. -->
-						<c:set var="user_id" value="${rdto.user_id}" ></c:set>	
-
-						<%
-
-						String user_id = (String)pageContext.getAttribute("user_id");
-						
-						%>
-					 
-					   
-					    <%			  
-							if(session.getAttribute("sessionID").equals(user_id)){
-						%> 
-				        
-						<div class="ssettingbox">
-							       
-				       		 		 <button class="updatebtn btn btn-info"  >댓글수정</button>
-				       		 		
-				            		 <div class="upmodal">
-				            		 
-								     <!-- 첫 번째 Modal의 내용 -->
-								     <div class="upmodal-content">
-								       <span class="upclose"></span>    
-								       
-								       <form action="ReplyUpdateAction">                    
-								       <textarea name="content" id="memo" class="form-control" cols="30" rows="5" placeholder="수정할 내용을 입력하세요"></textarea><br />
-								       <input type="hidden" name="board_no" value="${rdto.board_no}"/>
-								       <input type="hidden" name="reply_no" value="${rdto.reply_no }" />
-								       <input type="submit" class="btn btn-success" value="댓글수정">
-								       </form> 
-								     </div>
-								   </div>
-								    
-								    				        		        
-							       <form action="DeleteReplyAction">
-				            		
-				            		 <input type="hidden" name="reply_no" value="${rdto.reply_no}" />
-				            		  <input type="hidden" name="board_no" value="${dto.board_no}" />
-				            		  
-				            		<input type="submit" class="sbtn btn btn-success"  value="댓글 삭제">
-				            
-				        	       </form>
-				        	       
-				       		 	<form action="DeletePicture" method="POST" enctype="multipart/form-data">
-				       		 		<input type="hidden" name="picture" value=<%=member.getPicture()%>>
-				            		<input type="submit" class="sbtn btn btn-danger" class="form-control" value="현재 댓글 신고">
-				        		</form>
-							      </div>  
-					
-					
-							<% }else{ //사용자가 아닌사람이 볼 경우 %> 
-									<form action="DeletePicture" method="POST" enctype="multipart/form-data">
-				       		 		<input type="hidden" name="picture" value=<%=member.getPicture()%>>
-				            		<input type="submit" class="sbtn btn btn-danger" class="form-control" style="margin-top:25%" value="현재 댓글 신고">
-				        		</form>
-							      </div>  
-	                 		<%	}	%>	     
-							      
-							        
-							    
-							     </div>
-							   
-					       </td>                   
-					</tr>
-					</table>
-					</c:forEach>
-					
-					</div>
-					
-				
-					
-					 
-					
-					<div id="chatWrite">
-					 <form action="Replyinsert">
-			  		  <input type="text" class="chatWrite" name="content"  placeholder="글을써주세요" />
-			  		  
-			  		   <input type="hidden" name="board_no" value="${dto.board_no}" />
-			  		   <input type="hidden" name="writer" value="<%=session.getAttribute("sessionID") %>" />
-			  	 	  
-			  		  <input type="submit" class="btn btn-primary" style="float:right" value="보내기"/>	
-			  		  </form>
-			  		
-			  		</div>
-			  	
-			  		</div>
-			  		 
-				 </div>
-				  	  
+						</a>
+					</li>
+			  </ul>	
 			</div>
-		     
-		      
-		       
-		      	
-			</c:forEach> 		
+			
+			  
+		  	        
+			 
+
+			</c:forEach> 	
+			  </div>
+			
+			
 		</div>	
 		
 		
@@ -909,26 +629,16 @@
   		
     </div>
         
-       <!--  <table id="dp-nametable">
-          <tr><td><small>상호명:데일리픽쳐|사업자등록번호:000-00-0000 사업자 확인</small></td></tr>
-          <tr><td><small>통신판매업 신고번호 : 0000-서울노원-0000 | 개인정보관리책임자 : 홍길동</small></td></tr>  
-          <tr><td><small>주소 : 서울시 노원구 | 대표자 : 이사장</small></td></tr>  
-          <tr><td><small>TEL: 000-000-0000 | FAX: 000-0000-0000 | 이메일 : dp@dailypicture.com</small></td></tr>  
-          <tr><td><small>Copyright 2020 데일리 픽쳐 Corp. All Rights Reserved.</small></td></tr> 
-        </table>     -->
-		 
-		 
-		
-
-
-
+</div> 
+  
+  
 		<!--                          쓰기 팝업창                           -->
 			
 		<!-- 사진 부분 -->
 		<!-- body태그 뒤에서 script를 넣는 이유 -->
 		<!-- 문서객체를 로딩후에 호출한다. -->
 		<script src="js/jquery-2.2.4.min.js"></script>
-		<!-- <script src="js/jquery.vgrid.min.js"></script>
+		 <script src="js/jquery.vgrid.min.js"></script>
 		<script>
 			$("#container").vgrid(
 				{ 
@@ -939,9 +649,25 @@
 					
 				}
 			);
-		</script> -->
+		</script> 
 		
-		
+	  <script>
+		      $(function(){
+		        $('#listsearchBtn').click(function() {
+		          self.location = "MyProfile" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+		        });
+		      });   
+		    </script>
+		    
+		    <script>
+
+			   $(function(){
+				$("#searchBtn").click(function (){
+					$("#searchview").toggle();
+				});
+				});
+
+     </script>	
 		
 	
 		
@@ -991,55 +717,14 @@
 	  if (event.target.className == "mdal") {
 	      event.target.style.display = "none";
 	  }
-	  if (event.target.className == "mmodal") {
-	      event.target.style.display = "none";
-			  }
+	
 			};
 
     </script>
     
     
-       <script>
-       
-						// Modal을 가져옵니다.
-						var mmodals = document.getElementsByClassName("mmodal");
-						// Modal을 띄우는 클래스 이름을 가져옵니다.
-						var bbtns = document.getElementsByClassName("bbtnpop");
-						// Modal을 닫는 close 클래스를 가져옵니다.
-						var sspanes = document.getElementsByClassName("cclose");
-						var ffuncs = [];
-						 
-						// Modal을 띄우고 닫는 클릭 이벤트를 정의한 함수
-						function MModal(num) {
-						  return function() {
-						    // 해당 클래스의 내용을 클릭하면 Modal을 띄웁니다.
-						    bbtns[num].onclick =  function() {
-						        mmodals[num].style.display = "block";
-						        console.log(num);
-						    };
-						 
-						    // <span> 태그(X 버튼)를 클릭하면 Modal이 닫습니다.
-						    sspanes[num].onclick = function() {
-							    
-						        mmodals[num].style.display = "none";
-						    };
-						  };
-						}
-
-
-						// 원하는 Modal 수만큼 Modal 함수를 호출해서 funcs 함수에 정의합니다.
-						for(var i = 0; i < bbtns.length; i++) {
-						  ffuncs[i] = MModal(i);
-						}
-						 
-						// 원하는 Modal 수만큼 funcs 함수를 호출합니다.
-						for(var j = 0; j < bbtns.length; j++) {
-						  ffuncs[j]();
-						}
-						 
+     
 						
-						
-    </script>
    	
  
 	</body>
