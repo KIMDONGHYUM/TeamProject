@@ -8,7 +8,7 @@ import com.study.springboot.dto.ReplyDto;
 
 
 
-public interface IReplyService {
+ public interface IReplyService {
 		
 	public int replyset(@Param("id") String id,  @Param("picture") String picture);	
 	

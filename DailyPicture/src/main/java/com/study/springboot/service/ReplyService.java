@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.study.springboot.dao.IReplyDao;
 import com.study.springboot.dto.ReplyDto;
 
-@Service("com.study.springboot.service.ReplySerivce")
+ @Service("com.study.springboot.service.ReplySerivce")
 public class ReplyService  implements IReplyService{
      
 	

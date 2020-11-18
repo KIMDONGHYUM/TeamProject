@@ -369,7 +369,7 @@
 		    
 		    
 		   
-		   #deleteviewbox{
+		    #deleteviewbox{
 		   	text-align: center;
 		   }
 		    
