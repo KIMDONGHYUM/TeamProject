@@ -239,7 +239,8 @@
 			               <form action="UnFollowAction" method="post">	
 			               <input type="hidden" name="following" value="${udto.following}">		 
 			                  	<img class="profile" src="user/${udto.following}/${ufmlist[status.index].picture }"  onerror="this.src='img/profile.jpg'" ></a>	
-			                	${udto.following}  <input type="submit" value="언팔로우" class="btn">			             	
+			                	<b>${udto.following}</b>  
+			                	<input type="submit" value="언팔로우" class="btn">			             	
 			             	</form>
 		               </td>          
 		             
