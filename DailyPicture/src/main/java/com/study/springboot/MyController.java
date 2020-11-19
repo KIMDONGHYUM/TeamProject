@@ -37,6 +37,7 @@ import com.study.springboot.dto.Dp1on1Dto;
 import com.study.springboot.dto.DpFollowDto;
 import com.study.springboot.dto.DpNoticeDto;
 import com.study.springboot.dto.DpQuestionDto;
+import com.study.springboot.dto.FollowMemberDto;
 import com.study.springboot.dto.MemberDto;
 import com.study.springboot.dto.MyctDto;
 import com.study.springboot.dto.PageMaker;
@@ -60,6 +61,7 @@ public class MyController {
 	@Autowired
 	IMyctService ctservice;
 	
+
 
 	@Autowired
 	 ReplyService rReplyService;
@@ -94,46 +96,48 @@ public class MyController {
 	}
 
 	@RequestMapping("/MainPage")
-	public String MainPage() {
-		return "MainPage"; // MainForm.jsp 호출
+	public String MainPage(HttpServletRequest req, Model model, SearchCriteria scri) throws Exception {
 		
-	}
+		// 로그인 성공 -> 세션에 아이디를 저장
+					HttpSession session = req.getSession();
+					
+
+					//내정보를 가져와서 프로필 정복 넣기
+					String sId = (String) session.getAttribute("sessionID");
+					MemberDto dto = mservice.getUserInfo(sId);
+					req.getSession().setAttribute("memberInfo", dto);
+					
+					//유저 리스트를 뿌려줌
+					List<MemberDto> mmlist = mservice.mmlist();
+					req.getSession().setAttribute("mmlist", mmlist);
+				
+				
+					 scri.setId(sId);
+					 System.out.println(scri);
+					 ArrayList<MyctDto> clist = ctservice.cList(scri);  
+					 System.out.println("clist:" + clist.toString());
+					 req.getSession().setAttribute("clist", clist);
+					 
+
+					 
+					 PageMaker pageMaker = new PageMaker();
+					  
+					  pageMaker.setCri(scri);
+					  pageMaker.setTotalCount(ctservice.listCount(scri));
+					  System.out.println(ctservice.listCount(scri));
+					 
+					  System.out.println(pageMaker.getStartPage());
+					  System.out.println(pageMaker.getEndPage());
+						
+		
+					  return "/MainPage"; // MainForm.jsp 호출
+		
+	               }
 	
 	
-	@RequestMapping("/MainReplyView")
-	public String MainReplypage(HttpServletRequest req, Model model, SearchCriteria scri) throws Exception{
-		
-		String writer= req.getParameter("writer");
-		
-		
-		 MemberDto mdto = mservice.getUserInfo(writer);
-			String picture = mdto.getPicture();
-			rReplyService.replyset(writer, picture);
-			
-			
-		System.out.println(writer);
-		
-		req.getSession().setAttribute("mdto", mdto);
-		  
-		String board_no = req.getParameter("board_no");  
-		model.addAttribute("dto", ctservice.viewPan(board_no));
-		  
-		int myct_no = 0;
-		int board_no1 = Integer.parseInt(board_no);
-		List<ReplyDto> replylist =rReplyService.replyList(myct_no, board_no1);
-		
+
+//		  @Autowired PageMaker pageMaker;
 		 
-		req.getSession().setAttribute("rlist", replylist);
-		
-		
-		
-		return "MainPage";
-	}
-	
-	
-		/*
-		 * @Autowired PageMaker pageMaker;
-		 */
 	
 	   /////////// 11-09 이동 글쓰기 or 글 뿌리기/////////////////////
 		@RequestMapping("/Replyinsert") // 댓글 
@@ -188,6 +192,9 @@ public class MyController {
 		
 		 
 		 return "profile/MyProfileView";
+		 
+		 
+		 
 	}
 		
 		
@@ -238,8 +245,7 @@ public class MyController {
 	  }
 		
 		
-		
-		
+	
 	@RequestMapping("/MyProfile")
 	public String MyProfilPage(HttpServletRequest req, RedirectAttributes redirect, Model model, SearchCriteria scri)throws Exception {
 		/* Logger.info("list"); System.println 같이 값이 담겼는지 확인하거나 로그를 남긴느데 사용 */
@@ -282,8 +288,8 @@ public class MyController {
 		
 		
 		 MemberDto mdto = mservice.getUserInfo(writer);
-			String picture = mdto.getPicture();
-			rReplyService.replyset(writer, picture);
+		 String picture = mdto.getPicture();
+		 rReplyService.replyset(writer, picture);
 			
 			
 		System.out.println(writer);
@@ -309,14 +315,15 @@ public class MyController {
 	
     
 	//////////////////// 12- 13  ////////////////////////
-    @RequestMapping("/UserProfileView")
+	@RequestMapping("/UserProfileView")
     public String userview(HttpServletRequest req, Model model, SearchCriteria scri) throws Exception{
 		
-    	String id = req.getParameter("id");
-    	scri.setId(id);
-    	MemberDto mdto = mservice.getUserInfo(id);
-		  req.getSession().setAttribute("mdto", mdto);
-		/* model.addAttribute("udto", ctservice.cList(scri)); */
+    	String sid = req.getParameter("id");
+    	scri.setId(sid);
+    	System.out.println(sid);
+    	MemberDto mdto = mservice.getUserInfo(sid);
+		req.getSession().setAttribute("mdto", mdto);
+	 
     	System.out.println(scri);
 		  ArrayList<MyctDto> clist = ctservice.cList(scri);  
 		  System.out.println("clist:" + clist.toString());
@@ -327,6 +334,10 @@ public class MyController {
 		  pageMaker.setCri(scri);
 		  pageMaker.setTotalCount(ctservice.listCount(scri));
 		  System.out.println(ctservice.listCount(scri));
+		  
+		  System.out.println(pageMaker.getStartPage());
+		  System.out.println(pageMaker.getEndPage());
+		  
 		  model.addAttribute("pageMaker", pageMaker);
     	
     	return "profile/UserProfileView";
@@ -355,7 +366,7 @@ public class MyController {
 //		ArrayList<MemberDto> mlist = mservice.mlist(id);
 //		session.setAttribute("mlist", mlist);
 		
-		return "profiinle/ModifyPassword";
+		return "profile/ModifyPassword";
 	}
 	//11/9 박현식 수정부분 끝(밑에 더있음)
 	
@@ -371,9 +382,13 @@ public class MyController {
 	public String FollowSetting(HttpServletRequest req,HttpSession session) {
 		String id = req.getSession().getAttribute("sessionID").toString();
 		ArrayList<DpFollowDto> unfollowlist=fservice.unfollowlist(id);
-		ArrayList<MemberDto> memberlist = fservice.memberlist(id);
-		session.setAttribute("memberlist", memberlist);
+		ArrayList<DpFollowDto> followerlist = fservice.followerlist(id);
+		ArrayList<FollowMemberDto> fmlist = fservice.fmlist(id);
+		ArrayList<FollowMemberDto> ufmlist = fservice.ufmlist(id);
+		session.setAttribute("followerlist", followerlist);
 		session.setAttribute("unfollowlist", unfollowlist);
+		session.setAttribute("fmlist", fmlist);
+		session.setAttribute("ufmlist", ufmlist);
 		return "profile/FollowSetting";
 	}
 	
@@ -476,15 +491,22 @@ public class MyController {
 		
 	}
 	@RequestMapping("/view_1on1")
-	public String view_1on1(HttpServletRequest req, Model model) {
+	public String view_1on1(HttpServletRequest req, Model model) throws Exception {
 		String board_no_str = req.getParameter("board_no");
 		Dp1on1Dto dto = oneservice.view_1on1(board_no_str);
 		req.getSession().setAttribute("view_1on1", dto);
 		String id = req.getSession().getAttribute("sessionID").toString();
 		String writer = oneservice.getWriter(board_no_str);
+		int board_no = Integer.parseInt(board_no_str);
+		int myct_no=1;
+		MemberDto mdto = mservice.getUserInfo(writer);
+		
 		System.out.println("id:"+id);
 		System.out.println("writer:"+writer);
 		if(id.equals(writer) || id.equals("hong")) {
+			List<ReplyDto> rlist = rReplyService.replyList(myct_no, board_no);
+			req.getSession().setAttribute("rlist", rlist);
+			req.getSession().setAttribute("mdto", mdto);
 			return "Infomation/view_1on1";
 		}else {
 			model.addAttribute("msg", "작성자만 열람할 수 있습니다.");
@@ -509,7 +531,7 @@ public class MyController {
 	// 11/9 박현식 수정한 부분
 	@RequestMapping("/DeleteMember")
 	public String goDeleteMember() {
-		return "member/DeleteMember";
+		return "profile/DeleteMember";
 	}
 	// 11/9 박현식 수정한 부분
 	@RequestMapping("/DeleteMemberAction")
@@ -524,6 +546,7 @@ public class MyController {
 			model.addAttribute("url","/DeleteMember");
 		}else {
 			session.invalidate();
+			fservice.delete(id, id);
 			model.addAttribute("msg", "탈퇴되셨습니다.");
 			model.addAttribute("url","/");
 			System.out.println("탈퇴 성공");
@@ -899,9 +922,9 @@ public class MyController {
     	return "redirect";
     }
     @RequestMapping("/Delete1on1Action")
-    public String Delete1on1Action(HttpServletRequest req, Model model) {
-    	String board_no = req.getParameter("board_no");
-    	
+    public String Delete1on1Action(HttpServletRequest req, Model model) throws Exception {
+    	String board_no = req.getParameter("board_no").substring(0, 2);
+    	int board_no2=Integer.parseInt(board_no);
     	int nResult = oneservice.delete(board_no);
     	if(nResult<=0) {
     		model.addAttribute("msg","삭제 실패");
@@ -909,6 +932,7 @@ public class MyController {
     	}else {
     		model.addAttribute("msg", "게시글을 삭제하였습니다.");
     		model.addAttribute("url", "1on1");
+    		rReplyService.deleteRList(board_no2);
     	}
     	return "redirect";
     }
@@ -917,7 +941,7 @@ public class MyController {
     //11/15 박현식 수정한 부분
     @RequestMapping("/Admin")
     public String Admin(HttpSession session) {
-    	ArrayList<MemberDto> userlist = mservice.userList();
+    	List<MemberDto> userlist = mservice.mmlist();
     	session.setAttribute("userlist", userlist);
     	return "Admin";
     }
@@ -957,6 +981,67 @@ public class MyController {
     	}
     	return "redirect";
     }
+    @RequestMapping("/ReplyInsertAction")
+    public String ReplyInsertAction(HttpServletRequest req, Model model) throws Exception {
+    	 /* HttpSession session = req.getSession(); */
+        String user_id = (String) req.getSession().getAttribute("sessionID");
+        System.out.println("writer : " + user_id);
+        
+        ////////추가 user아이디로 member에 사진을 가져온다 ////////////
+        
+        MemberDto mdto = mservice.getUserInfo(user_id);
+        String picture = mdto.getPicture();
+        System.out.println(picture);
+        
+        
+        ///////////////////////////////////////////////////
+
+         int myct_no = 1; // 고객센터 1대1문의 댓글은 1
+         String board_no_str=req.getParameter("board_no").substring(0, 1);
+         int board_no = Integer.parseInt(board_no_str);
+         System.out.println("board_no "+board_no);
+         String content = req.getParameter("content"); 
+         /* String writer = req.getParameter("writer"); */
+        
+        
+        System.out.println("content "+content);
+        
+        ReplyDto reply = new ReplyDto();
+        
+        reply.setMyct_no(myct_no);
+        reply.setBoard_no(board_no);
+        reply.setUser_id(user_id);
+        reply.setContent(content);
+        reply.setPicture(picture);
+        reply.setReg(new Date());
+        
+        /////////// 11-09 이동 글쓰기 or 글 뿌리기/////////////////////
+//        String board_no1 = Integer.toString(board_no);
+//        model.addAttribute("dto", ctservice.viewPan(board_no1));
+//        ReplyDto replydto = new ReplyDto(); 
+//        
+//        System.out.println(replydto);
+        rReplyService.replyInsert(reply);
+        
+        
+//        int board_no2 = Integer.parseInt(board_no1);
+        List<ReplyDto> replylist =rReplyService.replyList(myct_no, board_no);
+         
+        req.getSession().setAttribute("rlist", replylist);
+        String referer = req.getHeader("Referer");	//리다이렉트 후 이전페이지 이동
+         
+         return "redirect:"+referer; //리다이렉트 후 이전페이지 이동	
+    }
+    @RequestMapping("/DeleteCommentAction")	//1대1문의 댓글 삭제
+    public String DeleteComment(HttpServletRequest req) throws Exception {
+    	String rn=req.getParameter("reply_no");
+    	int reply_no=Integer.parseInt(rn);
+    	rReplyService.deleteReply(reply_no);
+    	System.out.println("rn:"+rn);
+    	System.out.println("reply_no:"+reply_no);
+    	String referer = req.getHeader("Referer");
+    	return "redirect:"+referer;
+    }
 	//-------------------------------------------------------------------------------------------
 	@RequestMapping("/WritePage")
 	public String WritePage() {
@@ -995,52 +1080,6 @@ public class MyController {
 			// 로그인 성공 -> 세션에 아이디를 저장
 			HttpSession session = request.getSession();
 			session.setAttribute("sessionID", id);
-
-			//내정보를 가져와서 프로필 정복 넣기
-			String sId = (String) session.getAttribute("sessionID");
-			MemberDto dto = mservice.getUserInfo(sId);
-			request.getSession().setAttribute("memberInfo", dto);
-			
-			//유저 리스트를 뿌려줌
-			List<MemberDto> mmlist = mservice.mmlist();
-			request.getSession().setAttribute("mmlist", mmlist);
-		
-		
-			 scri.setId(id);
-			 System.out.println(scri);
-			 ArrayList<MyctDto> clist = ctservice.cList(scri);  
-			 System.out.println("clist:" + clist.toString());
-			 request.getSession().setAttribute("clist", clist);
-			 
-//			 for(int i=0; i<clist.size(); i++) {
-//				 
-//				 MyctDto mylist = clist.get(i);
-//				 
-//				 String board_no = Integer.toString(mylist.getBoard_no());
-//			
-//			 System.out.println(board_no);
-//				 
-//			 model.addAttribute("dto", ctservice.viewPan(board_no));
-//			 
-//			 int myct_no = 0;
-//			 int board_no1 = Integer.parseInt(board_no);
-//			 List<ReplyDto> replylist =rReplyService.replyList(myct_no, board_no1);
-//				
-//				 
-//				request.getSession().setAttribute("rlist", replylist);
-//			 
-//			 }
-			 
-			 PageMaker pageMaker = new PageMaker();
-			  
-			  pageMaker.setCri(scri);
-			  pageMaker.setTotalCount(ctservice.listCount(scri));
-			  System.out.println(ctservice.listCount(scri));
-			 
-			  System.out.println(pageMaker.getStartPage());
-			  System.out.println(pageMaker.getEndPage());
-				
-			 model.addAttribute("pageMaker", pageMaker);
 			 
 			 model.addAttribute("msg", "로그인 성공");
 			 model.addAttribute("url", "/MainPage");

@@ -491,10 +491,14 @@
 					    								
 					</table> 
 					 <% }else{ //사용자가 아닌사람이 볼 경우 %> 
-					 
+					   <tr>
+					    
+					    </tr>
+					    								
+					</table> 
 					
 								
-	                 		<%	}	%>	 
+	                <%	}	%>	 
 					   
 					 
 					   
@@ -667,7 +671,7 @@
 					
 					 
 					
-					<div id="chatWrite">
+					<div id="chatWrite" >
 					 <form action="Replyinsert">
 			  		  <input type="text" class="chatWrite" name="content"  placeholder="글을써주세요" />
 			  		  
@@ -687,24 +691,7 @@
 			  		
 			  		
 			  		
-			  		<%-- <div id="chatWrite">
-					 
-					 <form name="replyInsert">
-			  		  <input type="text" id="content" name="content" class="chatWrite" placeholder="글을써주세요" />
-			  		  	
-			  		   <input type="hidden" name="board_no" value="${dto.board_no}" />
-			  		
-			  		  <input type="hidden" name="writer" value="${dto.id}" />
-			  		 
-			  		  
-			  		  <!-- <input type="button" class="btn btn-primary" name="replytBtn" style="float:right" value="보내기"/>	 -->
-			  		 <button class="btn btn-primary" type="button" name="replyInsertBtn">등록</button>
-                      </form> 
-			  		
-			  		
-			  		</div>
-			     	
-			  		</div>  --%>
+
 	     
 		
 

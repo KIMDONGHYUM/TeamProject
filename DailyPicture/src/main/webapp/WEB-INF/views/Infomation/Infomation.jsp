@@ -41,7 +41,7 @@
         #wrapper {
        
         	display:flex;
-        	padding: 80px;
+        	padding: 30px;
         	
         }
         
@@ -65,28 +65,42 @@
        		text-align:end;
        }
        
+       /* 수정한 부분 */
        #list{
       	   
-       		width: 160px;
+       		width: 200px;
             height: 300px;
             text-align: end;
-            padding-top: 60px;
-            padding-right: 80px;
+            /* padding-top: 60px; */
+            padding-right: 70px;
        }
       
       #noticetable{
-      		border: 5px solid  rgb(214, 206, 206);
+      		border: 3px solid  rgb(214, 206, 206);
+      		border-right:none;
+      		border-left:none;
+      		border-bottom:none;
+      		
       }
       #noticetable th {
       		text-align: center;
       		padding:10px;
+      		border-right:hidden;
+      		border-left:hidden;
       }
       
       #noticetable td {
       		text-align: center;
-      		padding:10px;
+      		padding:20px;
+      		border-right:hidden;
+      		border-left:hidden;
+      		
       }
-       
+      #notice a {
+      		
+      		color:black;
+      }
+      /* 수정한 부분 */
 </style>
 </head>
 <body>
@@ -111,16 +125,16 @@
     				<tr>
 	    				<th style="width:60px;">번호</th>
 	    				<th style="width:500px;">제목</th>
-	    				<th style="width:90px;">작성자</th>
-	    				<th style="width:150px;">작성일</th>
+	    				<!-- <th style="width:90px;">작성자</th> -->
+	    				<th style="width:150px;">등록일</th>
 	    				<th style="width:60px;">조회</th>
     				</tr>
     				<c:forEach var="dto" items="${ list }" >
 	    				<tr>
 	    				<td>${dto.board_no}</td>
 	    				<td><a href="view_notice?board_no=${ dto.board_no }">${dto.title}</a></td>
-	    				<td>${dto.writer}</td>
-	    				<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${dto.reg}"/></td>
+	    				<%-- <td>${dto.writer}</td> --%>
+	    				<td><fmt:formatDate pattern="yyyy-MM-dd" value="${dto.reg}"/></td>
 	    				<td>${dto.hit}</td>
 	    				</tr>
 	        		</c:forEach>	

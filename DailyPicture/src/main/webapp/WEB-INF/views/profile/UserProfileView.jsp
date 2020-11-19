@@ -85,10 +85,18 @@
 				margin:0 auto;
 				padding:0;
 				max-width:100%;
-			   /*  border: solid red 1px;  */
+			/*     border: solid red 1px;  */
 			
 				
     		  }
+    		  
+          #subbody{
+            margin-top:-19px;
+            padding-top:30px;
+            background-color: rgb(239, 237, 237);
+        
+          }
+    		  
          
          
          
@@ -124,22 +132,21 @@
             
             
         }
-        .own{
-            width:90%;
-            border: thin solid rgb(240, 231, 231);
-           
-        }
+       .own {
+          width:2000px;
+          color:gray; 
+          border: thin solid rgb(240, 231, 231);
+         }
         
         .two{
         	width:70%;
-            border: thin solid  rgb(200, 197, 197);
+            border: thin rgb(200, 197, 197);
         }
         
         .three{
-
-        	
-					
-            border-bottom: thin solid  rgb(200, 197, 197);
+	
+            border-bottom:solid rgb(215, 214, 214) 1px;
+             /* border: thin solid rgb(215, 214, 214); */
         }
         
 
@@ -201,32 +208,23 @@
 
         #footer{
             text-align: center;
-            margin-top: 300px;
+            margin-top: 200px;
+         
             
         }
-			#container div {
-				width:200px;
-				background:#fff;
-				box-shadow: 0px 1px 1px #aaa;
-				padding:5px;
-				padding-bottom:5px;
-				margin:20px;				
-			}		
-			#container div img {
-				width:100%;
-				padding-bottom:1px;
-				margin-bottom:1px;
-				
-			}
 		
+	
 			#container {
-				margin: auto;
+			    margin-left: 3%;
+			    margin-top: -60px;
+			   
 				text-align: center;
 				
 			}			
 			#imgbox{
 				
-				width:1000px;
+				padding-top: -200px;
+				width:800px;
 				text-align: center;
 			
 				
@@ -377,7 +375,7 @@
 		    
 		    
 		   
-		   #deleteviewbox{
+		    #deleteviewbox{
 		   	text-align: center;
 		   }
 		    
@@ -404,42 +402,100 @@
 		}
 		 
 		 
+		
 		#textmemo{
 	
 		border: 0;
+		width: 1;
+		height: auto;
+		}
 		
-		} 
+	  
+	  .texta {
+      width: 320px;
+      margin-left: -10px;
+      
+      }
+      #PsettingBtn{
+      width: 100px;
+      padding-left:-20px;
+      margin-left: -20px;
+      
+      
+      }
+      
+      .PsettingBtn{
+       border: solid rgb(201, 202, 201) 1px;
+        	width: 30px;
+    		height: 30px; 
+    		border-radius: 70%;
+    		overflow: hidden;
+      text-align: top;
+      }
+      
+      
+    .texta textarea {
+      width: 100%;
+      resize: none;
+      overflow-y: hidden; /* prevents scroll bar flash */
+      padding: 1.1em; /* prevents text jump on Enter keypress */
+      padding-bottom: 0.2em;
+      line-height: 1.6;
+    }
 		
+		#replyview{
+		float:left;
+		margin-left: 10px;
+		margin-top: 10px;
+		}
 		#reply{
 		margin-top: 10px;
 		flot:left;
-		margin-left: 0px;
+		
 		width:99%;
 		text-align: left;			
 
 		}
 		
-		#pagin{
-		text-align: center;
-		margin-top: 100px;
+		#repbox{
+		
+		float:left;
+		width:100%;
+		height: 400px;
+		margin-left: 10px;
+		overflow:auto;
 		}
 		
+		.rep{
+		float:left;
+		width:100%;
+		}
+		
+		
+		#pagin{
+		text-align: center;
+		margin-top: 140px;
+		}
+		
+		 }
+        
 		
   		 #footer{
         text-align: center;
-        margin-top: 100px;        
+        margin-top: 80px;        
         width:50%;    
         }
-		
-		#follow_btn {
-		position:absolute;
-		/* margin-left:10%;
-		top:39%; */
-		margin-left:180px;
-		top:315px;
-		}
-		
-		</style>		
+       
+        #follow_btn {
+      position:absolute;
+      /* margin-left:10%;
+      top:39%; */
+      margin-left:180px;
+      top:315px;
+      }
+       
+					
+		</style>	
 	</head>
 	<body>
 	
@@ -513,11 +569,13 @@
 			<% }else{ //사용자가 아닌사람이 볼 경우 %> 
 			   </span>
 				<button id="searchBtn" class="pimgbar" onclick="showhide();"><img src="img2/search.jpg" alt="찾기"></button>
+	            
 	            <form action="FollowAction" method="post">
-		  		<% String id=member.getId(); %>
-		  		<input type="hidden" name="following" value=<%=id%>> <input type="submit" id="follow_btn" value="팔로우" class="btn btn-primary">
+		  		<% String id= member.getId(); %>
+		  		<input type="hidden" name="following" value=<%=id%> > <input type="submit" id="follow_btn" value="팔로우" class="btn btn-primary" style="" >
+	             </form>
 	             </div>
-		<%	}	%>	
+		<% } %>	
 				
 			
 			
@@ -527,29 +585,11 @@
 		      <option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
 		    </select>
 		
-		    <input type="text" class="search_input" name="keyword" id="keywordInput" value="${scri.keyword}"/>
+		    <input type="text" class="search_input" style="margin-bottom:20px;" name="keyword" id="keywordInput" value="${scri.keyword}"/>
 		
 		    <button id="listsearchBtn" type="button">></button>
 		    
-		    <script>
-		      $(function(){
-		        $('#listsearchBtn').click(function() {
-		          self.location = "MyProfile" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
-		        });
-		      });   
-		    </script>
-		    
-		    <script>
-
-	   $(function(){
-		$("#searchBtn").click(function (){
-			$("#searchview").toggle();
-		});
-		});
-       	 
-
-        
-	</script>	
+		   
 		    
 		    
 		    
@@ -568,187 +608,25 @@
  
     		 <div id="imgbox">
 		
+ 		       <div id="container">
  		     
  		  
- 		     <c:forEach var="dto" items="${clist}" >
+ 		     <c:forEach var="dto" items="${ clist }" >
 			  
 			  
-			   
-		  	 <button class="btnpop" > <a href="MyProfileView?board_no=${dto.board_no}&writer=${dto.id}" class="titlememo"> ${dto.memo}</a><img src="user/${dto.id}/${ dto.picture }" width="260" height="280"></button>
-			    
-			   <!-- 다중 팝업 사용 -->			
-			   <!-- 첫 번째 Modal -->
-			   <div class="modal">
-			    <span class="close">&times;</span>
-			   
-			     <!-- 팝업 Modal의 내용 -->
-			     <div class="modal-content">
-			      
-			      
-			      <div id="poppimg">
-			      <img class="poppimg" src="user/${dto.id}/${ dto.picture }">
-			   	  </div>
-			   	  
-			      <div id="popchat"> 
-			      
-                     <table id="ptable" >
-					        
-					    <tr class="three">
-					   	<td>
-					   	<div id="popprofilebox">
-					   	
-					   	 <div class="sprofileimg" style="background: #BDBDBD;"> 
-					       <a href="profile.go"><img class="profile" src="user/${dto.id}/<%=member.getPicture() %>"  onerror="this.src='img/profile.jpg'" ></a>
-					       </div>
-                          <div id="user_popid">
-                          <a href="profile.go"><small>${dto.id}</small></a> 
-                        </div>
-                       
-                        </div>
-					   	</td>
-					   
-					  <fmt:formatDate value="${dto.reg}" var="reg" pattern="yyyy.MM.dd"/>
-					       <td><input type="text" id="textmemo" value="${reg}" style="float:left" disabled/><td>
-					       
-					       <!--                  사진 수정 삭제 부분        드롭다운 부분                         -->
-					  
-					    
-					  
-					    
-					   
-					 
-					   	<table id="systembox"> 
-						<tr>
-						<p class="bbtnpop">수정</p> 
-					    <!-- 첫 번째 Modal -->
-					   <div class="mmodal">
-					
-					     <!-- 첫 번째 Modal의 내용 -->
-					     <div class="mmodal-content">
-					       <span class="cclose">&times;</span>                         
-					      <div id="popupview2" >
-					       <form action="UpdatePan" method="post" enctype="multipart/form-data">
-									<h2>게시글 수정</h2>
-									<hr class ="own">
-								    <input type="hidden" name="board_no" value="${dto.board_no}" />
-		                            <input type="hidden" name="picture" value="${dto.picture}" />
-								    <textarea name="memo" id="memo" class="form-control" cols="30" rows="5" placeholder="수정할 내용을 입력하세요"></textarea><br />
-									<input type="file" class="btn btn-info" class="form-control"  name="filename" placeholder="사진을 선택해주세요"><br />
-									<input type="submit" class="btn btn-success" value="파일수정">
-									</form>
-									</div>
-					    
-					     </div>
-					   </div>
-					   
-					    </tr>
-						
+			  <div class="gallerylist">
+				<ul>
+					<li>
+						<a href="MyProfileView?board_no=${dto.board_no}&writer=${dto.id}">
+							<div class="screen">
+								<div class="top">${dto.memo}</div>
+								<div class="bottom">DAILYPICTURE ♡</div>
+								<img src="user/${dto.id}/${ dto.picture }" >
+							</div>
 							
-							
-						   <tr>
-						   <p class="bbtnpop">삭제</p> 
-						 
-						   <!-- 첫 번째 Modal -->
-						   <div class="mmodal">
-						
-						     <!-- 첫 번째 Modal의 내용 -->
-						     <div class="mmodal-content">
-						                            
-						       
-						       <div id="deleteviewbox" >
-							
-									<h4>이 게시물을 영구적으로 삭제하시겠습니까?</h4>
-									<hr class ="own">
-								 
-								  <form action="DeletePanAction"> 
-                          
-		                           <input type="hidden" name="board_no" value="${dto.board_no}" />
-		                            <input type="hidden" name="picture" value="${dto.picture}" />
-		                        
-		                         <div class="ynbox opt3">
-		                          
-		                           <div class="yes">
-		                           <input type="submit" id="yesbtn"  class="btn btn-info" value="예">
-								   </div>		                       
-		                          
-		                          </form>
-		                          
-		                          
-		                          <div class="no">
-		                          <form>
-		                          <input type="button"  class="cclose btn btn-info"  value="아니오" />
-								  </form>
-								 </div>
-								 </div>
-						       
-						       
-						     </div>
-						   </div>			
-			       			               
-                          </tr>
-                          
-                          
-                          <tr>
-                          <a  href="#">나만보기</a>
-                          </tr>
-                          
-					 
-					    </table>
-					 	
-				  
-					    <tr>
-					    
-					    </tr>
-					    								
-					</table> 
-					
-					<!-- 글 쓴이 내용 -->
-					<table id="reply">
-			      	        
-					    <tr>
-					   	<td>
-					   	<div id="popprofilebox">
-					   	
-					   	<div class="replyList"></div>
-					  
-					   	 <div class="sprofileimg" style="background: #BDBDBD;"> 
-					       <a href="profile.go"><img class="profile" src="user/${dto.id}/<%=member.getPicture() %>"  onerror="this.src='img/profile.jpg'" ></a>
-					       </div>
-                          <div id="user_popid">
-                          <a href="profile.go"><label for="sprofileimg"><small>${dto.id}</small></label></a> 
-                        </div>
-                       
-                        </div>
-					   	</td>
-					   
-					  
-					       <td><input type="text" id="textmemo" value="${dto.memo}" disabled/><td>
-					       
-					                       
-					</tr>
-					
-					</table>
-					
-				
-					
-					 
-					
-					<div id="chatWrite">
-					 <form action="replyInsertForm"></form>
-			  		  <input type="text" id="content" name="content" class="chatWrite" placeholder="글을써주세요" />
-			  		  	
-			  		   <input type="hidden" name="board_no" value="${dto.board_no}" />
-			  		
-			  		  <input type="hidden" name="writer" value="${dto.id}" />
-			  		 
-			  		  
-			  		  <input type="submit" class="btn btn-primary" style="float:right" value="보내기"/>	
-			  		</div>
-			  	
-			  		</div>
-			  		 
-				 </div>
-				  	  
+						</a>
+					</li>
+			  </ul>	
 			</div>
 		     
 		      
@@ -768,16 +646,19 @@
 		
 		<div class="w3-bar w3-small">
 		  <c:if test="${pageMaker.prev}">
-	    	<a href="MyProfile${pageMaker.makeSearch(pageMaker.startPage - 1)}" class="w3-button">&laquo;</a>
+	    	<a href="UserProfileViewhref${pageMaker.makeSearch(pageMaker.startPage - 1)}" class="w3-button">&laquo;</a>
 	    </c:if>
 		 
-		 <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idex">
-	    	<a href="MyProfile${pageMaker.makeSearch(idex)}" class="w3-button">${idex}</a>
+		<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idex">
+	    	<%-- href="UserProfileView?id=${mdto.id} --%>
+	     <a href="UserProfileView?id=${mdto.id}&UserProvfileView${pageMaker.makeSearch(idex)}"  class="w3-button">${idex}</a>
+	 
 	    </c:forEach>
 		 
-		  <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-	    	<a href="MyProfile${pageMaker.makeSearch(pageMaker.endPage + 1)}" class="w3-button">&raquo;</a>
+		<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+	    	<a href="UserProfileView${pageMaker.makeSearch(pageMaker.endPage + 1)}" class="w3-button">&raquo;</a>	
 	    </c:if> 
+	
 		</div>
 		</div>
 		
@@ -788,14 +669,9 @@
   		
     </div>
         
-       <!--  <table id="dp-nametable">
-          <tr><td><small>상호명:데일리픽쳐|사업자등록번호:000-00-0000 사업자 확인</small></td></tr>
-          <tr><td><small>통신판매업 신고번호 : 0000-서울노원-0000 | 개인정보관리책임자 : 홍길동</small></td></tr>  
-          <tr><td><small>주소 : 서울시 노원구 | 대표자 : 이사장</small></td></tr>  
-          <tr><td><small>TEL: 000-000-0000 | FAX: 000-0000-0000 | 이메일 : dp@dailypicture.com</small></td></tr>  
-          <tr><td><small>Copyright 2020 데일리 픽쳐 Corp. All Rights Reserved.</small></td></tr> 
-        </table>     -->
-		 
+     
+		
+		
 		 
 		
 
@@ -806,8 +682,9 @@
 		<!-- 사진 부분 -->
 		<!-- body태그 뒤에서 script를 넣는 이유 -->
 		<!-- 문서객체를 로딩후에 호출한다. -->
+		
 		<script src="js/jquery-2.2.4.min.js"></script>
-		<!-- <script src="js/jquery.vgrid.min.js"></script>
+	    <script src="js/jquery.vgrid.min.js"></script>
 		<script>
 			$("#container").vgrid(
 				{ 
@@ -818,7 +695,7 @@
 					
 				}
 			);
-		</script> -->
+		</script> 
 		
 		
 		
@@ -889,6 +766,7 @@
 						var ffuncs = [];
 						 
 						// Modal을 띄우고 닫는 클릭 이벤트를 정의한 함수
+				
 						function MModal(num) {
 						  return function() {
 						    // 해당 클래스의 내용을 클릭하면 Modal을 띄웁니다.
@@ -919,6 +797,26 @@
 						
 						
     </script>
+    
+     <script>
+		      $(function(){
+		        $('#listsearchBtn').click(function() {
+		          self.location = "UserProfileView" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+		        });
+		      });   
+		    </script>
+		    
+		    <script>
+
+	   $(function(){
+		$("#searchBtn").click(function (){
+			$("#searchview").toggle();
+		});
+		});
+       	 
+
+        
+	</script>	
    
  
         

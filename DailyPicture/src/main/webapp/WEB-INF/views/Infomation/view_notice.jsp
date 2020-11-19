@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>고객센터</title>
+<title>공지사항</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 	<% DpNoticeDto view_notice = (DpNoticeDto)session.getAttribute("view_notice"); 
 	
@@ -68,8 +68,8 @@
         #wrapper {
        
         	display:flex;
-        	padding: 80px;
-        	
+        	padding: 30px;
+        	padding-bottom:200px;
         }
         
         #title {
@@ -92,9 +92,9 @@
        		text-align:end;
        }
        
-       #list{
-      	   
-       		width: 160px;
+        #list{
+      	   	
+       		width: 250px;
             height: 300px;
             text-align: end;
             padding-top: 60px;
@@ -102,7 +102,13 @@
        }
       
       #noticetable{
-      		border: 5px solid  rgb(214, 206, 206);
+      		border: 3px solid  rgb(214, 206, 206);
+      		border-top:none;
+      		border-right:none;
+      		border-left:none;
+      		border-bottom:none;
+      		border-collapse:collapse
+      		
       }
       #noticetable th {
       		text-align: center;
@@ -111,9 +117,39 @@
       }
       
       #noticetable td {
+      		text-align: start;
+      }
+      #con {
+      		padding-top:40px;
+      		font-size:20px;
+      		text-align:start;
+      }
+      #topMenu {
+      		padding-top:30px;
+      		height: 30px;
+      		width: 850px;
+      		padding-bottom:80px;
+      }
+      #topMenu ul li {
+      		list-style:none;
+      		background-color: rgb(230, 227, 227);
+      		float: left;  
+      		line-height: 50px;
+      		vertical-align: middle;
       		text-align: center;
       }
-       
+      #topMenu .menuLink {
+      		text-decoration:none;
+      		color:white;
+      		display:block;
+      		width:280px;
+      		font-size:15px;
+      		font-weight: bold;		
+      }
+      #topMenu .menuLink:hover {
+      		color: black;
+      		background-color:white;
+      }
 </style>
 </head>
 <body>
@@ -121,38 +157,49 @@
        		<jsp:include page="Header.jsp" /> 
     	</div> 
     	
+    	<nav id="topMenu">
+    		<ul>
+	    		<li><a class="menuLink" href="Infomation">공지사항</a></li>
+	    		<li><a class="menuLink" href="Question">자주하는 질문</a></li>
+	    		<li><a class="menuLink" href="1on1">1대1 문의</a></li>
+    		</ul>
+    	</nav>
+    	
     	<div id="wrapper">
     		<div id="title">
     		
-    			<table id="list">
+    			<!-- <table id="list">
 	    			<tr><td><h2><b>고객센터</b></h2></td></tr>
 	    			<tr><td><h3><b><a href="Infomation">공지사항</a></b></h3></td></tr>
 	    			<tr><td><a href="Question">자주하는 질문</a></td></tr>
 	    			<tr><td><a href="1on1">1대1 문의</a></td></tr>
-    			</table>
+	    			 
+    			</table> -->
+    			
     		</div>
     		
     		
     		<div id="notice">
-    			<h4><b>공지사항</b></h4>
-    			<table id="noticetable" width="500" cellpadding="0" cellspacing="0" border="5">
+    			
+    			<table id="noticetable" width="500" >
     			<input type="hidden" name="board_no" value="${ view_notice.board_no } ">
     			
     				<tr>
-	    				<th>제목</th><td>${ view_notice.title }</td>
+	    				<td style="font-size:50px; text-align:start"><b>${ view_notice.title }</td>
 	    				
 	    			</tr>
+	    			<%-- <tr>	
+	    				<td style="text-align:end;">${ view_notice.writer }</td>
+	    			</tr> --%>
+	    			
 	    			<tr>	
-	    				<th>작성자</th><td>${ view_notice.writer }</td>
-	    			</tr>	
-	    			<tr>	
-	    				<th>작성일</th><td><%=year+"년 "+month+"월 "+day+"일"%></td>
+	    				<td style="text-align:end; padding-top:10px; font-size:15px;"><%=year+"년 "+month+"월 "+day+"일"%></td>
 	    			</tr>
  	    			<tr>	
-	    				<th>조회</th><td>${ view_notice.hit }</td>
+	    				<td style="text-align:end; font-size:15px;">조회수 ${ view_notice.hit }</td>
     				</tr>
     				<tr>
-    					<th>내용</th><td>${ view_notice.content }</td>
+    					<td id="con">${ view_notice.content }</td>
     				</tr>
     			
 	        			

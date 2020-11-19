@@ -103,7 +103,7 @@
     </div>
         
     
-			<h3><%= session.getAttribute("sessionID") %>님으로 로그인되었습니다.</h3>
+			<%-- <h3><%= session.getAttribute("sessionID") %>님으로 로그인되었습니다.</h3> --%>
 			
 	
 

@@ -472,10 +472,7 @@
 		}
 		
 		 }
-        .opt1 {
-
-            flex-flow: row wrap;
-        }
+        
 		
 		
   		 #footer{

@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>자주하는 질문</title>
+<title>고객센터</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 	<% ArrayList<DpQuestionDto> qlist = (ArrayList<DpQuestionDto>)session.getAttribute("qlist"); %>
 	<script>
@@ -52,7 +52,7 @@
         
         #wrapper {
         	display:flex;
-        	padding: 80px;
+        	padding: 30px;
         	
         }
         
@@ -76,25 +76,42 @@
        		text-align:end;
        }
        
+      /* 수정한 부분 */
        #list{
-       		width: 160px;
+      	   
+       		width: 200px;
             height: 300px;
             text-align: end;
-            padding-top: 60px;
-            
+            /* padding-top: 60px; */
+            padding-right: 70px;
        }
-       #noticetable{
-      		border: 5px solid  rgb(214, 206, 206);
+      
+      #noticetable{
+      		border: 3px solid  rgb(214, 206, 206);
+      		border-right:none;
+      		border-left:none;
+      		border-bottom:none;
+      		
       }
       #noticetable th {
       		text-align: center;
       		padding:10px;
+      		border-right:hidden;
+      		border-left:hidden;
       }
       
       #noticetable td {
       		text-align: center;
-      		padding:10px;
+      		padding:20px;
+      		border-right:hidden;
+      		border-left:hidden;
+      		
       }
+      #notice a {
+      		
+      		color:black;
+      }
+      /* 수정한 부분 */
 </style>
 </head>
 <body>
@@ -119,17 +136,17 @@
     				<tr>
 	    				<th style="width:60px;">번호</th>
 	    				<th style="width:120px;">카테고리</th>
-	    				<th style="width:500px;">제목</th>
-	    				<th style="width:90px;">작성자</th>
-	    				<th style="width:170px;">작성일</th>
+	    				<th style="width:500px;">내용</th>
+	    				<!-- <th style="width:90px;">작성자</th> -->
+	    				<th style="width:170px;">등록일</th>
     				</tr>
     				<c:forEach var="dto" items="${ qlist }" >
 	    				<tr>
 	    				<td>${dto.board_no}</td>
 	    				<td>${dto.category}</td>
 	    				<td><a href="view_question?board_no=${ dto.board_no }">${dto.title}</a></td>
-	    				<td>${dto.writer}</td>
-	    				<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${dto.reg}"/></td>
+	    				<%-- <td>${dto.writer}</td> --%>
+	    				<td><fmt:formatDate pattern="yyyy-MM--dd" value="${dto.reg}"/></td>
 	    				</tr>
 	        		</c:forEach>	
     			</table>
