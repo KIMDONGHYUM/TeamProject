@@ -34,6 +34,16 @@ public interface IReplyDao {
     // 댓글 삭제
     public int deleteReply(int reply_no) throws Exception;
 
+    // 댓글 신고
+    public int SingoreplyInsert(ReplyDto rep) throws Exception;
+    
+    // 댓글 신고 리스트
+    public List<ReplyDto> SingoreplyList(int myct_no) throws Exception;
+    
+    // 댓글 신고 강퇴
+    public int Singodelete(@Param("id") String id) throws Exception;
+    
+   
 		
 }
 

@@ -46,7 +46,7 @@
 	     delete from dp_reply where reply_no = #{reply_no}
 	</delete>
 	
-	
+
 	
 	
 	<!-- where board_no = #{param1} and writer = #{param2}  -->
@@ -70,9 +70,23 @@
       select * from simple_bbs order by id desc
    </select>  -->
    
-   
+   <!-- 댓글 신고 -->
+   <insert id="SingoreplyInsert" parameterType="com.study.springboot.dto.ReplyDto">
+	 <selectKey keyProperty="reply_no" resultType="int" order="BEFORE">
+	 		select dp_reply_seq.nextval FROM DUAL
+	 </selectKey>
+      insert into dp_reply (reply_no, myct_no, board_no, user_id, content, picture, reg)
+           values (dp_reply_seq.nextval, #{myct_no}, #{board_no}, #{user_id}, #{content}, #{picture}, #{reg})
+   </insert> 
 	
-	
+	<!-- 댓글 신고 리스트 -->
+	<select id="SingoreplyList" resultType="com.study.springboot.dto.ReplyDto"> 
+		select * from dp_reply where myct_no = #{param1} order by reg asc
+		
+	</select> 	
  
-	
+ 	<!-- 댓글 신고 강퇴 -->
+	<delete id="Singodelete">
+		delete from dp_member where id = #{id}
+	</delete>
 </mapper>

@@ -11,20 +11,7 @@
 <meta charset="UTF-8">
 <title>자주하는 질문</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-	<% DpQuestionDto view_question = (DpQuestionDto)session.getAttribute("view_question"); 
-	Date reg = view_question.getReg();
-	int year = 2000;
-	int month = 1;
-	int day = 1;
-	if(reg != null){
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(reg);
-		year = cal.get(Calendar.YEAR);
-		month = cal.get(Calendar.MONTH)+1;
-		day = cal.get(Calendar.DAY_OF_MONTH);
-	}
-	
-	%>
+	<% DpQuestionDto view_question = (DpQuestionDto)session.getAttribute("view_question"); %>
 	<script>
 		function ChangeView(value) {
 			if(value== "0") {
@@ -177,10 +164,12 @@
     			
     				<tr>
 	    				<td style="font-size:50px; text-align:start"><b>${view_question.title}</td>
+	    				<td style="text-align:end; padding-top:10px; font-size:15px;"><fmt:formatDate pattern="yyyy.MM.dd hh:mm" value="${view_question.reg }"/></td>
 	    			</tr>
 	    			<tr>	
-	    				<td style="text-align:end; padding-top:10px; font-size:15px;"><%=year+"년 "+month+"월 "+day+"일"%></td>
+	    				
 	    			</tr>
+ 	    			
     				<tr>
     					<td id="con">${view_question.content}</td>
     				</tr>

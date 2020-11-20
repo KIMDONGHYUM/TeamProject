@@ -4,6 +4,7 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.Date"%>
 <%@ page import="java.util.Calendar" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <!DOCTYPE html>
 <html>
@@ -11,35 +12,8 @@
 <meta charset="UTF-8">
 <title>공지사항</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-	<% DpNoticeDto view_notice = (DpNoticeDto)session.getAttribute("view_notice"); 
+	<% DpNoticeDto view_notice = (DpNoticeDto)session.getAttribute("view_notice"); %>
 	
-	Date reg = view_notice.getReg();
-	int year = 2000;
-	int month = 1;
-	int day = 1;
-	if(reg != null){
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(reg);
-		year = cal.get(Calendar.YEAR);
-		month = cal.get(Calendar.MONTH)+1;
-		day = cal.get(Calendar.DAY_OF_MONTH);
-	}
-	
-	
-	%>
-	<script>
-		function ChangeView(value) {
-			if(value== "0") {
-				location.href="Infomation";
-				}
-			else if(value== "1"){
-				location.href="ModifyNotice";
-				} 
-			else if(value== "2"){
-				location.href="DeleteNotice";
-				} 
-			}
-	</script>
 <style>
 
  		 * {
@@ -186,18 +160,16 @@
     			
     				<tr>
 	    				<td style="font-size:50px; text-align:start"><b>${ view_notice.title }</td>
+	    				<td style="text-align:end; padding-top:10px; font-size:15px;">
+	    					<fmt:formatDate pattern="yyyy.MM.dd hh:mm" value="${view_notice.reg }"/><br>
+	    					조회수 ${ view_notice.hit }
+	    				</td>
 	    				
 	    			</tr>
 	    			<%-- <tr>	
 	    				<td style="text-align:end;">${ view_notice.writer }</td>
 	    			</tr> --%>
 	    			
-	    			<tr>	
-	    				<td style="text-align:end; padding-top:10px; font-size:15px;"><%=year+"년 "+month+"월 "+day+"일"%></td>
-	    			</tr>
- 	    			<tr>	
-	    				<td style="text-align:end; font-size:15px;">조회수 ${ view_notice.hit }</td>
-    				</tr>
     				<tr>
     					<td id="con">${ view_notice.content }</td>
     				</tr>

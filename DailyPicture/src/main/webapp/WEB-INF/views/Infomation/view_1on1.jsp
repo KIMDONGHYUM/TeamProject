@@ -17,18 +17,6 @@
 	<% Dp1on1Dto view_1on1 = (Dp1on1Dto)session.getAttribute("view_1on1"); 
 	   List<ReplyDto> rlist = (List<ReplyDto>)session.getAttribute("rlist");
 	   MemberDto mdto = (MemberDto)session.getAttribute("mdto");
-	Date reg = view_1on1.getReg();
-	int year = 2000;
-	int month = 1;
-	int day = 1;
-	if(reg != null){
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(reg);
-		year = cal.get(Calendar.YEAR);
-		month = cal.get(Calendar.MONTH)+1;
-		day = cal.get(Calendar.DAY_OF_MONTH);
-	}
-	
 	%>
 	
 <style>
@@ -215,22 +203,19 @@
     		<div id="notice">
     			
     			<table id="noticetable" width="500" >
-    			<input type="hidden" name="board_no" value="${ view_1on1.board_no } ">
-    			
-    				<tr>
-	    				<td style="font-size:50px; text-align:start">${view_1on1.title}</td>
-	    			</tr>
-	    			<tr>	
+    			<input type="hidden" name="board_no" value="${view_1on1.board_no}">
+    				<tr>	
+    				<td style="font-size:50px; text-align:start"><b>${view_1on1.title}</b></td>
+	    				
 	    				<td style="text-align:end; font-size:15px;">
+		    				<img id="writerprofile" src="user/${mdto.id}/${mdto.picture}"  onerror="this.src='img/profile.jpg'" >
+		    				<b>${view_1on1.writer}</b><br>
+		    				<fmt:formatDate pattern="yyyy.MM.dd hh:mm" value="${view_1on1.reg }"/>
+	    				</td>
 	    				
-	    				<img id="writerprofile" src="user/${mdto.id}/${mdto.picture}"  onerror="this.src='img/profile.jpg'" >
-	    				
-	    				<b>${view_1on1.writer}</b></td>
 	    			</tr>	
-	    			<tr>	
-	    				<td style="text-align:end; padding-top:10px; font-size:15px;"><%=year+"년 "+month+"월 "+day+"일" %></td>
-	    			</tr>
 	    			
+    			
     				<tr>
     					<td id="con">${view_1on1.content}</td>
     				</tr>

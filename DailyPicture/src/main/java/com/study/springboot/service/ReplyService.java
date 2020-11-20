@@ -72,4 +72,29 @@ public class ReplyService  implements IReplyService{
 	         
 		return rdao.commentList();
 	}
+
+
+
+	@Override
+	public int SingoreplyInsert(ReplyDto rep) throws Exception {
+		int nResult = rdao.SingoreplyInsert(rep);
+		return nResult;
+	}
+
+
+
+	@Override
+	public List<ReplyDto> SingoreplyList(int myct_no) throws Exception {
+		return rdao.SingoreplyList(myct_no);
+	}
+
+
+
+	@Override
+	public int Singodelete(String id) throws Exception {
+		return rdao.Singodelete(id);
+	}
+
+
+
 }
