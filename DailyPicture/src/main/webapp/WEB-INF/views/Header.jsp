@@ -10,6 +10,7 @@
 
 
 	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/mpop.css">
 	
 	<% MemberDto member = (MemberDto)session.getAttribute("memberInfo"); %>
 	
@@ -53,6 +54,11 @@
 				border:0;
 			}
 			
+			.mbtn{
+			   outline:0;
+				border:0;
+			}
+			
 			
 			#profilebtn{
 			width: 33px;
@@ -72,11 +78,7 @@
 			 }
 			 
 	</style>
-	<script>
-			function onshow(){
-					$('.searchname').toggle();
-			}
-	</script>
+	
 </head>
 <body>	
 	<div id="header">
@@ -86,8 +88,8 @@
       	<button id="logoutBtn" class="img0" onclick="changeView(0)"><img src="img/logo.jpg" alt="로고"></button>
       	 
       	<span>
-      	<input class="searchname" type="search" placeholder="검색">
-      	<button id="logoutBtn" class="img0" onclick="onshow()"><img src="img/search.jpg" alt="찾기"></button>
+      	<!-- <input class="searchname" type="search" placeholder="검색"> -->
+      	<button id="logoutBtn" class="mbtn" onclick="onshow1()"><img src="img/search.jpg" alt="찾기"></button>
       	<button id="logoutBtn" class="img0" onclick="changeView(2)"><img src="img/home.jpg" alt="홈"></button>
       	<button id="logoutBtn" class="img0" onclick="changeView(3)"><img src="img/compass.jpg" alt="나침반"></button>
       	<button id="logoutBtn" class="img0" onclick="changeView(4)"><img src="img/alret.jpg" alt="알림"></button>
@@ -100,10 +102,62 @@
        
        
         
-        <p><%= session.getAttribute("sessionID") %>님으로 로그인되었습니다.</p>
-        <hr class ="own">
+       <h1 class="mbtn"></h1>
+		 
+		   <!-- 첫 번째 Modal -->
+		   <div class="mdal">
+		         
+	
+		     <div class="mdal-content" style="display:block">
+		         
+		       
+		       
+		        <table>
+		         
+				    <c:forEach var="mdto" items="${ mmlist }" >  
+				     
+				     
+				     <tr>
+				       <td>	 
+				       		<div class="sprofileimg" style="background: #BDBDBD;"> 
+							   <a href="UserProfileView?id=${mdto.id}" ><img class="profile" src="user/${mdto.id}/${mdto.picture}"  onerror="this.src='img/profile.jpg'" ></a>
+							</div>
+		                    <div id="user_popid">
+		                      <a href="UserProfileView?id=${mdto.id}" ><small>${mdto.id}</small></a>
+		                    </div>
+		               </td>
+		               
+		               <td>
+		                   <div>
+		                  		<p>(${mdto.name})</p>
+		                  </div>   
+		                 
+		               </td>          
+		              
+				     </tr> 
+				     
+				    </c:forEach> 
+				     
+				    </table>
+				    
+		     </div>
+		   </div>
+		   
+		    
+	
+         <hr class ="own">
         </div>
     </div>
+     
+     
+     <script>
+	 $(function(){
+		$(".mbtn").click(function (){
+			$('.mdal').toggle();
+		});
+	});	
+	</script>    
+    
         
     
 			

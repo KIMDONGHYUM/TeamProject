@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ page import="com.study.springboot.dto.MemberDto" %>
 <%@ page import="java.util.List"%>
 
@@ -81,13 +81,7 @@
 			 }
 			 
 	</style>
-	<script>
-	 $(function(){
-		$(".mbtn").click(function (){
-			$('.mdal-content').toggle();
-		});
-	});	
-	</script>
+	
 	
 </head>
 <body>	
@@ -113,11 +107,8 @@
       	</span>
       	
       	
-        	  <div id ="membersearch" class="membersearch" style="display:none">
-		      </div>
-		  	  
-		     
-		   
+      
+	   
 		    
 		   <h1 class="mbtn"></h1>
 		 
@@ -125,7 +116,7 @@
 		   <div class="mdal">
 		         
 	
-		     <div class="mdal-content">
+		     <div class="mdal-content" style="display:block">
 		         
 		       
 		       
@@ -165,57 +156,17 @@
          <hr class ="own">
         </div>
     </div>
-        
+     
+     
+     <script>
+	 $(function(){
+		$(".mbtn").click(function (){
+			$('.mdal').toggle();
+		});
+	});	
+	</script>    
     
-	 <script>
-	// Modal을 가져옵니다.
-	var mdals = document.getElementsByClassName("mdal");
-	// Modal을 띄우는 클래스 이름을 가져옵니다.
-	var mbtns = document.getElementsByClassName("mbtn");
-	// Modal을 닫는 close 클래스를 가져옵니다.
-	var mspanes = document.getElementsByClassName("mc");
-	var mfuncs = [];
-	 
-	// Modal을 띄우고 닫는 클릭 이벤트를 정의한 함수
-	function Mdal(num) {
-	  return function() {
-	    // 해당 클래스의 내용을 클릭하면 Modal을 띄웁니다.
-	    mbtns[num].onclick =  function() {
-	        mdals[num].style.display = "block";
-	        console.log(num);
-	    };
-	 
-	    // <span> 태그(X 버튼)를 클릭하면 Modal이 닫습니다.
-	   /*  mspanes[num].onclick = function() {
-		    
-	        mdals[num].style.display = "none";
-	    }; */
-	  };
-	}
-
-	
-	 
-	// 원하는 Modal 수만큼 Modal 함수를 호출해서 funcs 함수에 정의합니다.
-	for(var i = 0; i < mbtns.length; i++) {
-	  mfuncs[i] = Mdal(i);
-	}
-	 
-	// 원하는 Modal 수만큼 funcs 함수를 호출합니다.
-	for(var j = 0; j < mbtns.length; j++) {
-	  mfuncs[j]();
-	}
-	 
-	// Modal 영역 밖을 클릭하면 Modal을 닫습니다.
-	
-
-    </script>
     	
-			
-			
-			
-			
-			
-	
 	
 </body>
 </html>
