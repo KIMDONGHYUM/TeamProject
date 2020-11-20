@@ -97,4 +97,12 @@ public class ReplyService  implements IReplyService{
 
 
 
+	@Override
+	public int SingodeleteReply(int board_no, String id, String content) throws Exception {
+		int nResult = rdao.SingodeleteReply(board_no, id, content);
+		return nResult;
+	}
+
+
+
 }

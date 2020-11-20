@@ -36,5 +36,6 @@ import com.study.springboot.dto.ReplyDto;
 	// 댓글 신고 강퇴
     public int Singodelete(@Param("id") String id) throws Exception;
 
-   
+    // 아이디 정지했을 시 댓글 삭제
+    public int SingodeleteReply(int board_no, String id, String content) throws Exception;
 }
