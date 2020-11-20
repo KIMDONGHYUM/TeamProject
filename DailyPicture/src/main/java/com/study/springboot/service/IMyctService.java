@@ -13,6 +13,10 @@ public interface IMyctService {
 	
 	public ArrayList<MyctDto> cList(SearchCriteria scri) throws Exception;
 	
+	public ArrayList<MyctDto> ccList(SearchCriteria scri) throws Exception;
+	
+	public int Changno(int board_no, int no);
+	
 	public int listCount(SearchCriteria scri) throws Exception;
 	
 	public int deletePan(int board_no, String id);

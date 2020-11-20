@@ -21,8 +21,11 @@ public interface IMyctDao
 	//가서 물어보기 
 	public ArrayList<MyctDto> cListDao(SearchCriteria scri) throws Exception;
 	
+	public ArrayList<MyctDto> ccListDao(SearchCriteria scri) throws Exception;
+	
 	public int listCount(SearchCriteria scri) throws Exception;
 
+	public int ChangnoDao(int board_no, int no);
 	
 	public int deletePanDao(int board_no, String id);
 	

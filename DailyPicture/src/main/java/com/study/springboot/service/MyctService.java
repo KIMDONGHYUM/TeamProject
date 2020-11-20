@@ -33,6 +33,22 @@ public class MyctService  implements IMyctService{
 		ArrayList<MyctDto> clist = mdao.cListDao(scri);
 		return clist;
 	}
+	
+	@Override
+	public ArrayList<MyctDto> ccList(SearchCriteria scri) throws Exception {
+		
+		ArrayList<MyctDto> cclist = mdao.ccListDao(scri);
+		
+		return cclist;
+	}
+	
+	@Override
+	public int Changno(int board_no, int no) {
+	    int nResult = mdao.ChangnoDao(board_no, no);
+		return nResult;
+	}
+
+	
 
 	@Override
 	public int listCount(SearchCriteria scri) throws Exception {
@@ -58,6 +74,9 @@ public class MyctService  implements IMyctService{
 		 
 		return mdao.viewPanDao(board_no);
 	}
+
+	
+	
 
 	
 	

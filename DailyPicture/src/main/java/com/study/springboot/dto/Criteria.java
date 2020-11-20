@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 public class Criteria {
 	
 	private String id;
+	private int no;
 	
 
 
@@ -24,8 +25,17 @@ public class Criteria {
 		return id;
 	}
 
+
 	public void setId(String id) {
 		this.id = id;
+	}
+	
+	public int getNo() {
+		return no;
+	}
+	
+	public void setNo(int no) {
+		this.no = no;
 	}
 	
 	public void setPage(int page) {

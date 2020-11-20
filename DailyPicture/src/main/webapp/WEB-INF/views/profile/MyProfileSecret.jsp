@@ -19,7 +19,7 @@
      	<title>vGrid 플러그인</title>
      	
      	<%
-		ArrayList<MyctDto> clist = (ArrayList<MyctDto>)session.getAttribute("clist");
+		ArrayList<MyctDto> cclist = (ArrayList<MyctDto>)session.getAttribute("cclist");
      	
      
      	%>
@@ -48,7 +48,7 @@
 			}
 			else if(value == "1") // 로그인 버튼 클릭시 로그인 화면으로 이동
 			{
-				location.href="MyProfileSecret";
+				location.href="MyProfile"
 			}
 			else if(value == "2") // 회원가입 버튼 클릭시 회원가입 화면으로 이동
 			{
@@ -535,8 +535,8 @@
 			    </span>
 			    	    
 
-	    <button id="lockBtn" class="pimgbar" onclick="changeView1(1)"><img src="img2/lock.jpg" alt="잠금"></button>
-		<button id="searchBtn" class="pimgbar"onclick="showhide();"><img src="img2/search.jpg" alt="찾기"></button>	
+	    <button id="lockBtn" class="pimgbar" onclick="changeView1(1)"><img src="img2/unlock.jpg" alt="잠금" style="width:0.5"></button>
+		<button id="searchBtn" class="pimgbar" onclick="showhide();"><img src="img2/search.jpg" alt="찾기"></button>	
 		
 		<button id="settingBtn" class="pimgbar" onclick="changeView1(3)"><img src="img2/setting.jpg" alt="설정"></button>		
 		  		
@@ -567,7 +567,7 @@
     		  <div id="container">
 	
     			  
- 		     <c:forEach var="dto" items="${ clist }" >
+ 		     <c:forEach var="dto" items="${ cclist }" >
 			  
 			  
 			  <div class="gallerylist">
@@ -606,15 +606,15 @@
 		
 		<div class="w3-bar w3-small">
 		  <c:if test="${pageMaker.prev}">
-	    	<a href="MyProfile${pageMaker.makeSearch(pageMaker.startPage - 1)}" class="w3-button">&laquo;</a>
+	    	<a href="MyProfileSecret${pageMaker.makeSearch(pageMaker.startPage - 1)}" class="w3-button">&laquo;</a>
 	    </c:if>
 		 
 		 <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idex">
-	    	<a href="MyProfile${pageMaker.makeSearch(idex)}" class="w3-button">${idex}</a>
+	    	<a href="MyProfileSecret${pageMaker.makeSearch(idex)}" class="w3-button">${idex}</a>
 	    </c:forEach>
 		 
 		  <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-	    	<a href="MyProfile${pageMaker.makeSearch(pageMaker.endPage + 1)}" class="w3-button">&raquo;</a>
+	    	<a href="MyProfileSecret${pageMaker.makeSearch(pageMaker.endPage + 1)}" class="w3-button">&raquo;</a>
 	    </c:if> 
 		</div>
 		</div>
@@ -651,7 +651,7 @@
 	  <script>
 		      $(function(){
 		        $('#listsearchBtn').click(function() {
-		          self.location = "MyProfile" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+		          self.location = "MyProfileSecret" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
 		        });
 		      });   
 		    </script>

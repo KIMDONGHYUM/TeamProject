@@ -15,6 +15,8 @@ public class MyctDto {
 		private String memo;
 		private String picture;
 		private Date reg;
+		private int no;
+		
 		
 
 		
