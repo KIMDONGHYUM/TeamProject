@@ -16,60 +16,37 @@
 			padding:0;
     	  }
 
-         body{
-            	background-color:rgb(246, 250, 250);
-          }
+     body {
+            background-color:rgb(246, 250, 250);
+          }                     
         
-		#header{
-            background-color: white;
-            vertical-align: top;
-            margin-top: -5px;
-            margin-left: -5px;
-            margin-right: -10px;
-            
-            
-            padding-top: 40px;
-        }
-         .own {
-            width:2000px;
-            color:gray; 
-            border: thin solid rgb(240, 231, 231);
-        }
-
-
-        .headerpicture{
-            text-align: center;
-         
-        }
-        
-        #wrap {
+    #wrap {
         	margin: 0 auto;
         	padding-top: 300px;
         	width: 100%;
 			height: 100%;
-			position: fixed;
-			
-        }
-        #overflow {
+			position: fixed;			
+          }
+          
+#overflow {
        		width: 100%;
 			height: 100%;
 			position: absolute;
 			top: 0;
 			background-image:url('images/camera.jpg');
 			background-size:cover;
-        }
+          }
         
-        h1 {
+       h1 {
         	text-align:center;
         	animation: fadein 2s;
-        }
-        h4 {
+          }
+          
+       h4 {
         	text-align:center;
         	animation: fadein 5s;
         }
-        /* .camera {
-        	animation: fadein 7s;
-        } */
+        
         @-webkit-keyframes fadein { /* Safari and Chrome */
             from {
         opacity:0;
@@ -78,7 +55,8 @@
         opacity:1;
              }
         }
-        .content{
+        
+ .content {
  			position: absolute;
  			top:40%;
  			left:70%;
@@ -87,64 +65,56 @@
  			color: white;
  			z-index: 2;
  			text-align: center;
-		}
-		 #wrapper {
+		  }
+		  
+#wrapper {
             width: 600px;
             margin: 0 auto;
             padding-top: 140%;
-            padding-left: 55%; 
-            
-        }
+            padding-left: 55%;          
+         }
          
-         #promotion {
+#promotion {
          	position:absolute;
          	width:40%;
          	left: 10%;
          	right:60%;
-          }
+           }
          
 	</style>
+	
 	<link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet">
+	
 	<script type="text/javascript">
-	var ovf, wrap;
-	$(function(){
-		ovf = this.getElementById("overflow");
-		wrap = this.getElementById("wrap");
-		winResize();
-				$(window).bind({resize: winResize, scroll: winScroll});
-	});
-
-	function winResize(){
-		ovf.style.top = wrap.offsetHeight + "px";
-	}
-
-	function winScroll(){
-		var op = 1 - (window.pageYOffset / wrap.offsetHeight);
-		wrap.style.opacity = op;
-	}
+		var ovf, wrap;
+			$(function(){
+				ovf = this.getElementById("overflow");
+				wrap = this.getElementById("wrap");
+				winResize();
+						$(window).bind({resize: winResize, scroll: winScroll});
+			});
+		
+			function winResize(){
+				ovf.style.top = wrap.offsetHeight + "px";
+			}
+		
+			function winScroll(){
+				var op = 1 - (window.pageYOffset / wrap.offsetHeight);
+				wrap.style.opacity = op;
+			}
 	</script>
 </head>
 <body>
-   <%--  <div id="header">
-       <jsp:include page="Header.jsp" /> 
-    </div>  --%>
-    	
+  	
     <div id=wrap>
     	<div id="intro">
     		<h1 style="font-family: 'Yellowtail', cursive;">DailyPicture</h1>
     	</div>
-    	<br><br>
-    		<h4>
-    		데일리 픽쳐에 오신 여러분을 환영합니다.
-    		</h4>
-    		<h4>
-    		데일리 픽쳐는 온라인에서 일상사진, 여행 사진, 동영상 등을 공유할 수 있는 소셜 네트워크 서비스입니다. 
-    		</h4>
-    		<h4>
-    		데일리 픽쳐 이용자들은 데일리 픽쳐를 통해 소중한 가족이나 친구들에게 자신만의 특별하고 소소한 일상 사진을 공유할 수 있습니다.
-    		</h4>
-    	<br><br>
-    	
+	    	<br><br>	    		
+	    		<h4>데일리 픽쳐에 오신 여러분을 환영합니다.</h4>
+	    		<h4>데일리 픽쳐는 온라인에서 일상사진, 여행 사진, 동영상 등을 공유할 수 있는 소셜 네트워크 서비스입니다.</h4> 
+	    		<h4>데일리 픽쳐 이용자들은 데일리 픽쳐를 통해 소중한 가족이나 친구들에게 자신만의 특별하고 소소한 일상 사진을 공유할 수 있습니다.</h4>	    		
+	    	<br><br>   	
     </div>
     
     <div id="overflow">
@@ -154,25 +124,25 @@
         </div>
 	</div>
 		
-	<div id="wrapper">
-		<div id="promotion">
-			<h1>데일리픽쳐는 다양한 서비스를 제공합니다.</h1>
-			<h1>지금 바로 데일리픽쳐의 기능을 사용해보세요.</h1>
-			
-		</div>
-        <div class="bxslider">
-            <div>
-                <img src="images/cafe.jpg" title="슬라이더1">
-            </div>
-            <div>
-                <img src="images/laundry.jpg" title="슬라이더2">
-            </div>
-            <div>
-                <img src="images/sunset.jpg" title="슬라이더3">
-            </div>
-            
-        </div>    
-    </div>
+		<div id="wrapper">
+			<div id="promotion">
+				<h1>데일리픽쳐는 다양한 서비스를 제공합니다.</h1>
+				<h1>지금 바로 데일리픽쳐의 기능을 사용해보세요.</h1>
+				
+			</div>
+	        <div class="bxslider">
+	            <div>
+	                <img src="images/cafe.jpg" title="슬라이더1">
+	            </div>
+	            <div>
+	                <img src="images/laundry.jpg" title="슬라이더2">
+	            </div>
+	            <div>
+	                <img src="images/sunset.jpg" title="슬라이더3">
+	            </div>
+	            
+	        </div>    
+	    </div>
     
 
     <script src="js/jquery-2.2.4.min.js"></script>

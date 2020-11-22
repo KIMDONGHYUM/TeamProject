@@ -10,16 +10,15 @@
 <head>
 <meta charset="UTF-8">
 <title>자주하는 질문</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-	<% DpQuestionDto view_question = (DpQuestionDto)session.getAttribute("view_question"); %>
-	<script>
-		function ChangeView(value) {
-			if(value== "0") {
-				location.href="Question";
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+		<% DpQuestionDto view_question = (DpQuestionDto)session.getAttribute("view_question"); %>
+			<script>
+				function ChangeView(value) {
+					if(value== "0") {
+						location.href="Question";
+						}					
 				}
-			
-			}
-	</script>
+			</script>
 <style>
 
  		 * {
@@ -35,102 +34,104 @@
             margin-left: -5px;
             margin-right: -10px;
             padding-top: 40px;
-        }
- 	.own{
+            text-align: center;
+        	}
+        	
+ 		.own{
             width:2000px;
             color:gray; 
             border: thin solid rgb(240, 231, 231);
-        }
-    .headerpicture{
-            text-align: center;
-        }
+        	}        	  
         
-        #wrapper {
-       
+   #wrapper {      
         	display:flex;
         	padding: 30px;
         	padding-bottom:200px;
-        }
+        	}
         
-        #title {
+    #title {
         	width:200px;
         	height:100%;
         	position:fixed;
         	padding-left: 80px;
         	text-align:end;
-        }
-        #title a {
+       		}
+       		
+   #title a {
         	text-decoration: none;
         	padding-top:40px;
-        }
-        table {
+        	}
+        	
+      table {
         	width:800px;
         	height: auto;
-        }
-       #btns {
+       		}
+       		 
+      #btns {
        		padding-top: 10px;
        		text-align:end;
-       }
+       		}
        
-       #list{
-      	   
+       #list{      	   
        		width: 160px;
             height: 300px;
             text-align: end;
             padding-top: 60px;
             padding-right: 80px;
-       }
+       		}
       
-      #noticetable{
+#noticetable{
       		border: 3px solid  rgb(214, 206, 206);
       		border-top:none;
       		border-right:none;
       		border-left:none;
       		border-bottom:none;
-      		border-collapse:collapse
+      		border-collapse:collapse      		
+      		}
       		
-      }
-      #noticetable th {
+#noticetable th {
       		text-align: center;
       		padding: 20px;
       		width:100px;
-      }
+      		}
       
-      #noticetable td {
-      		text-align: start;
-      }
-       
+#noticetable td {text-align: start;}
+      		
       #con {
       		padding-top:40px;
       		font-size:20px;
       		text-align:start;
-      }
-      #topMenu {
+      	   }
+      	   
+  #topMenu {
       		padding-top:30px;
       		height: 30px;
       		width: 850px;
       		padding-bottom:80px;
-      }
-      #topMenu ul li {
+      		}
+      		
+#topMenu ul li {
       		list-style:none;
       		background-color: rgb(230, 227, 227);
       		float: left;  
       		line-height: 50px;
       		vertical-align: middle;
       		text-align: center;
-      }
-      #topMenu .menuLink {
+      		}
+      		
+#topMenu .menuLink {
       		text-decoration:none;
       		color:white;
       		display:block;
       		width:280px;
       		font-size:15px;
       		font-weight: bold;		
-      }
-      #topMenu .menuLink:hover {
+      		}
+      		
+#topMenu .menuLink:hover {
       		color: black;
       		background-color:white;
-      }
+      		}
 </style>
 </head>
 <body>
@@ -138,48 +139,31 @@
        		<jsp:include page="Header.jsp" /> 
     	</div> 
     	
-    	<nav id="topMenu">
-    		<ul>
-	    		<li><a class="menuLink" href="Infomation">공지사항</a></li>
-	    		<li><a class="menuLink" href="Question">자주하는 질문</a></li>
-	    		<li><a class="menuLink" href="1on1">1대1 문의</a></li>
-    		</ul>
-    	</nav>
+	    	<nav id="topMenu">
+	    		<ul>
+		    		<li><a class="menuLink" href="Infomation">공지사항</a></li>
+		    		<li><a class="menuLink" href="Question">자주하는 질문</a></li>
+		    		<li><a class="menuLink" href="1on1">1대1 문의</a></li>
+	    		</ul>
+	    	</nav>
     	
-    	<div id="wrapper">
-    		<div id="title">
-    		
-    		<!--	<table id="list">
-	    			<tr><td><h2><b>고객센터</b></h2></td></tr>
-	    			<tr><td><a href="Infomation">공지사항</a></td></tr>
-	    			<tr><td><h3><b><a href="Question">자주하는 질문</a></b></h3></td></tr>
-	    			<tr><td><a href="1on1">1대1 문의</a></td></tr>
-    			</table>-->
-    		</div>
-    		
+    	<div id="wrapper">    		   		
     		<div id="notice">
     			
     			<table id="noticetable" width="500" >
-    			<input type="hidden" name="board_no" value="${ view_notice.board_no } ">
+    				<input type="hidden" name="board_no" value="${ view_notice.board_no } ">
     			
-    				<tr>
-	    				<td style="font-size:50px; text-align:start"><b>${view_question.title}</td>
-	    				<td style="text-align:end; padding-top:10px; font-size:15px;"><fmt:formatDate pattern="yyyy.MM.dd kk:mm" value="${view_question.reg }"/></td>
-	    			</tr>
-	    			<tr>	
-	    				
-	    			</tr>
- 	    			
-    				<tr>
-    					<td id="con">${view_question.content}</td>
-    				</tr>
+	    				<tr>
+		    				<td style="font-size:50px; text-align:start"><b>${view_question.title}</td>
+		    				<td style="text-align:end; padding-top:10px; font-size:15px;"><fmt:formatDate pattern="yyyy.MM.dd kk:mm" value="${view_question.reg }"/></td>
+		    			</tr>	    			 	    			
     				
-	        			
+    						<tr><td id="con">${view_question.content}</td></tr>
+   			
     			</table>
-    			<div id="btns">
-    				<button class="btn btn-outline-primary"  onclick="ChangeView(0)">목록</button>
-    				
-				</div>    		
+	    			<div id="btns">
+	    				<button class="btn btn-outline-primary"  onclick="ChangeView(0)">목록</button>   				
+					</div>    		
     		</div>
     	</div>
     	

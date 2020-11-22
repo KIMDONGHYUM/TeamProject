@@ -40,89 +40,79 @@
 			max-width:100%;
      		}
      		 
-	#header{
+	#header {
             background-color: white;
             vertical-align: top;
             margin-top: -5px;
             margin-left: -5px;
             margin-right: -10px;
             padding-top: 40px;
-        }
- 	.own{
+            text-align: center;
+            }
+            
+ 	   .own {
             width:2000px;
             color:gray; 
             border: thin solid rgb(240, 231, 231);
-        }
-    .headerpicture{
-            text-align: center;
-        }
+       	    }
         
-        #wrapper {
-       
+   #wrapper {       
         	display:flex;
-        	padding: 30px;
-        	
-        }
+        	padding: 30px;       	
+        	}
         
-        #title {
+     #title {
         	width:200px;
         	height:100%;
         	position:fixed;
         	padding-left: 80px;
         	text-align:end;
-        }
-        #title a {
+        	}
+        	
+   #title a {
         	text-decoration: none;
         	padding-top:40px;
-        }
-        table {
-        	width:800px;
-        	height: auto;
-        }
-       #btns {
+        	}      
+        	
+      #btns {
        		padding-top: 10px;
        		text-align:end;
-       }
+      	    }
        
-       /* 수정한 부분 */
-       #list{
-      	   
+      #list {     	   
        		width: 200px;
             height: 300px;
-            text-align: end;
-            /* padding-top: 60px; */
+            text-align: end;            
             padding-right: 70px;
-       }
+            }
       
-      #noticetable{
+#noticetable {
       		border: 3px solid  rgb(214, 206, 206);
       		border-right:none;
       		border-left:none;
-      		border-bottom:none;
+      		border-bottom:none;   
+      		width:800px;
+        	height: auto;  		
+      		}
       		
-      }
-      #noticetable th {
+#noticetable th {
       		text-align: center;
       		padding:10px;
       		border-right:hidden;
       		border-left:hidden;
-      }
+     		}
       
-      #noticetable td {
+#noticetable td {
       		text-align: center;
       		padding:20px;
       		border-right:hidden;
-      		border-left:hidden;
+      		border-left:hidden;     		
+      		}
       		
-      }
-      #notice a {
+  #notice a {color:black;}		
       		
-      		color:black;
-      }
-      /* 수정한 부분 */
-      nav {
-      	text-align:center;
-      }
+       nav {text-align:center;}
+      	 
 </style>
 </head>
 <body>
@@ -146,25 +136,20 @@
     			<table id="noticetable" width="500" cellpadding="0" cellspacing="0" border="5">
     				<tr>
 	    				<th style="width:60px;">번호</th>
-	    				<th style="width:500px;">제목</th>
-	    				<!-- <th style="width:90px;">작성자</th> -->
+	    				<th style="width:500px;">제목</th>	    				
 	    				<th style="width:150px;">등록일</th>
 	    				<th style="width:60px;">조회</th>
     				</tr>
-    				<c:forEach var="dto" items="${ list }" >
-	    				<tr>
-	    				<td>${dto.board_no}</td>
-	    				<td><a href="view_notice?board_no=${ dto.board_no }">${dto.title}</a></td>
-	    				<%-- <td>${dto.writer}</td> --%>
-	    				<td><fmt:formatDate pattern="yyyy-MM-dd" value="${dto.reg}"/></td>
-	    				<td>${dto.hit}</td>
-	    				</tr>
-	        		</c:forEach>	
+	    				<c:forEach var="dto" items="${ list }" >
+		    				<tr>
+			    				<td>${dto.board_no}</td>
+			    				<td><a href="view_notice?board_no=${ dto.board_no }">${dto.title}</a></td>		    				
+			    				<td><fmt:formatDate pattern="yyyy-MM-dd" value="${dto.reg}"/></td>
+			    				<td>${dto.hit}</td>
+		    				</tr>
+		        		</c:forEach>		        		
     			</table>
-    			<div id="btns">
-    				<button class="btn btn-outline-primary" onclick="ChangeView(0)">글작성</button>
-    				
-				</div>    		
+    			
     		</div>
     	</div>
     	<nav aria-label="...">

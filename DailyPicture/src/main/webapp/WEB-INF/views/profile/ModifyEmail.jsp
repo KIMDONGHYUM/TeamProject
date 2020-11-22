@@ -82,8 +82,6 @@
         	width: 700px;
             height: 500px;
             padding-right:200px;
-            /* border-spacing: 30px;
-            border-collapse: separate; */
             display: inline-block;
         }
         #wrap {

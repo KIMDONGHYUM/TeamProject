@@ -15,74 +15,71 @@
 			max-width:100%;
      		}
      		 
-	#header{
+	#header {
             background-color: white;
             vertical-align: top;
             margin-top: -5px;
             margin-left: -5px;
             margin-right: -10px;
             padding-top: 40px;
-        }
- 	.own{
+            text-align: center;
+        	}
+        	
+ 	   .own {
             width:2000px;
             color:gray; 
             border: thin solid rgb(240, 231, 231);
-        }
-    .headerpicture{
-            text-align: center;
-        }
-        
-        #wrapper {
-       
+            }
+                    
+   #wrapper {
         	display:flex;
-        	padding: 80px;
-        	
-        }
+        	padding: 80px;       	
+        	}
         
-        #title {
+     #title {
         	width:200px;
         	height:100%;
         	position:fixed;
         	padding-left: 80px;
         	text-align:end;
-        }
-        #title a {
+        	}
+        	
+   #title a {
         	text-decoration: none;
         	padding-top:40px;
-        }
-        table {
+        	}
+        	
+      table {
         	width:800px;
         	height: auto;
-        }
-       #btns {
+        	}
+        	
+      #btns {
        		padding-top: 10px;
        		text-align:end;
-       }
+       		}
        
-       #list{
-      	  
+      #list {    	  
        		width: 160px;
             height: 300px;
             text-align: end;
             padding-top: 60px;
             padding-right: 80px;
-       }
+       		}
       
-      #noticetable{
-      		border: 5px solid  rgb(214, 206, 206);
-      }
-      #noticetable th {
+#noticetable {border: 5px solid  rgb(214, 206, 206);}    		
+      
+#noticetable th {
       		text-align: center;
       		padding: 20px;
       		width:100px;
-      }
+      		}
       
-      #noticetable td {
+#noticetable td {
       		text-align: start;
       		padding-left:5%;
-      }
-      
-       
+      		}
+            
 </style>
 </head>
 <body>
@@ -90,9 +87,8 @@
        		<jsp:include page="Header.jsp" /> 
     	</div> 
     	
-    	<div id="wrapper">
-    		<div id="title">
-    		
+    <div id="wrapper">
+    		<div id="title">   		
     			<table id="list">
 	    			<tr><td><h2><b>고객센터</b></h2></td></tr>
 	    			<tr><td><a href="Infomation">공지사항</a></td></tr>
@@ -101,31 +97,27 @@
     			</table>
     		</div>
     		
-    		<form action="modify_questionAction" method="POST" enctype="multipart/form-data">
+    	<form action="modify_questionAction" method="POST" enctype="multipart/form-data">
     		<div id="notice">
     			<h4><b>자주하는 질문</b></h4>
     			
     			<table id="noticetable" width="500" cellpadding="0" cellspacing="0" border="5">
-    			<input type="hidden" name="board_no" value="${ view_question.board_no } ">
-    				<tr>
-	    				<th>제목</th><td><input type="text" size=70 name="title" value="${view_question.title }"></td>
-	    			</tr>
-	    			
-	    			<tr>	
-	    				<th>카테고리</th>
-	    				<td>
-		    				<select name="category">
-							        <option>업로드문의</option>
-							        <option selected="selected">회원문의</option>
-
-	   						 </select>
-   						 </td>
-    				</tr>
-    				<tr>
-    					<th>내용</th><td><textarea id = "editor4" name = "editor4" name="Upload" cols="80" rows="20" placeholder=${view_question.content }></textarea></td>
-    				</tr>
-    				
-	        			
+    				<input type="hidden" name="board_no" value="${ view_question.board_no } ">
+	    				<tr>
+		    				<th>제목</th><td><input type="text" size=70 name="title" value="${view_question.title }"></td>
+		    			</tr>	    			
+		    			<tr>	
+		    				<th>카테고리</th>
+			    				<td>
+				    				<select name="category">
+									        <option>업로드문의</option>
+									        <option selected="selected">회원문의</option>
+			   						 </select>
+		   						 </td>
+	    				</tr>
+	    				<tr>
+	    					<th>내용</th><td><textarea id = "editor4" name = "editor4" name="Upload" cols="80" rows="20" placeholder=${view_question.content }></textarea></td>
+	    				</tr>	    					        			
     			</table>
     			<script>CKEDITOR.replace('editor4',{filebrowserUploadUrl:'/mine/imageUpload.do'});</script>
     			<div id="btns">
@@ -134,8 +126,8 @@
     				
 				</div>    		
     		</div>
-    		</form>
-    	</div>
+    	</form>
+    </div>
     	
 </body>
 </html>

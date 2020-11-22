@@ -8,9 +8,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>프로필 편집</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css/modifypopup.css">
-    <% MemberDto member = (MemberDto)session.getAttribute("memberInfo"); %>  
+    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    	<link rel="stylesheet" type="text/css" href="css/modifypopup.css">
+    	<% MemberDto member = (MemberDto)session.getAttribute("memberInfo"); %>  
+    
     <script type="text/javascript">
 		
 		function CheckValue(){
@@ -30,177 +31,150 @@
 	</script>
     
     <style>
-         * {
+        	* {
 				margin:0 auto;
 				padding:0;
-				max-width:100%;
-				
-     		 } 
-       #header{
-            background-color: white;
-            vertical-align: top;
-            margin-top: -5px;
-            margin-left: -5px;
-            margin-right: -10px;
-            padding-top: 40px;
-            
-            
-        }
+				max-width:100%;				
+     		  } 
+     		  
+      #header {
+	            background-color: white;
+	            vertical-align: top;
+	            margin-top: -5px;
+	            margin-left: -5px;
+	            margin-right: -10px;
+	            padding-top: 40px;    
+	            text-align: center;                    
+        	  }
         
-        .sprofileimg{
+     .profile {
+			    width: 100%;
+			    height: 100%;
+			    object-fit: cover;
+			  }
         
-        	border: solid rgb(153, 243, 18) 2px;
-        	width: 35px;
-    		height: 35px; 
-    		border-radius: 70%;
-    		overflow: hidden;
-    		
-    		
-        }	
-        
-          .profile {
-		    width: 100%;
-		    height: 100%;
-		    object-fit: cover;
-		   }
-        
-        .own{
-            width:2000px;
-            color:gray; 
-            border: thin solid rgb(240, 231, 231);
-        }
-        a {
-            text-decoration: none;
-            color: black;
-        }
+         .own {
+	            width:2000px;
+	            color:gray; 
+	            border: thin solid rgb(240, 231, 231);
+        	  }
+        	  
+        	a {
+	            text-decoration: none;
+	            color: black;
+	          }
 
-        .headerpicture{
-            text-align: center;
-            
-        }
-      
-        .box {
-            width: 150px;
-            height: 150px; 
-            border-radius: 70%;
-            overflow: hidden;
-	        display: block;
-            margin: 0 auto;
-            }
+         .box {
+	            width: 150px;
+	            height: 150px; 
+	            border-radius: 70%;
+	            overflow: hidden;
+		        display: block;
+	            margin: 0 auto;
+              }
 
-         .profile {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            }
-        #profileid {
-            text-align: center;
-        }
-        
-        #list {
-            width: 500px;
-            height: 300px;
-            text-align: end;
-            padding-top: 100px;
-        }
-        #info {
-        	width: 700px;
-            height: 500px;
-            padding-right:200px;
-            border-spacing: 30px;
-            border-collapse: separate;
-            display: inline-block;
-        }
+     .profile {
+	            width: 100%;
+	            height: 100%;
+	            object-fit: cover;
+	          }
+            
+   #profileid {text-align: center;}
+           
         #wrap {
-            padding-top: 100px;
-            padding-left: 70px;
-            display: flex;
-        }
-        td {
-        	text-align:end;
-            padding-top: 40px;
-        }
-       
+	            padding-top: 100px;
+	            padding-left: 70px;
+	            display: flex;
+        	  }   
+                           
+        #list {
+	            width: 500px;
+	            height: 300px;
+	            text-align: end;
+	            padding-top: 100px;
+        	  }
+        	  
+        #info {
+	        	width: 700px;
+	            height: 500px;
+	            padding-right:200px;
+	            border-spacing: 30px;
+	            border-collapse: separate;
+	            display: inline-block;
+        	  }        	          
+        	  
+           td {
+	        	text-align:end;
+	            padding-top: 40px;
+       	 	  }
+               		
+ #modifyimage {         
+	            width: 30px;
+	            height: 30px; 
+	            border-radius: 70%;
+	            position:absolute;
+	            top:38%;
+	            left:52%;
+        	  }
+                   
+         .own {
+	            width:2000px;
+	            color:gray; 
+	            border: thin solid rgb(240, 231, 231);
+       	      }
         
-		
-        #modifyimage {
-            
-            width: 30px;
-            height: 30px; 
-            border-radius: 70%;
-            position:absolute;
-            top:38%;
-            left:52%;
-        }
-        h3 {
-        color: black;
-        }
+      .content {text-align:center;}
+        	       
+input[type=file] {
+	        	text-align:center;
+	        	width:100%;
+	        	height: 50px;
+	        	}
         
-       
-        
-        
-         .own{
-            width:2000px;
-            color:gray; 
-            border: thin solid rgb(240, 231, 231);
-        }
-        
-        .content {
-        	text-align:center;
-        }
-        input[type=file] {
-        	text-align:center;
-        	width:100%;
-        	height: 50px;}
-        
-        input[type=submit] {
-        	width:100%;
-        	height: 50px;
-        }
-        #savebtn{
-        	width: 20%;
-        	height: 40px;
-        }
+input[type=submit] {
+	        	width:100%;
+	        	height: 50px;
+        		}
+        		
+       #savebtn {
+	        	width: 20%;
+	        	height: 40px;
+        		}
     </style>
 </head>
 <body>
      <div id="header">
        		<jsp:include page="Header.jsp" /> 
-    	</div> 
-       
-       
-	
+    	</div>       
+       	
     <div id="profile">
-        <div class="box" style="background: #BDBDBD;">
-        
-          <img class="profile" src= "user/<%=session.getAttribute("sessionID") %>/<%=member.getPicture()%>"  onerror="this.src='img/profile.jpg'" />
-          
+        <div class="box" style="background: #BDBDBD;">       
+          <img class="profile" src= "user/<%=session.getAttribute("sessionID") %>/<%=member.getPicture()%>"  onerror="this.src='img/profile.jpg'" />          
     	</div>
 		 
         <!-- 프로필 변경 팝업 -->
         <input type="checkbox" id="popup">
         <label for="popup"><p class="p"><img id="modifyimage" src="img/modifybutton.jpg"></p></label>
         <div>
-        	<div>
-        	
-        	<label for="popup"></label>
-        	
-        	<!-- 컨텐츠 영역 -->
-        	 <div class="content">
-        	 <form action="ChangePicture" method="POST" enctype="multipart/form-data">
-            		<h2 style="text-align:center;">프로필 사진 바꾸기</h2>
-            		<hr class ="own">
-			    
-            		<p><small>사진선택</small></p>
-            		<input type="file" class="btn btn-info"  name="filename" >
-            		
-            		<input type="submit" class="btn btn-success"  value="사진 업로드">
-        	</form>
-       		 	<form action="DeletePicture" method="POST" enctype="multipart/form-data">
-       		 		<input type="hidden" name="picture" value=<%=member.getPicture()%>>
-            		<input type="submit" class="btn btn-danger" class="form-control" value="현재 프로필 사진 삭제">
-        		</form>
-        	</div>
+        	<div>       	
+	        	<label for="popup"></label>
+	        	
+	        	<!-- 컨텐츠 영역 -->
+	        	 <div class="content">
+	        	 <form action="ChangePicture" method="POST" enctype="multipart/form-data">
+	            		<h2 style="text-align:center;">프로필 사진 바꾸기</h2>
+	            		<hr class ="own">
+				    
+	            		<p><small>사진선택</small></p>
+	            		<input type="file" class="btn btn-info"  name="filename" >
+	            		
+	            		<input type="submit" class="btn btn-success"  value="사진 업로드">
+	        	</form>
+	       		 	<form action="DeletePicture" method="POST" enctype="multipart/form-data">
+	       		 		<input type="hidden" name="picture" value=<%=member.getPicture()%>>
+	            		<input type="submit" class="btn btn-danger" class="form-control" value="현재 프로필 사진 삭제">
+	        		</form>
+	        	</div>
         			
         	</div>
         	<label for="popup"></label>

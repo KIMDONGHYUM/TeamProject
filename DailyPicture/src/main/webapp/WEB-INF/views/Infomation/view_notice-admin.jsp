@@ -71,10 +71,9 @@
        		width: 250px;
             height: 300px;
             text-align: end;
-            /* padding-top: 60px; */
-            padding-right: 70px;
+            padding-top: 60px;
+            padding-right: 80px;
        }
-       
       
       #noticetable{
       		border: 3px solid  rgb(214, 206, 206);
@@ -132,58 +131,39 @@
        		<jsp:include page="Header.jsp" /> 
     	</div> 
     	
-    	<nav id="topMenu">
-    		<ul>
-	    		<li><a class="menuLink" href="Infomation">공지사항</a></li>
-	    		<li><a class="menuLink" href="Question">자주하는 질문</a></li>
-	    		<li><a class="menuLink" href="1on1">1대1 문의</a></li>
-    		</ul>
-    	</nav>
+	    	<nav id="topMenu">
+	    		<ul>
+		    		<li><a class="menuLink" href="Infomation">공지사항</a></li>
+		    		<li><a class="menuLink" href="Question">자주하는 질문</a></li>
+		    		<li><a class="menuLink" href="1on1">1대1 문의</a></li>
+	    		</ul>
+	    	</nav>
     	
     	<div id="wrapper">
-    		<div id="title">
-    		
-    			<!-- <table id="list">
-	    			<tr><td><h2><b>고객센터</b></h2></td></tr>
-	    			<tr><td><h3><b><a href="Infomation">공지사항</a></b></h3></td></tr>
-	    			<tr><td><a href="Question">자주하는 질문</a></td></tr>
-	    			<tr><td><a href="1on1">1대1 문의</a></td></tr>
-	    			 
-    			</table> -->
-    			
-    		</div>
     		
     		<form action="DeleteNoticeAction" method="post">
-    		<div id="notice">
-    			
-    			<table id="noticetable" width="500" >
-    			<input type="hidden" name="board_no" value="${ view_notice.board_no } ">
-    			
-    				<tr>
-	    				<td style="font-size:50px; text-align:start"><b>${ view_notice.title }</td>
-	    				<td style="text-align:end; padding-top:10px; font-size:15px;">
-	    					<fmt:formatDate pattern="yyyy.MM.dd kk:mm" value="${view_notice.reg }"/><br>
-	    					조회수 ${ view_notice.hit }
-	    				</td>
-	    				
-	    			</tr>
-	    			<%-- <tr>	
-	    				<td style="text-align:end;">${ view_notice.writer }</td>
-	    			</tr> --%>
+	    		<div id="notice">	    			
+	    			<table id="noticetable" width="500" >
+	    				<input type="hidden" name="board_no" value="${ view_notice.board_no } ">
 	    			
-    				<tr>
-    					<td id="con">${ view_notice.content }</td>
-    				</tr>
-    			
-	        			
-    			</table>
-    			
-    			<div id="btns">
-    				<input type="button" class="btn btn-outline-primary" onclick="javascript:window.location='Infomation'" value="목록">
-    				<input type="button" class="btn btn-outline-success" onclick="javascript:window.location='modify_notice'" value="수정">
-    				<input type="submit" class="btn btn-outline-danger" value="삭제">
-				</div>    		
-    		</div>
+		    				<tr>
+			    				<td style="font-size:50px; text-align:start"><b>${ view_notice.title }</td>
+			    				<td style="text-align:end; padding-top:10px; font-size:15px;">
+			    					<fmt:formatDate pattern="yyyy.MM.dd kk:mm" value="${view_notice.reg }"/><br>
+			    					조회수 ${ view_notice.hit }
+			    				</td>			    				
+			    			</tr>   			
+	    				<tr>
+	    					<td id="con">${ view_notice.content }</td>
+	    				</tr>      			
+	    			</table>
+	    			
+			    			<div id="btns">
+			    				<input type="button" class="btn btn-outline-primary" onclick="javascript:window.location='Infomation'" value="목록">
+			    				<input type="button" class="btn btn-outline-success" onclick="javascript:window.location='modify_notice'" value="수정">
+			    				<input type="submit" class="btn btn-outline-danger" value="삭제">
+							</div>    		
+	    		</div>
     		</form>
     	</div>
     	

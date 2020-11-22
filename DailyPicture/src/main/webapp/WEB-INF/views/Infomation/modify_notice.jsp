@@ -15,72 +15,70 @@
 			max-width:100%;
      		}
      		 
-	#header{
+	#header {
             background-color: white;
             vertical-align: top;
             margin-top: -5px;
             margin-left: -5px;
             margin-right: -10px;
             padding-top: 40px;
-        }
- 	.own{
+            text-align: center;
+        	}
+        	
+ 	   .own {
             width:2000px;
             color:gray; 
             border: thin solid rgb(240, 231, 231);
-        }
-    .headerpicture{
-            text-align: center;
-        }
+        	}      
         
-        #wrapper {
-       
+   #wrapper {   
         	display:flex;
-        	padding: 80px;
-        	
-        }
+        	padding: 80px;      	
+        	}
         
-        #title {
+     #title {
         	width:200px;
         	height:100%;
         	position:fixed;
         	padding-left: 80px;
         	text-align:end;
-        }
-        #title a {
+        	}
+        	
+   #title a {
         	text-decoration: none;
         	padding-top:40px;
-        }
-        table {
+        	}
+        	
+      table {
         	width:800px;
         	height: auto;
-        }
-       #btns {
+        	}
+        	
+      #btns {
        		padding-top: 10px;
        		text-align:end;
-       }
+       		}
        
-       #list{
-      	   
+      #list {   	   
        		width: 160px;
             height: 300px;
             text-align: end;
             padding-top: 60px;
             padding-right: 80px;
-       }
+       		}
       
-      #noticetable{
-      		border: 5px solid  rgb(214, 206, 206);
-      }
-      #noticetable th {
+#noticetable {border: 5px solid  rgb(214, 206, 206);}
+      		
+#noticetable th {
       		text-align: center;
       		padding: 20px;
       		width:100px;
-      }
+     		}
       
-      #noticetable td {
+#noticetable td {
       		text-align: start;
       		padding-left:5%;
-      }
+      		}
        
 </style>
 </head>
@@ -101,34 +99,26 @@
     		</div>
     		
     		<form action="modify_noticeAction" method="POST" enctype="multipart/form-data">
-    		<div id="notice">
-    			<h4><b>공지사항</b></h4>
-    			
-    			<table id="noticetable" width="500" cellpadding="0" cellspacing="0" border="5">
-    				<input type="hidden" name="board_no" value="${ view_notice.board_no } ">
-    				<tr>
-	    				<th>제목</th><td><input type="text" size=70 name="title" value="${ view_notice.title }"></td>
-	    			</tr>
+	    		<div id="notice">
+	    			<h4><b>공지사항</b></h4>
 	    			
-    				<tr>
-    					<th>내용</th><td><textarea id = "editor4" name = "editor4" cols="80" rows="20" placeholder=${ view_notice.content }></textarea></td>
-    				</tr>
-    				 <!-- <tr>
-    					<th>첨부파일</th>
-	    					<td style="text-align:center">
-	    						<input type="file" name="file1"><br>
-	    						<input type="file" name="file2">
-	    					</td>
-	    					
-    				</tr>  -->
-	        			
-    			</table>
-    			<script>CKEDITOR.replace('editor4');</script>
-    			<div id="btns">
-    				<input type="submit" class="btn btn-primary" value="게시">
-    				<input type="button" class="btn btn-primary" value="취소" onclick="javascript:window.location='Infomation'">
-	 			</div>    		
-    		</div>
+		    			<table id="noticetable" width="500" cellpadding="0" cellspacing="0" border="5">
+		    				<input type="hidden" name="board_no" value="${ view_notice.board_no } ">
+			    				<tr>
+				    				<th>제목</th><td><input type="text" size=70 name="title" value="${ view_notice.title }"></td>
+				    			</tr>
+				    			
+			    				<tr>
+			    					<th>내용</th><td><textarea id = "editor4" name = "editor4" cols="80" rows="20" placeholder=${ view_notice.content }></textarea></td>
+			    				</tr>	
+		    			</table>
+	    			
+	    			<script>CKEDITOR.replace('editor4');</script>
+		    			<div id="btns">
+		    				<input type="submit" class="btn btn-primary" value="게시">
+		    				<input type="button" class="btn btn-primary" value="취소" onclick="javascript:window.location='Infomation'">
+			 			</div>    		
+	    		</div>
     		</form>
     				
     	</div>

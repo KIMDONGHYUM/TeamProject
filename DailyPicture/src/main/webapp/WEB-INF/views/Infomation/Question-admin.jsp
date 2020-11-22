@@ -44,28 +44,26 @@
 			max-width:100%;
      		}
      		 
-	#header{
+	#header {
             background-color: white;
             vertical-align: top;
             margin-top: -5px;
             margin-left: -5px;
             margin-right: -10px;
             padding-top: 40px;
-        }
- 	.own{
+            text-align: center;
+        	}
+        	
+ 	   .own {
             width:2000px;
             color:gray; 
             border: thin solid rgb(240, 231, 231);
-        }
-    .headerpicture{
-            text-align: center;
-        }
-        
+        	}
+        	      
         #wrapper {
         	display:flex;
-        	padding: 30px;
-        	
-        }
+        	padding: 30px;       	
+        	}
         
         #title {
         	width:200px;
@@ -73,59 +71,55 @@
         	position:fixed;
         	padding-left: 80px;
         	text-align:end;
-        }
+        	}
+        	
         #title a {
         	text-decoration: none;
         	padding-top:40px;
-        }
+        	}
+        	
         table {
         	width:800px;
         	height: auto;
-        }
+        	}
+        	
        #btns {
        		padding-top: 10px;
        		text-align:end;
-       }
+       		}
        
-      /* 수정한 부분 */
-       #list{
-      	   
+       #list {     	   
        		width: 200px;
             height: 300px;
-            text-align: end;
-            /* padding-top: 60px; */
+            text-align: end;           
             padding-right: 70px;
-       }
+      		}
       
       #noticetable{
       		border: 3px solid  rgb(214, 206, 206);
       		border-right:none;
       		border-left:none;
-      		border-bottom:none;
+      		border-bottom:none;		
+      		}
       		
-      }
       #noticetable th {
       		text-align: center;
       		padding:10px;
       		border-right:hidden;
       		border-left:hidden;
-      }
+      		}
       
       #noticetable td {
       		text-align: center;
       		padding:20px;
       		border-right:hidden;
-      		border-left:hidden;
-      		
-      }
-      #notice a {
-      		
-      		color:black;
-      }
-      /* 수정한 부분 */
-      nav {
-      	text-align:center;
-      }
+      		border-left:hidden; 		
+      		}
+      
+      #notice a {color:black;} 
+         		      		        
+      nav {text-align:center;}
+      	
 </style>
 </head>
 <body>
