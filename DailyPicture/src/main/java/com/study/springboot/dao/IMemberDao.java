@@ -1,6 +1,5 @@
 package com.study.springboot.dao;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,9 +10,9 @@ import com.study.springboot.dto.MemberDto;
 
 //MyBatis와 객체를 연결하는 어노테이션.
 @Mapper 
-public interface IMemberDao 
-{
-	public Date stringToDateDao(MemberDto member);
+public interface IMemberDao {
+	
+//	public Date stringToDateDao(MemberDto member);
 	
 	public int insertMemberDao(MemberDto member);
 	
@@ -28,13 +27,9 @@ public interface IMemberDao
 	
 	public int loginCheckDao(@Param("id") String id, @Param("pw") String pw);
 	
-	public ArrayList<MemberDto> userListDao();
-	
 	public int idCheckDao(@Param("id") String id);
 	
 	public int updatePicture(MemberDto member);
-	
-	public int insertPicture(MemberDto member);
 	
 	public ArrayList<MemberDto> mlistDao(String id);
 	

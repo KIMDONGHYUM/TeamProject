@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.study.springboot.dao.IDpFollowDao">
+
+	<insert id="follow" parameterType="com.study.springboot.dto.DpFollowDto">
+		
+		merge into dp_follow
+			using dual on (following = #{param1} and follower = #{param2})
+				<!-- when matched then
+		delete form dp_follow where following = #{param1} and follower = #{param2} -->
+				when not matched then	
+		insert (id, following, follower)
+		 	 values(dp_follow_seq.nextval, #{param1}, #{param2})
+		 
+	</insert>
+	
+	<select id="memberlist" resultType="com.study.springboot.dto.MemberDto">
+		select name from dp_member where not(id=#{id}) order by name asc
+	</select>
+	
+	<delete id="unfollow">
+		delete from dp_follow where following = #{param1} and follower = #{param2}
+	</delete>
+	
+	<select id="unfollowlist" resultType="com.study.springboot.dto.DpFollowDto">
+		select * from dp_follow where follower = #{follower} 
+	</select>
+	
+	<select id="followerlist" resultType="com.study.springboot.dto.DpFollowDto">
+		select * from dp_follow where following = #{following} 
+	</select>
+	
+	<select id="fmlist" resultType="com.study.springboot.dto.FollowMemberDto">
+		select dp_member.id, dp_member.name, dp_member.password, dp_member.phone,
+			   dp_member.mail, dp_member.reg, dp_member.picture, dp_follow.following,
+			   dp_follow.follower 
+	    from dp_member, dp_follow 
+	    where dp_member.id = dp_follow.follower and following = #{following}
+	    		
+	</select>
+	
+	<select id="ufmlist" resultType="com.study.springboot.dto.FollowMemberDto">
+		select dp_member.id, dp_member.name, dp_member.password, dp_member.phone,
+			   dp_member.mail, dp_member.reg, dp_member.picture, dp_follow.following,
+			   dp_follow.follower 
+	    from dp_member, dp_follow 
+	    where dp_member.id = dp_follow.following and follower = #{follower}
+	</select>
+	
+	<delete id="delete">
+		delete from dp_follow where following=#{following} or follower = #{follower}
+	</delete>
+</mapper>

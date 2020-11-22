@@ -15,14 +15,7 @@ public class ReplyDto {
 	 private String user_id; //사용자 아이디
 	 private String content; //내용
 	 private String picture; 
-	 private Date reg; //날짜
-	 //게시판게시자
-	 
-	 
-		
-		
-
-		
+	 private Date reg; //날짜		
 		
 	}
 

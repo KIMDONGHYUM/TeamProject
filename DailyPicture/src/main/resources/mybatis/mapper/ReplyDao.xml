@@ -6,30 +6,31 @@
 
 <mapper namespace="com.study.springboot.dao.IReplyDao"> 
 
-	 <insert id="replyInsert" parameterType="com.study.springboot.dto.ReplyDto">
-	 <selectKey keyProperty="reply_no" resultType="int" order="BEFORE">
-	 		select dp_reply_seq.nextval FROM DUAL
-	 </selectKey>
+	<insert id="replyInsert" parameterType="com.study.springboot.dto.ReplyDto">
+		 <selectKey keyProperty="reply_no" resultType="int" order="BEFORE">
+		 		select dp_reply_seq.nextval FROM DUAL
+		 </selectKey>
       insert into dp_reply (reply_no, myct_no, board_no, user_id, content, picture, reg)
            values (dp_reply_seq.nextval, #{myct_no}, #{board_no}, #{user_id}, #{content}, #{picture}, #{reg})
-   </insert> 
+    </insert> 
 	
 	 
 
 	<select id="replyList" resultType="com.study.springboot.dto.ReplyDto"> 
 		select * from dp_reply where myct_no = #{param1} and board_no = #{param2} order by reg asc
-		
 	</select> 	
 	
+	
 	<select id="commentList()" resultType="com.study.springboot.dto.ReplyDto"> 
-		select * from dp_reply 
-		
+		select * from dp_reply 	
 	</select> 	
+	
 	
 	<!-- 프로필 사진 변경시 게시글에 있는 프로필 사진도 바꿔줌 -->
 	<update id="replyset" >
 		update dp_reply set picture = #{picture} where user_id = #{id}
 	</update>	
+	
 	
 	<update id="replyUpdate" >
 		update dp_reply set content = #{param2} where reply_no = #{param1}
@@ -39,37 +40,13 @@
      <!-- 게시판 삭제시 게시판에 있는 모든 댓글을 삭제시켜줌 -->
      <delete id="deleteRList">
 		delete from dp_reply where board_no = #{board_no}
-	</delete>
+	 </delete>
 	
 	<!-- 댓글 삭제시 해당 댓글만 삭제 -->
 	<delete id="deleteReply">
 	     delete from dp_reply where reply_no = #{reply_no}
 	</delete>
 	
-
-	
-	
-	<!-- where board_no = #{param1} and writer = #{param2}  -->
-	
-	<!-- <delete id="deletePanDao">
-		delete from dp_myct where board_no = #{param1} and id = #{param2}
-	</delete>
-	
-	 <update id="updatePan" >
-		update dp_myct set memo = #{memo}, picture= #{picture} where board_no = #{board_no} and id = #{id} 
-	</update>
-	
-	
-	<select id="viewPanDao" resultType="com.study.springboot.dto.MyctDto"> 
-		select * from dp_myct where board_no = #{param1}
-	</select> -->
-	
-	
-	
-	<!--  <select id="listDao" resultType="com.study.springboot.dto.SimpleBbsDto"> 
-      select * from simple_bbs order by id desc
-   </select>  -->
-   
    <!-- 댓글 신고 -->
    <insert id="SingoreplyInsert" parameterType="com.study.springboot.dto.ReplyDto">
 	 <selectKey keyProperty="reply_no" resultType="int" order="BEFORE">
@@ -81,8 +58,7 @@
 	
 	<!-- 댓글 신고 리스트 -->
 	<select id="SingoreplyList" resultType="com.study.springboot.dto.ReplyDto"> 
-		select * from dp_reply where myct_no = #{param1} order by reg asc
-		
+		select * from dp_reply where myct_no = #{param1} order by reg asc	
 	</select> 	
  
  	<!-- 댓글 신고 강퇴 -->
@@ -94,4 +70,5 @@
 	<delete id="SingodeleteReply">
 		delete from dp_reply where board_no = #{param1} and user_id = #{param2} and content = #{param3}
 	</delete>
+	
 </mapper>

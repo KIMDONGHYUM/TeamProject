@@ -9,8 +9,6 @@ public interface IMyctService {
 		
 	public int insertCt(MyctDto content);
 	
-//	public ArrayList<MyctDto> cList(String id);
-	
 	public ArrayList<MyctDto> cList(SearchCriteria scri) throws Exception;
 	
 	public ArrayList<MyctDto> ccList(SearchCriteria scri) throws Exception;

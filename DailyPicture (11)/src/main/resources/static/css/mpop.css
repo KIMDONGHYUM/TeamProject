@@ -1,0 +1,51 @@
+﻿ @charset "utf-8";
+
+ /* The Modal (background) */
+            .mdal {
+            display: none; /* Hidden by default */
+            position:absolute; 
+            
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 160px;
+            width: 100%; /* Full width */
+            height:140%; /* Full height */
+            
+          
+            z-index:1;
+        }
+        /* Modal Content/Box */
+        .mdal-content {
+            background-color: #fefefe;
+           
+            border: 1px solid #888;
+            position:absolute;
+            overflow: scroll;
+            top:6%;
+            left:49%;
+            transform:translate(-50%,-50%);
+            width:180px;
+            height:200px;
+            
+            z-index:2;
+        }
+        
+        .bpop{
+        color: #446a95; 
+        }
+        
+        /* The Close Button */
+        .mclose {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .mclose:hover,
+        .mclose:focus {
+           
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+ 

@@ -18,16 +18,12 @@ public class ReplyService  implements IReplyService{
 
 	@Override
 	public int replyInsert(ReplyDto rep) throws Exception {
-		
-			 return rdao.replyInsert(rep);
+	    return rdao.replyInsert(rep);
 			
-		}
-
-	
+    }
 
 	@Override
 	public List<ReplyDto> replyList(int myct_no, int board_no) throws Exception {
-	
 		return rdao.replyList(myct_no, board_no);
 	}
 
@@ -35,7 +31,6 @@ public class ReplyService  implements IReplyService{
 
 	@Override
 	public int replyset(String id, String picture) {
-		
 		return rdao.replyset(id, picture);
 	}
 
@@ -43,7 +38,6 @@ public class ReplyService  implements IReplyService{
 
 	@Override
 	public int deleteRList(int board_no) throws Exception {
-		
 		return rdao.deleteRList(board_no);
 	}
 
@@ -51,7 +45,6 @@ public class ReplyService  implements IReplyService{
 
 	@Override
 	public int deleteReply(int reply_no) throws Exception {
-	
 		int Result  =  rdao.deleteReply(reply_no);
 		
 		return Result;
@@ -60,19 +53,8 @@ public class ReplyService  implements IReplyService{
 
 	@Override
 	public int replyUpdate(int reply_no, String content) throws Exception {
-		// TODO Auto-generated method stub
 		return rdao.replyUpdate(reply_no, content);
 	}
-
-
-
-	@Override
-	public List<ReplyDto> commentList() throws Exception {
-		// TODO Auto-generated method stub
-	         
-		return rdao.commentList();
-	}
-
 
 
 	@Override

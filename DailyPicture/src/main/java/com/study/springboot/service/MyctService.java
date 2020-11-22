@@ -22,12 +22,7 @@ public class MyctService  implements IMyctService{
 		return nResult;
 	}
 
-//	@Override
-//	public ArrayList<MyctDto> cList(String id) {
-//		ArrayList<MyctDto> clist = mdao.cListDao(id);
-//		return clist;
-//	}
-	
+
 	@Override
 	public ArrayList<MyctDto> cList(SearchCriteria scri) throws Exception {
 		ArrayList<MyctDto> clist = mdao.cListDao(scri);
@@ -47,8 +42,6 @@ public class MyctService  implements IMyctService{
 	    int nResult = mdao.ChangnoDao(board_no, no);
 		return nResult;
 	}
-
-	
 
 	@Override
 	public int listCount(SearchCriteria scri) throws Exception {

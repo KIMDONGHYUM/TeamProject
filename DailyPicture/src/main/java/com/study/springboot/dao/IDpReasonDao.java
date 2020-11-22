@@ -8,6 +8,7 @@ import com.study.springboot.dto.DpReasonDto;
 
 @Mapper
 public interface IDpReasonDao {
+	
 	//회원탈퇴 시 탈퇴사유
 	public int InsertReason(DpReasonDto dto);
 	

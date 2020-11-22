@@ -1,0 +1,34 @@
+﻿ @charset "utf-8";
+
+input[id*="popup"] { display:none; }
+
+input[id*="popup"] + label {display:inline-block;
+		  
+				
+
+cursor: pointer; 
+
+line-height: 17px; 
+
+padding:8px; 
+margin-bottom: 1.2px;
+color:white;
+ 
+
+background: url('img2/write.jpg') left/17px no-repeat; 
+
+}
+
+input[id*="popup"] + label + div {position:fixed; top:0px; left:0px; width:100%; height:100%; z-index:3;} 
+
+input[id*="popup"] + label + div > div { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:500px; height:400px; background: #fff; z-index:10;}
+
+input[id*="popup"] + label + div > div > label { position:absolute; top:0%; right:0%; transform:translate(40%,-40%); padding: 10px; background:#dd5347; border-radius:100%; z-index:3}
+   
+input[id*="popup"] + label + div > label { position:absolute; top:0; left:0; width: 100%; height:100%; background:rgba(48, 47, 47, 0.9); z-index:1;}
+
+
+
+input[id*="popup"] + label + div{opacity:0; visibility:hidden; transition:all 1s;}
+
+input[id*="popup"]:checked + label + div{opacity:1; visibility:visible;}

@@ -25,10 +25,10 @@
      	 List rlist = (List)session.getAttribute("rlist"); 
      	%>
      	<link rel="stylesheet" type="text/css" href="css/modelpopupp.css">
-     	<!-- <link rel="stylesheet" type="text/css" href="css/mpup.css"> -->
      	<link rel="stylesheet" type="text/css" href="css/settingpop.css">
      	<link rel="stylesheet" type="text/css" href="css/updatepop.css">
-   
+     	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	
 	
      	
@@ -279,14 +279,18 @@
 		border: 0;
 		height: auto;
 		}
-		
+       
+      		
 	  
-	  .texta {
-      width: 490px;
-      margin-left: -10px;
+	   .texta {
+       
+       width: 490px;
+       margin-left: -10px;
       
-      }
+       }
+       
       #PsettingBtn{
+      
       width: 100px;
       padding-left:-20px;
       margin-left: -20px;
@@ -349,6 +353,13 @@
         margin-top: 300px;        
         width:50%;    
         }
+        
+        .lockbtn{
+        border:0;
+        outline: 0;
+        color: #446a95; 
+        
+        }
      </style>
 
 </head>
@@ -386,12 +397,27 @@
 					   	</td>
 					   
 					  <fmt:formatDate value="${dto.reg}" var="reg" pattern="yyyy.MM.dd"/>
-					       <td><input type="text" id="textmemo" style="float:left" value="${reg}" disabled/><td>
+					       <td><input type="text" id="textmemo" style="float:left" value="${reg}" disabled/></td>
 					       
-					       <!--                  사진 수정 삭제 부분        드롭다운 부분                         -->
-					  
-					    
-					  
+					       
+					      <%--  좋아요 부분 <td>
+					         <div>
+					          <div class= "w3-center w3-padding" style="border:0">
+					           <c:if test="${ id == null }">
+					              <button class="w3-button w3-round" style="width:40px; text-align:center" id="rec_update">
+					                   <i class="fa fa-heart" style="font-size:16px; color:red; text-align:center"></i>
+					                   &nbsp;<span class="rec_count"></span>
+					              </button>
+					           </c:if>
+					          </div>
+					         </div>
+					       </td> --%>
+					
+
+					       
+					       
+					       <td>
+					      
 					    <c:set var="id" value="${dto.id}" ></c:set>	
 
 						<%
@@ -476,19 +502,59 @@
 			       			               
                           </tr>
                           
-                          
+                           <c:set var="no" value="${dto.no}" ></c:set>	
+
+						<%
+                        int i = 0;
+						int no = (int)pageContext.getAttribute("no");
+						
+						%>
+					         
+					          
+					    <%			
+					        //그냥 일반 게시판일 경우 
+							if( i == no){
+						%>     
+					    <table  id="systembox"> 
                           <tr>
-                          <a  href="#">나만보기</a>
+                           <td>
+                            <form action="MyProfileSecretChange">
+                            <input type="hidden" name="board_no" value="${dto.board_no}" /> 
+                            <input type="hidden" name="no" value="${dto.no }" />
+                            <input type="submit" class="lockbtn" value="나만보기" /> 
+                           </form>
+                          
+                           </td>
                           </tr>
                           
 					 
 					    </table>
 					 	
+					  <% }else{ //나만보기에서 게시판을 볼 경우 %> 
+					     
+					     <table  id="systembox"> 
+                          <tr>
+                           <td>
+                            <form action="MyProfileSecretChange">
+                            <input type="hidden" name="board_no" value="${dto.board_no}" /> 
+                            <input type="hidden" name="no" value="${dto.no }" />
+                            <input type="submit" class="lockbtn" value="공유하기" /> 
+                           </form>
+                          
+                           </td>
+                          </tr>
+                          
+					 
+					    </table>
+					 
+					
+								
+	                <%	}	%>	 	
 				  
-					    <tr>
+					  <!--   <tr>
 					    
 					    </tr>
-					    								
+					    		 -->						
 					</table> 
 					 <% }else{ //사용자가 아닌사람이 볼 경우 %> 
 					   <tr>
@@ -594,7 +660,7 @@
 				        
 						<div class="ssettingbox">
 							       
-					   <input type="button" class="upbtnpop btn btn-outline-dark"  value="수정" />
+					   <input type="button" class="upbtnpop btn btn-outline-dark"  value="댓글수정" />
 					   
 					    <!-- 첫 번째 Modal -->
 					   <div class="upmodal">
@@ -636,16 +702,25 @@
 				            
 				        	       </form>
 				        	       
-				       		 	<form action="DeletePicture" method="POST" enctype="multipart/form-data">
-				       		 		<input type="hidden" name="picture" value=<%=member.getPicture()%>>
+				       		 	<%-- <form action="SingoAction" method="POST" enctype="multipart/form-data">
+				       		 		<input type="hidden" name="reply_no" value="${rdto.reply_no}" />
+				       		 		<input type="hidden" name="board_no" value="${dto.board_no}" />
+				       		 		<input type="hidden" name="user_id" value="${rdto.user_id}" />
+				       		 		<input type="hidden" name="content" value="${rdto.content}" />
+				       		 		<input type="hidden" name="picture" value="${rdto.picture}" />
+				       		 		
 				            		<input type="submit" class="sbtn btn btn-danger" class="form-control" value="현재 댓글 신고">
 				        		</form>
-							      </div>  
+							      </div>   --%>
 					
 					
 							<% }else{ //사용자가 아닌사람이 볼 경우 %> 
-									<form action="DeletePicture" method="POST" enctype="multipart/form-data">
-				       		 		<input type="hidden" name="picture" value=<%=member.getPicture()%>>
+									<form action="SingoAction" method="POST" enctype="multipart/form-data">
+				       		 		<input type="hidden" name="reply_no" value="${rdto.reply_no}" />
+				       		 		<input type="hidden" name="board_no" value="${dto.board_no}" />
+				       		 		<input type="hidden" name="user_id" value="${rdto.user_id}" />
+				       		 		<input type="hidden" name="content" value="${rdto.content}" />
+				       		 		<input type="hidden" name="picture" value="${rdto.picture}" />
 				            		<input type="submit" class="sbtn btn btn-danger" class="form-control" style="margin-top:25%" value="현재 댓글 신고">
 				        		</form>
 							      </div>  
@@ -693,7 +768,46 @@
 			  		
 
 	     
-		
+		        <!--  <script>
+				 $(function(){
+
+					$("#rec_update").click(function(){
+						
+						$.ajax({
+							url: "/RecCount",
+							type: "POST",
+							data: {
+								no : ${content.board_no},
+								id:  '${id}'
+                                
+						   },
+
+                            success: function() {
+							    reCount();
+                                },
+							})
+						})	
+
+                    function recCount(){
+						$.ajax({
+
+	                     url: "/RecCount"   
+	                     type: "POST",
+	                     data: {
+                               no: ${content.board_no}
+		                     },
+
+		                     success: function (count){
+
+							       $(".rec_count").html(count); 							
+			                     },					
+		              		})
+	                    };
+						
+					recCount();
+
+				 });
+		         </script> -->
 
 
 			  

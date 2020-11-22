@@ -32,8 +32,8 @@ public class Dp1on1Service implements IDp1on1Service{
 		
 		System.out.println("startRowNum:"+startRowNum);
 		System.out.println("endRowNum:"+endRowNum);
-		
 		ArrayList<Dp1on1Dto> list=dao.list(startRowNum, endRowNum);
+		
 		return list;
 	}
 

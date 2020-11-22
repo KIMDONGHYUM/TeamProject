@@ -40,7 +40,7 @@
 				margin:0 auto;
 				padding:0;
 			 /*   border: solid red 1px;   */
-     		   }
+     	    }
 
          #subbody{
             margin-top:-19px;
@@ -249,7 +249,6 @@
    
   <div id="subbody">
     <c:forEach var="mdto" items="${ clist }" varStatus="status">
-    
     	<div id="main" >
     	
 	      <table id="profiletable" >
@@ -307,37 +306,26 @@
 	           </tr>
            </table>
             
+           
             <table>
                <tr>
-	             
-	                    <td>
-					   	 
-						
-						  
-						   	<div id="titlebox">
-						   	
-						   	 <div class="sprofileimg" style="background: #BDBDBD;"> 
-						       <a href="profile.go"><img class="profile" src="user/${mdto.id}/<%=member.getPicture()%>"  onerror="this.src='img/profile.jpg'" ></a>
-						     </div>
-	                       
-	                         <div id="user_popid">
-	                          <a href="profile.go"><label for="sprofileimg"><small>${mdto.id}</small></label></a> 
-	                         </div>
-	                       
-	                        </div>
-	              
-					    
-					    </td>
-					      
-					 
-					    <td>
-					      
-					      <div class="texta">
-					       <textarea id="textmemo" style="width:100%" disabled>${mdto.memo}</textarea>
-					      </div>
-						 
+	             <td>  
+				     <div id="titlebox">
+					   	<div class="sprofileimg" style="background: #BDBDBD;"> 
+						   <a href="profile.go"><img class="profile" src="user/${mdto.id}/<%=member.getPicture()%>"  onerror="this.src='img/profile.jpg'" ></a>
+						</div>    
+	                    <div id="user_popid">
+	                       <a href="profile.go"><label for="sprofileimg"><small>${mdto.id}</small></label></a> 
+	                    </div>       
+	                 </div>
+			      </td>
+					     
+				  <td>  
+					 <div class="texta">
+					    <textarea id="textmemo" style="width:100%" disabled>${mdto.memo}</textarea>
+				   	 </div>
 						  <script>
-						    $(document).ready(function() {
+					 	    $(document).ready(function() {
 						      $('.texta').on( 'keyup', 'textarea', function (e){
 						        $(this).css('height', 'auto' );
 						        $(this).height( this.scrollHeight );
@@ -345,12 +333,9 @@
 						      $('.texta').find( 'textarea' ).keyup();
 						    });
 						  </script>
-						</td>	
-						                       
-			       </tr>
-			   								
-			    
-	           </table>
+				  </td>	                       
+			   </tr>
+	         </table>
 		 
 		   <table>
 			    <tr>
@@ -365,42 +350,21 @@
 	
                
            <p class="three"></p>
- 
+           
            <table>
-	            <tr>
+	          <tr>
 	            <td>
-	                <div id="chatWrite">
+	               <div id="chatWrite">
 					 <form action="Replyinsert">
 			  		  <input type="text" class="chatWrite" name="content"  placeholder="글을써주세요" />
-			  		  
 			  		   <input type="hidden" name="board_no" value="${mdto.board_no}" />
-			  		   <input type="hidden" name="writer" value="<%=session.getAttribute("sessionID") %>" />
-			  	 	  
-			  		  <input type="submit" class="btn btn-primary" style="float:right" value="보내기"/>	
-			  		  </form>
-			  		
-			  		</div>
-	               </td>
-	            </tr>
-	            
-	            
-             
-         </table>
-       
-          <%--  <div class="container">
-	        <label for="content">comment</label>
-	        
-	        <form name="commentInsertForm" id="commentInsertForm${status.count}">
-	            <div class="input-group">
-	                 <input type="hidden" name="writer" value="<%=session.getAttribute("sessionID") %>" />
-	                 <input type="text" class="form-control" id="content${status.count}" name="content" placeholder="내용을 입력하세요.">
-	                 <input type="hidden" name="board_no" value="${mdto.board_no}" />
-	               <span class="input-group-btn">
-	                    <button class="btn btn-default" type="button" name="commentInsertBtn" onclick="insertData(${status.count})">등록</button>
-	               </span>
-	              </div> 
-	        </form> 
-	       </div> --%>
+			  		   <input type="hidden" name="writer" value="<%=session.getAttribute("sessionID") %>" /> 
+			  		   <input type="submit" class="btn btn-primary" style="float:right" value="보내기"/>	
+			  		  </form>			  		
+			  	   </div>
+	            </td>
+	          </tr>  
+            </table>
 	    
        </div> 
  
@@ -408,13 +372,10 @@
     
     
 
-     <div id="footer">
-   
-        
-   		  <a href="Introduce">소개 </a>| <a href="Infomation">고객센터 </a>| <a href="Location">위치 </a>
-  		    
+     <div id="footer">      
+  	  <a href="Introduce">소개 </a>| <a href="Infomation">고객센터 </a>| <a href="Location">위치 </a>		    
      </div>
-        
+         
         <table id="dp-nametable">
           <tr><td><small>상호명:데일리픽쳐|사업자등록번호:000-00-0000 사업자 확인</small></td></tr>
           <tr><td><small>통신판매업 신고번호 : 0000-서울노원-0000 | 개인정보관리책임자 : 홍길동</small></td></tr>  
@@ -423,71 +384,9 @@
           <tr><td><small>Copyright 2020 데일리 픽쳐 Corp. All Rights Reserved.</small></td></tr> 
         </table>    
     
- </div>  
+    </div>  
 
-         <script>
-
-			/* $('[name=commentInsertBtn]').one('click focus', function(){ 
-			    var insertData = $(self).serialize(); //serialize는 form태그 name에 있는 값들을 가져와 준다.
-                console.log(insertData);
-			    commentInsert(insertData);
-			}); */
-			
-			function insertData( btn_no ) {
-				var insertData = $( '#commentInsertForm'+btn_no ).serialize(); //serialize는 form태그 name에 있는 값들을 가져와 준다.
-		        console.log(insertData);
-			    commentInsert(insertData);
-			}
-			 
-			 
-			//댓글 목록 
-			function commentList(board_no){
-			    $.ajax({
-			        url : '/MainReplyView',
-			        type : 'post',
-			        data : board_no,
-			        success : function(data){
-			            var a =''; 
-			            $.each(data, function(key, value){ 
-			                a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
-			                a += '<div class="commentInfo'+value.cno+'">'+'댓글번호 : '+value.cno+' / 작성자 : '+value.writer;
-			                a += '<a onclick="commentUpdate('+value.cno+',\''+value.content+'\');"> 수정 </a>';
-			                a += '<a onclick="commentDelete('+value.cno+');"> 삭제 </a> </div>';
-			                a += '<div class="commentContent'+value.cno+'"> <p> 내용 : '+value.content +'</p>';
-			                a += '</div></div>';
-			            });
-			            
-			            $(".commentList").html(a);
-			        }
-			    });
-			}
-			 
-			//댓글 등록
-			function commentInsert(insertData){
-			    $.ajax({
-			        url : '/insert',
-			        type : 'post',
-			        data : insertData,// { 'writer': 'hong', 'content' : 'ment...' }
-			        success : function(data){
-			            if(data == 1) {
-			            	var board_no = '${mdto.board_no}'; //게시글 번호
-			                commentList(board_no); //댓글 작성 후 댓글 목록 reload
-			                $('[name=content]').val('');
-			            }
-			        }
-			    });
-			}
-			 
-			
-			 
-			$(document).ready(function(){
-			    commentList(); //페이지 로딩시 댓글 목록 출력 
-			});
-			 
-			 
-			 
-			</script>
-
+         
 
 </body>
 </html>

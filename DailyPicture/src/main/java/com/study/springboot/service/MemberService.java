@@ -19,12 +19,6 @@ public class MemberService implements IMemberService{
 	@Autowired
 	IMemberDao dao;
 	
-	/*
-	 * @Override public Date stringToDate(MemberDto member) { Date birthday =
-	 * (Date)member.getBirth();
-	 * 
-	 * return birthday; }
-	 */
 
 	@Override
 	public int insertMember(MemberDto member) {
@@ -81,11 +75,7 @@ public class MemberService implements IMemberService{
 		
 	
 
-	@Override
-	public ArrayList<MemberDto> userList() {
-		ArrayList<MemberDto> list = dao.userListDao();
-		return list;
-	}
+
 
 	@Override
 	public int idCheck(String id) {
@@ -98,12 +88,7 @@ public class MemberService implements IMemberService{
 		int nResult = dao.updatePicture(member);
 		return nResult;
 	}
-	@Override
-	public int insertPicture(MemberDto member) {
-		int nResult = dao.insertPicture(member);
-		return nResult;
-	}
-
+	
 	@Override
 	public ArrayList<MemberDto> mlist(String id) {
 		ArrayList<MemberDto> mlist = dao.mlistDao(id);

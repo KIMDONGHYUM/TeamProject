@@ -16,11 +16,7 @@ public class MyctDto {
 		private String picture;
 		private Date reg;
 		private int no;
-		
-		
-
-		
-		
+			
 	}
 
 

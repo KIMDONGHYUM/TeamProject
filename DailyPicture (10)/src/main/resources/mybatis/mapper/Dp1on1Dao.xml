@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.study.springboot.dao.IDp1on1Dao"> 
+   
+   <insert id="write1on1" parameterType="com.study.springboot.dto.Dp1on1Dto">
+      insert into dp_question (bid, board_no, title, category, content, writer, picture, reg)
+           values (1, dp_1on1_seq.nextval, #{title}, #{category}, #{content}, #{writer}, #{picture}, #{reg})
+   </insert> 
+	
+	
+    <select id="list" resultType="com.study.springboot.dto.Dp1on1Dto">
+		select * from dp_question where bid=1 order by board_no desc
+	</select>
+	
+	 <select id="view_1on1" resultType="com.study.springboot.dto.Dp1on1Dto">
+		select * from dp_question where board_no=#{param1}
+	</select> 
+	
+	<update id="modify" parameterType="com.study.springboot.dto.Dp1on1Dto">
+		update dp_question set title = #{param2}, category = #{param3}, content = #{param4}, reg = #{param5} where bid = 1 and board_no = #{param1}
+	</update>
+	
+	<delete id="delete">
+		delete from dp_question where bid = 1 and board_no = #{param1}
+	</delete>
+	
+	<select id="getWriter" resultType="String">
+		select writer from dp_question where bid = 1 and board_no = #{param1}
+	</select>
+</mapper>

@@ -12,7 +12,8 @@
 <meta charset="UTF-8">
 <title>관리자 페이지</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-	<% List<MemberDto> userlist = (List<MemberDto>)session.getAttribute("userlist");
+	<% 
+	   List<MemberDto> userlist = (List<MemberDto>)session.getAttribute("userlist");
 	   List<ReplyDto> SingoList = (List<ReplyDto>)session.getAttribute("SingoList");
 	   List<DpReasonDto> reasonlist = (List<DpReasonDto>)session.getAttribute("reasonlist");
 	%>
@@ -66,10 +67,7 @@
         	text-decoration: none;
         	padding-top:40px;
         }
-        table {
-        	width:800px;
-        	height: auto;
-        }
+  
        #btns {
        		padding-top: 10px;
        		text-align:end;
@@ -130,16 +128,6 @@
     	<h1 style="padding-left:80px;"><b>관리자 페이지</b></h1>
     	
     	<div id="wrapper">
-    		<!-- <div id="title">
-    		
-    			<table id="list">
-	    			<tr><td><h2><b>관리자 페이지</b></h2></td></tr>
-	    			<tr><td><a><h3><b>유저 목록</b></h3></a></td></tr>
-	    			<tr><td><h3><b>신고당한 유저</b></h3></td></tr>
-	    			
-    			</table>
-    		</div> -->
-    		
     		<div id="notice">
     			
     			<h3><b>유저목록</b></h3>
@@ -177,8 +165,9 @@
 	    				
     				</tr>
     				<c:forEach var="sdto" items="${ SingoList }" varStatus="status">
-    					<form action="SingoDeleteAction" method="post" onsubmit="return Check()">
+    					
 	    					<tr>
+	    					<form action="SingoDeleteAction" method="post" onsubmit="return Check()">
 	    						<input type="hidden" name="board_no" value="${sdto.board_no }">
 	    						<input type="hidden" name="user_id" value="${sdto.user_id }">
 	    						<input type="hidden" id="content" name="content" value="${sdto.content }">
@@ -186,8 +175,9 @@
 			    				<td>${sdto.content}</td>
 			    				<td><fmt:formatDate pattern="yyyy년 MM월 dd일, kk시 mm시 ss초" value="${sdto.reg}"/></td>
 			    				<td><input type="submit" class="btn btn-outline-danger" value="정지" ></td>
+			    			</form>
 			    			</tr>
-		    			</form>
+		    			
 		    				
 	    				
 	        		</c:forEach>	
@@ -209,9 +199,6 @@
 			    				<td>${rdto.opinion}</td>
 			    				<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${rdto.reg}"/></td>			    				
 			    			</tr>
-		    			</form>
-		    				
-	    				
 	        		</c:forEach>	
     			</table>
     		</div>

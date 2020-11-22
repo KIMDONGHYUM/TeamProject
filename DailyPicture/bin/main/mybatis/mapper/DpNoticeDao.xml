@@ -11,7 +11,17 @@
    </insert> 
 
 	<select id="list" resultType="com.study.springboot.dto.DpNoticeDto">
-		select * from dp_notice order by board_no desc
+		select * 
+		from 
+		(
+			select
+				rownum as rnum, dp_notice.*
+			from
+				dp_notice 
+				order by board_no desc				
+		)
+		where 
+		rnum between #{param1} and #{param2}
 	</select>
 	
 	<select id="view_notice" resultType="com.study.springboot.dto.DpNoticeDto">
@@ -29,4 +39,5 @@
 	<delete id="delete">
 		delete from dp_notice where board_no = #{param1}
 	</delete>
+	
 </mapper>

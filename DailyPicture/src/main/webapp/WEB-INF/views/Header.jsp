@@ -7,8 +7,6 @@
 <html>
 <head>
 
-
-
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/mpop.css">
 	
@@ -41,10 +39,14 @@
 			}
 			else if(value == "5") // 내 프로필 보기
 			{
-				location.href="MyProfile","Header";
-			}
+				location.href="MyProfile";
+			}else if(value == "6") // 관리자 페이지
+			{
+				location.href="Admin";
+			}	
 		}
 	</script>
+	
 	<style>
 		span {
 				margin-left: 200px;
@@ -68,6 +70,30 @@
 			border: solid rgb(153, 243, 18) 2px;
 			}
 			
+			#profilebtn{
+				width: 33px;
+	    		height: 32px; 
+	    		border-radius: 70%;
+	    		overflow: hidden;
+				border: solid rgb(153, 243, 18) 2px;
+			}
+			
+			.sprofileimg{
+	        	border: solid rgb(153, 243, 18) 2px;
+	        	width: 35px;
+	    		height: 35px; 
+	    		border-radius: 70%;
+	    		overflow: hidden;
+	        }
+	        
+	        .profile {
+			    width: 100%;
+			    height: 100%;
+			    object-fit: cover;
+			   
+			}	       	
+	        
+			
 			.img1{
 			    width: 100%;
 			    height: 100%;
@@ -81,42 +107,31 @@
 	
 </head>
 <body>	
-	<div id="header">
-       
+	<div id="header">  
       <div class="headerpicture">
-		
       	<button id="logoutBtn" class="img0" onclick="changeView(0)"><img src="img/logo.jpg" alt="로고"></button>
       	 
       	<span>
-      	<!-- <input class="searchname" type="search" placeholder="검색"> -->
       	<button id="logoutBtn" class="mbtn" onclick="onshow1()"><img src="img/search.jpg" alt="찾기"></button>
       	<button id="logoutBtn" class="img0" onclick="changeView(2)"><img src="img/home.jpg" alt="홈"></button>
       	<button id="logoutBtn" class="img0" onclick="changeView(3)"><img src="img/compass.jpg" alt="나침반"></button>
       	<button id="logoutBtn" class="img0" onclick="changeView(4)"><img src="img/alret.jpg" alt="알림"></button>
-      	
-      
+        <% if(session.getAttribute("sessionID").toString().equals("hong")){%>
+        <button id="logoutBtn" class="img0" onclick="changeView(6)"><img src="img/admin.jpg" alt="관리자"></button>	
+        <% } %>
+        
       	
       	<button id="profilebtn" onclick="changeView(5)"><img src="user/<%=session.getAttribute("sessionID") %>/<%= member.getPicture()%>"  onerror="this.src='img/profile.jpg'"  class="img1" /></button>
       	</span>
-		
-       
-       
-        
-       <h1 class="mbtn"></h1>
-		 
+      	
+          <h1 class="mbtn"></h1>
 		   <!-- 첫 번째 Modal -->
 		   <div class="mdal">
-		         
-	
 		     <div class="mdal-content" style="display:block">
-		         
 		       
-		       
-		        <table>
-		         
+		        <table>		         
 				    <c:forEach var="mdto" items="${ mmlist }" >  
-				     
-				     
+				   
 				     <tr>
 				       <td>	 
 				       		<div class="sprofileimg" style="background: #BDBDBD;"> 
@@ -130,24 +145,21 @@
 		               <td>
 		                   <div>
 		                  		<p>(${mdto.name})</p>
-		                  </div>   
+		                   </div>   
 		                 
 		               </td>          
 		              
 				     </tr> 
 				     
-				    </c:forEach> 
-				     
-				    </table>
+				    </c:forEach>      
+				</table>
 				    
 		     </div>
 		   </div>
-		   
-		    
-	
+		  
          <hr class ="own">
         </div>
-    </div>
+     </div>
      
      
      <script>
@@ -158,14 +170,6 @@
 	});	
 	</script>    
     
-        
-    
-			
-			
-	
-
-	
-	
-	
-</body>
+       	
+  </body>
 </html>

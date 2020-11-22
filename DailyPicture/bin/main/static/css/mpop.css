@@ -6,11 +6,12 @@
             position:absolute; 
             
             z-index: 1; /* Sit on top */
-            left: 0;
+            left:45%;
             top: 160px;
-            width: 100%; /* Full width */
-            height:140%; /* Full height */
+            width: 180px; /* Full width */
+            height:200px; /* Full height */
             
+         
           
             z-index:1;
         }
@@ -22,7 +23,7 @@
             position:absolute;
             overflow: scroll;
             top:6%;
-            left:49%;
+            left:40%;
             transform:translate(-50%,-50%);
             width:180px;
             height:200px;

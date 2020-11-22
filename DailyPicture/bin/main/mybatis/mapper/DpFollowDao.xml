@@ -14,12 +14,7 @@
 		 	 values(dp_follow_seq.nextval, #{param1}, #{param2})
 		 
 	</insert>
-	
-	<!--  나를 제외한 member리스트 목록 
-	<select id="memberlist" resultType="com.study.springboot.dto.MemberDto">
-		select name from dp_member where not(id=#{id}) order by name asc
-	</select> -->
-	
+		
 	<!-- 언팔로우 -->
 	<delete id="unfollow">
 		delete from dp_follow where following = #{param1} and follower = #{param2}

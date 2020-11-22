@@ -10,15 +10,24 @@
       insert into dp_question (bid, board_no, title, category, content, writer, picture, reg)
            values (0, dp_question_seq.nextval, #{title}, #{category}, #{content}, #{writer}, #{picture}, #{reg})
    </insert> 
+		
+   <select id="list" resultType="com.study.springboot.dto.DpQuestionDto">
+		select * 
+		from 
+		(
+			select
+				rownum as rnum, dp_question.*
+			from
+				dp_question
+				order by board_no desc				
+		)
+		where 
+		rnum between #{param1} and #{param2}
+   </select>
 	
-	
-    <select id="list" resultType="com.study.springboot.dto.DpQuestionDto">
-		select * from dp_question where bid=0 order by board_no desc
-	</select>
-	
-	 <select id="view_question" resultType="com.study.springboot.dto.DpQuestionDto">
+   <select id="view_question" resultType="com.study.springboot.dto.DpQuestionDto">
 		select * from dp_question where board_no=#{param1}
-	</select>
+   </select>
 	
 	<update id="modify" parameterType="com.study.springboot.dto.DpQuestionDto">
 		update dp_question set title = #{param2}, category = #{param3}, content = #{param4}, reg = #{param5} where bid = 0 and board_no = #{param1}
@@ -27,4 +36,6 @@
 	<delete id="delete">
 		delete from dp_question where bid = 0 and board_no = #{param1}
 	</delete>
+	
 </mapper>
+

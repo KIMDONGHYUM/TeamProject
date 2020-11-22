@@ -21,15 +21,11 @@ public interface IMemberService {
 	public int deleteMember(@Param("id") String id,@Param("pw") String pw);
 	
 	public int loginCheck(String id, String pw);
-	
-	public ArrayList<MemberDto> userList();
-	
+		
 	public int idCheck(String id);
 	
 	public int updatePicture(MemberDto member);
 	
-	public int insertPicture(MemberDto member);
-
 	public ArrayList<MemberDto> mlist(String id);
 	
 	public List<MemberDto> mmlist();

@@ -11,18 +11,13 @@ import lombok.Data;
 public class MemberDto 
 {
 	private String name;
-	private String id; 	// 비밀번호
-	private String password;		// 이름
+	private String id; 	
+	private String password;	
 	private String phone;
-	private String mail;		// 성별
+	private String mail;		
 	private Date reg;
 	private String picture;
-	//기본생성자함수
-//	public SimpleBbsDto() {
-//		
-//	}
-	//Getter/Setter함수
-	
+
 	
 	
 }

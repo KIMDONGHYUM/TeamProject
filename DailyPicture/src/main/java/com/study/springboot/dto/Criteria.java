@@ -7,9 +7,6 @@ public class Criteria {
 	
 	private String id;
 	private int no;
-	
-
-
 	private int page;
 	private int perPageNum;
 	private int rowStart;
