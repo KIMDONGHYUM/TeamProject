@@ -7,9 +7,10 @@
     <title>알림창</title>
 </head>
 <body>
-<script>
-    alert('${msg}');             //http : //localhost:8081/프로젝트이름/  
-    location.href='<c:out value="${pageContext.request.contextPath}"/>${url}';
-</script>
+	<script>
+	    alert('${msg}'); 
+	    //http : //localhost:8081/프로젝트이름/                         
+	    location.href='<c:out value="${pageContext.request.contextPath}"/>${url}';
+	</script>
 </body>
 </html>

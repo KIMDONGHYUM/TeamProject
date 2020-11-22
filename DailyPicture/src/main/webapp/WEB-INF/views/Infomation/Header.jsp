@@ -81,7 +81,7 @@
 	    		overflow: hidden;
 	        }	
 	        
-	          .profile {
+	          .profile2 {
 			    width: 100%;
 			    height: 100%;
 			    object-fit: cover;
@@ -142,7 +142,7 @@
 				     <tr>
 				       <td>	 
 				       		<div class="sprofileimg" style="background: #BDBDBD;"> 
-							   <a href="UserProfileView?id=${mdto.id}" ><img class="profile" src="user/${mdto.id}/${mdto.picture}"  onerror="this.src='img/profile.jpg'" ></a>
+							   <a href="UserProfileView?id=${mdto.id}" ><img class="profile2" src="user/${mdto.id}/${mdto.picture}"  onerror="this.src='img/profile.jpg'" ></a>
 							</div>
 		                    <div id="user_popid">
 		                      <a href="UserProfileView?id=${mdto.id}" ><small>${mdto.id}</small></a>

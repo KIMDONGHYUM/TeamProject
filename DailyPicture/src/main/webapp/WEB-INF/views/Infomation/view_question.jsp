@@ -62,10 +62,7 @@
         	padding-top:40px;
         	}
         	
-      table {
-        	width:800px;
-        	height: auto;
-       		}
+     
        		 
       #btns {
        		padding-top: 10px;
