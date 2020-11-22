@@ -89,4 +89,9 @@
 	<delete id="Singodelete">
 		delete from dp_member where id = #{id}
 	</delete>
+	
+	<!-- 아이디 정지했을시 댓글 삭제 -->
+	<delete id="SingodeleteReply">
+		delete from dp_reply where board_no = #{param1} and user_id = #{param2} and content = #{param3}
+	</delete>
 </mapper>

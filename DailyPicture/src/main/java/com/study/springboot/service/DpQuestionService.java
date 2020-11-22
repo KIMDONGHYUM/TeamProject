@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.study.springboot.dao.IDpQuestionDao;
+import com.study.springboot.dto.DpNoticeDto;
 import com.study.springboot.dto.DpQuestionDto;
 
 @Service
@@ -22,8 +23,16 @@ public class DpQuestionService implements IDpQuestionService{
 	}
 
 	@Override
-	public ArrayList<DpQuestionDto> list() {
-		ArrayList<DpQuestionDto> list=dao.list();
+	public ArrayList<DpQuestionDto> list(String page) {
+		int num_page_no = Integer.parseInt(page);	//page번호 
+		int num_page_size = 10;	// 한 페이지당 줄갯수
+		int startRowNum = (num_page_no - 1) * num_page_size + 1; //페이지 시작 줄번호
+		int endRowNum = (num_page_no * num_page_size);	//페이지 끝 줄번호
+		
+		System.out.println("startRowNum:"+startRowNum);
+		System.out.println("endRowNum:"+endRowNum);
+		
+		ArrayList<DpQuestionDto> list=dao.list(startRowNum, endRowNum);
 		return list;
 	}
 

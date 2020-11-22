@@ -162,7 +162,7 @@
     				<tr>
 	    				<td style="font-size:50px; text-align:start"><b>${ view_notice.title }</td>
 	    				<td style="text-align:end; padding-top:10px; font-size:15px;">
-	    					<fmt:formatDate pattern="yyyy.MM.dd hh:mm" value="${view_notice.reg }"/><br>
+	    					<fmt:formatDate pattern="yyyy.MM.dd kk:mm" value="${view_notice.reg }"/><br>
 	    					조회수 ${ view_notice.hit }
 	    				</td>
 	    				

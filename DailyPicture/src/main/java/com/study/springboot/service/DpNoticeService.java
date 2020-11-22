@@ -17,8 +17,16 @@ public class DpNoticeService implements IDpNoticeService {
 
 
 	@Override
-	public ArrayList<DpNoticeDto> list() {
-		ArrayList<DpNoticeDto> list=dao.list();
+	public ArrayList<DpNoticeDto> list(String page) {
+		int num_page_no = Integer.parseInt(page);	//page번호 
+		int num_page_size = 10;	// 한 페이지당 줄갯수
+		int startRowNum = (num_page_no - 1) * num_page_size + 1; //페이지 시작 줄번호
+		int endRowNum = (num_page_no * num_page_size);	//페이지 끝 줄번호
+		
+		System.out.println("startRowNum:"+startRowNum);
+		System.out.println("endRowNum:"+endRowNum);
+		
+		ArrayList<DpNoticeDto> list=dao.list(startRowNum, endRowNum);
 		return list;
 	}
 
@@ -51,4 +59,6 @@ public class DpNoticeService implements IDpNoticeService {
 		int nResult = dao.delete(board_no);
 		return nResult;
 	}
+
+	
 }

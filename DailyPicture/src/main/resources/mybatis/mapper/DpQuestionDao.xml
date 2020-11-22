@@ -12,8 +12,19 @@
    </insert> 
 	
 	
-    <select id="list" resultType="com.study.springboot.dto.DpQuestionDto">
-		select * from dp_question where bid=0 order by board_no desc
+   <select id="list" resultType="com.study.springboot.dto.DpQuestionDto">
+		select * 
+		from 
+		(
+			select
+				rownum as rnum, dp_question.*
+			from
+				dp_question
+				order by board_no desc				
+		)
+		where 
+		rnum between #{param1} and #{param2}
+
 	</select>
 	
 	 <select id="view_question" resultType="com.study.springboot.dto.DpQuestionDto">

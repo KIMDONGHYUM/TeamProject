@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.study.springboot.dao.IDpReasonDao"> 
+	
+	<insert id="InsertReason" parameterType="com.study.springboot.dto.DpReasonDto">
+		insert into dp_reason (no,id,reason,opinion,reg)
+			values(dp_reason_seq.nextval,#{id},#{reason},#{opinion},#{reg})
+	</insert>
+	
+	<select id="list" resultType="com.study.springboot.dto.DpReasonDto">
+		select * from dp_reason
+	</select>
+</mapper>

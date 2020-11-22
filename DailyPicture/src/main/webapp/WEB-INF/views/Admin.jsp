@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="com.study.springboot.dto.MemberDto" %>
 <%@ page import="com.study.springboot.dto.ReplyDto" %>
+<%@ page import="com.study.springboot.dto.DpReasonDto" %>
 <%@ page import="java.util.List"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
@@ -13,6 +14,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 	<% List<MemberDto> userlist = (List<MemberDto>)session.getAttribute("userlist");
 	   List<ReplyDto> SingoList = (List<ReplyDto>)session.getAttribute("SingoList");
+	   List<DpReasonDto> reasonlist = (List<DpReasonDto>)session.getAttribute("reasonlist");
 	%>
 	<script>
 		function ChangeView(value) {
@@ -184,6 +186,28 @@
 			    				<td>${sdto.content}</td>
 			    				<td><fmt:formatDate pattern="yyyy년 MM월 dd일, kk시 mm시 ss초" value="${sdto.reg}"/></td>
 			    				<td><input type="submit" class="btn btn-outline-danger" value="정지" ></td>
+			    			</tr>
+		    			</form>
+		    				
+	    				
+	        		</c:forEach>	
+    			</table>
+    			<br><br>
+    			<h3><b>탈퇴 사유</b></h3>
+    			<table id="singotable" width="500" cellpadding="0" cellspacing="0" border="5">
+    				<tr>
+	    				
+	    				<th style="width:200px;">탈퇴 아이디</th>
+	    				<th style="width:500px;">탈퇴 사유</th>
+	    				<th style="width:500px;">기타 의견</th>
+	    				<th style="width:200px;">등록일</th>	
+    				</tr>
+    				<c:forEach var="rdto" items="${ reasonlist }">    					
+	    					<tr>
+	    						<td>${rdto.id }</td>
+			    				<td>${rdto.reason}</td>
+			    				<td>${rdto.opinion}</td>
+			    				<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${rdto.reg}"/></td>			    				
 			    			</tr>
 		    			</form>
 		    				

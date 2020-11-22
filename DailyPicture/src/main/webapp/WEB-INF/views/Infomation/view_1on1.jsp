@@ -210,7 +210,7 @@
 	    				<td style="text-align:end; font-size:15px;">
 		    				<img id="writerprofile" src="user/${mdto.id}/${mdto.picture}"  onerror="this.src='img/profile.jpg'" >
 		    				<b>${view_1on1.writer}</b><br>
-		    				<fmt:formatDate pattern="yyyy.MM.dd hh:mm" value="${view_1on1.reg }"/>
+		    				<fmt:formatDate pattern="yyyy.MM.dd kk:mm" value="${view_1on1.reg }"/>
 	    				</td>
 	    				
 	    			</tr>	

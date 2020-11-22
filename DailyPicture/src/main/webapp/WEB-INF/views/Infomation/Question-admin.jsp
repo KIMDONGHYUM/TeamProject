@@ -10,7 +10,18 @@
 <meta charset="UTF-8">
 <title>고객센터</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-	<% ArrayList<DpQuestionDto> qlist = (ArrayList<DpQuestionDto>)session.getAttribute("qlist"); %>
+	<% ArrayList<DpQuestionDto> list = (ArrayList<DpQuestionDto>)session.getAttribute("list"); 
+		String list_page = (String)session.getAttribute("page");
+		String page1_active = "";
+		String page2_active = "";
+		String page3_active = "";
+		if(list_page.equals("1"))
+			page1_active = "active";
+		if(list_page.equals("2"))
+			page2_active = "active";
+		if(list_page.equals("3"))
+			page3_active = "active";
+	%>
 	<script>
 		function ChangeView(value) {
 			if(value== "0") {
@@ -112,6 +123,9 @@
       		color:black;
       }
       /* 수정한 부분 */
+      nav {
+      	text-align:center;
+      }
 </style>
 </head>
 <body>
@@ -155,6 +169,24 @@
 				</div>    		
     		</div>
     	</div>
-    	
+    	<nav aria-label="...">
+	  	<ul class="pagination">
+		    <li class="page-item">
+		      	<a class="page-link" href="Question?page=1"><<</a>
+		    </li>
+		    <li class="page-item <%= page1_active %>">
+		    	<a class="page-link"  href="Question?page=1">1</a>
+		    </li>
+		    <li class="page-item <%= page2_active %>">
+		      	<a class="page-link" href="Question?page=2">2</a>
+		    </li>
+		    <li class="page-item <%= page3_active %>">
+		    	<a class="page-link" href="Question?page=3">3</a>
+		    </li>
+		    <li class="page-item">
+		      	<a class="page-link" href="Question?page=3">>></a>
+		    </li>
+	  	</ul>
+	</nav>
 </body>
 </html>
