@@ -63,7 +63,11 @@
             padding-right: 80px;
        		}
       
-#noticetable {border: 5px solid  rgb(214, 206, 206);}
+#noticetable {
+			border: 5px solid  rgb(214, 206, 206);
+			width:800px;
+            height: auto;
+			}
       		
 #noticetable th {
       		text-align: center;

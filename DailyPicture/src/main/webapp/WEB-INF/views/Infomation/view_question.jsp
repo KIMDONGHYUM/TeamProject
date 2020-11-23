@@ -60,9 +60,7 @@
    #title a {
         	text-decoration: none;
         	padding-top:40px;
-        	}
-        	
-     
+        	} 
        		 
       #btns {
        		padding-top: 10px;
@@ -83,7 +81,9 @@
       		border-right:none;
       		border-left:none;
       		border-bottom:none;
-      		border-collapse:collapse      		
+      		border-collapse:collapse;
+      		width:800px;
+            height: auto;      		
       		}
       		
 #noticetable th {

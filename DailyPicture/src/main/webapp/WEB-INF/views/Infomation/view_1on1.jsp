@@ -78,7 +78,9 @@
       		border-right:none;
       		border-left:none;
       		border-bottom:none;
-      		border-collapse:collapse
+      		border-collapse:collapse;
+      		width:800px;
+            height: auto;
       		}
       		
 #noticetable th {

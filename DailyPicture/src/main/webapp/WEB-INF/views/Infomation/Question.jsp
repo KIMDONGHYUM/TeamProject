@@ -96,6 +96,8 @@
       		border-right:none;
       		border-left:none;
       		border-bottom:none;		
+      		width:800px;
+            height: auto;
       		}
       		
       #noticetable th {
