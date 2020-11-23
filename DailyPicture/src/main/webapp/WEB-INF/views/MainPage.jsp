@@ -45,7 +45,10 @@
          #subbody{
             margin-top:-19px;
             padding-top:30px;
-            background-color: rgb(239, 237, 237);
+            width: 100%;
+            /* background-color: rgb(239, 237, 237); */
+            
+            background-color: #FAFBFB;
         
           }
           
@@ -57,7 +60,7 @@
           }
           
         .own {
-          width:2000px;
+          width:100%;
           color:gray; 
           border: thin solid rgb(240, 231, 231);
          }

@@ -152,7 +152,7 @@
 		    height:630px;
 		    width: 35%;
 		    vertical-aling: top;
-		    background-color: rgb(239, 237, 237);
+		    background-color: #FAFBFB;;
 		   
 			
 			  }
