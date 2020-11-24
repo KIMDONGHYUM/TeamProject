@@ -113,7 +113,7 @@
 	            height: 30px; 
 	            border-radius: 70%;
 	            position:absolute;
-	            top:38%;
+	            top:36%;
 	            left:52%;
         	  }
                    

@@ -121,12 +121,12 @@
 	  	  
 #commentbox {	  	
 		  	padding-top:50px;
-		  	padding-left:350px;
+		  	padding-left:400px;
 	  		}
 	  		
 #commentinsert{
 		  	padding-top:50px;
-		  	padding-left:320px;
+		  	padding-left:400px;
 	  		}
 	  		
 #commentinsert input[type="text"] {height:50px;}

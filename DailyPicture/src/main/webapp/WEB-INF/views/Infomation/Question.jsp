@@ -96,7 +96,7 @@
       		border-right:none;
       		border-left:none;
       		border-bottom:none;		
-      		width:800px;
+      		width:900px;
             height: auto;
       		}
       		

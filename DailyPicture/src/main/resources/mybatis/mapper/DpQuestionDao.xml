@@ -22,7 +22,7 @@
 				order by board_no desc				
 		)
 		where 
-		rnum between #{param1} and #{param2}
+		bid=0 and rnum between #{param1} and #{param2}
    </select>
 	
    <select id="view_question" resultType="com.study.springboot.dto.DpQuestionDto">

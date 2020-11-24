@@ -82,11 +82,14 @@
             padding-right: 80px;
        }
        #noticetable{
-      		border: 5px solid  rgb(214, 206, 206);
+      		border: 3px solid  rgb(214, 206, 206);
             display: inline-block;
-            width: auto;
+            width: 1400px;
             height: auto;
             overflow: auto;
+            border-right:none;
+      		border-left:none;
+      		border-bottom:none;	
       }
       
       #noticetable th {
@@ -103,11 +106,15 @@
 		}
 	
 	#singotable{
-      		border: 5px solid  rgb(214, 206, 206);
+      		border: 3px solid  rgb(214, 206, 206);
             display: inline-block;
-            height: auto;
             width: auto;
+            height: auto;
             overflow: auto; 
+            border-right:none;
+      		border-left:none;
+      		border-bottom:none;	
+      		
       }
       #singotable th {
       	text-align: center;
