@@ -355,7 +355,7 @@
 	 <script>
 		      $(function(){
 		        $('#listsearchBtn').click(function() {
-		          self.location = "MyProfile" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+		          self.location = "UserProfileView" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
 		        });
 		      });   
 	 </script>

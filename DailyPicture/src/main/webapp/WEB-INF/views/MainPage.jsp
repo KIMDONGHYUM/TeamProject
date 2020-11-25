@@ -3,10 +3,12 @@
 <%@ page import="com.study.springboot.dto.MyctDto" %>
 <%@ page import="com.study.springboot.dto.MemberDto" %>
 <%@ page import= "com.study.springboot.dto.ReplyDto" %>
+<%@ page import= "java.util.Iterator"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.List" %> 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>      
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+   
     
 
 <!DOCTYPE html>
@@ -17,6 +19,10 @@
     <link rel="stylesheet" type="text/css" href="css/settingpop.css">
 	    <%
 			ArrayList<MyctDto> clist = (ArrayList<MyctDto>)session.getAttribute("mmlist");
+		%>
+		
+		 <%
+			ArrayList<MyctDto> mlist = (ArrayList<MyctDto>)session.getAttribute("clist");
 		%>
     	
     	<%
@@ -50,6 +56,10 @@
             
             background-color: #FAFBFB;
         
+          }
+          
+          #npimg{
+          text-align: center;
           }
           
           /* 밑줄  */
@@ -249,6 +259,23 @@
        <jsp:include page="Header.jsp" /> 
     </div>
     
+  
+   
+    <% if(mlist.isEmpty()) { %> 
+		 
+		 <div id ="npimg">
+		 <img src="img/np.jpg" >
+         <div>
+	 <%}else{%>
+		 
+	
+	 
+   
+   
+   
+   
+  
+  
    
   <div id="subbody">
     <c:forEach var="mdto" items="${ clist }" varStatus="status">
@@ -372,7 +399,8 @@
        </div> 
  
   </c:forEach> 
-    
+  	<% } %>
+  
     
 
      <div id="footer">      

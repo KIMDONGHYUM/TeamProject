@@ -76,6 +76,10 @@
 	            background-color: #FAFBFB;
         
             }
+            
+            #npimg{
+         	    text-align: center;
+            }
     		  
             li {list-style: none; text-align:center;  padding: 6px; margin-top: 100px;}
 		
@@ -204,10 +208,9 @@
 	
 	  <div id="header">
        	 <jsp:include page="Header.jsp" /> 
-      </div> 
-    
-	
-		
+      </div>
+      
+       		
 	  <div id="subbody">	
 		
 		<div id="profile"> 
@@ -260,7 +263,12 @@
 		 </div>
 			
 				
-			
+   <% if(clist.isEmpty()) { %> 
+		 
+		 <div id ="npimg">
+		 <img src="img/np.jpg" >
+         <div>
+	  <%}else{%>  	
 	 
  
     	<div id="imgbox" style="margin-top:50px">   
@@ -282,6 +290,8 @@
 			   </c:forEach> 	
 		    </div>	
 	     </div>	
+	     
+	    
 	
 		<div id="pagin">
 		 <div class="w3-bar w3-small">
@@ -298,7 +308,7 @@
 	      </c:if> 
 		 </div>
 		</div>
-		
+	 <%} %>	
 		
 	<div id="footer">
    		<a href="Introduce">소개 </a>| <a href="Infomation">고객센터 </a>| <a href="Location">위치 </a>	

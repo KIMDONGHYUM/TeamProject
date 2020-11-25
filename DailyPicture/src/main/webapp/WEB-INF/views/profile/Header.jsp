@@ -106,7 +106,7 @@
       	<button id="logoutBtn" class="img0" onclick="changeView(2)"><img src="img/home.jpg" alt="홈"></button>
       	<button id="logoutBtn" class="img0" onclick="changeView(3)"><img src="img/compass.jpg" alt="나침반"></button>
       	<button id="logoutBtn" class="img0" onclick="changeView(4)"><img src="img/alret.jpg" alt="알림"></button>
-        <% if(session.getAttribute("sessionID").toString().equals("hong")){%>
+        <% if(session.getAttribute("sessionID").toString().equals("master")){%>
         <button id="logoutBtn" class="img0" onclick="changeView(6)"><img src="img/admin.jpg" alt="관리자"></button>	
         <% } %>
         
